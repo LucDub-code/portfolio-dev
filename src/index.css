@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@import '@fontsource/jetbrains-mono/400.css'; /* Regular */
+@import '@fontsource/jetbrains-mono/500.css'; /* Medium */
+@import '@fontsource/jetbrains-mono/600.css'; /* Semi-Bold */
+@import '@fontsource/jetbrains-mono/700.css'; /* Bold */
