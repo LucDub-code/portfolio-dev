@@ -3,3 +3,16 @@
 @import '@fontsource/jetbrains-mono/500.css'; /* Medium */
 @import '@fontsource/jetbrains-mono/600.css'; /* Semi-Bold */
 @import '@fontsource/jetbrains-mono/700.css'; /* Bold */
+
+*, ::before, ::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  font-family: "JetBrains Mono", monospace;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
