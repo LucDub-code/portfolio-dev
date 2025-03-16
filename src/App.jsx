@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import './App.css'
-import Layout from "./components/layout/Layout"
+import Layout from './components/layout/Layout'
+import { NavigationProvider } from './components/context/NavigationContext'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
+    <NavigationProvider>
       <Layout />
-    </>
+    </NavigationProvider>
   )
 }
 
