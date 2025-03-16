@@ -17,7 +17,7 @@ export default function MobileMenu() {
 
   // Méthode map() pour créer les sous-menus
   return (
-    <div className="fixed inset-0 top-12 z-50 flex flex-col">
+    <div className="fixed inset-x-0 top-12 z-40 flex flex-col">
       <div className="w-full bg-bg-terminal shrink-0">
         {menuItems.map((item, index) => (
           <div key={index} className="flex items-center p-3 border-b border-border-ide">
