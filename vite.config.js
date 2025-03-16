@@ -5,8 +5,6 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss({
-      config: './tailwind.config.js' // Spécifiez explicitement le chemin
-    })
+    tailwindcss()
   ],
 })
