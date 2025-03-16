@@ -1,6 +1,6 @@
 export default function EditorContent() {
   return (
-    <div className="w-3/4">
+    <div className="bg-bg-ui text-text-default">
       EditorContent
     </div>
   )

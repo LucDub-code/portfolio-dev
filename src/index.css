@@ -1,9 +1,13 @@
 @import "tailwindcss";
+@import "tailwindcss";
+
+/* Importation des polices */
 @import '@fontsource/jetbrains-mono/400.css'; /* Regular */
 @import '@fontsource/jetbrains-mono/500.css'; /* Medium */
 @import '@fontsource/jetbrains-mono/600.css'; /* Semi-Bold */
 @import '@fontsource/jetbrains-mono/700.css'; /* Bold */
 
+/* Reset CSS */
 *, ::before, ::after {
   box-sizing: border-box;
   margin: 0;
@@ -15,4 +19,65 @@ html, body, #root {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
+
+/* Thème visuel Portfolio IDE - Dark Mode */
+
+@theme {
+  /* Couleurs de fond principales */
+  --color-btn-hover: #3E3E42;
+  --color-bg-terminal: #1E1E1E;
+  --color-bg-ui: #252526;
+
+  /* Couleurs de texte */
+  --color-text-default: #D4D4D4;
+  --color-text-selected: #FFFFFF;
+
+  /* Couleurs bleues */
+  --color-blue-accent: #007ACC;
+  --color-blue-html: #569CD6;
+  --color-blue-attr: #9CDCFE;
+
+  /* Couleurs vertes */
+  --color-green-class: #4EC9B0;
+  --color-green-comment: #6A9955;
+  --color-green-number: #B5CEA8;
+
+  /* Couleurs dorées */
+  --color-gold-function: #DCDCAA;
+  --color-gold-css: #D7BA7D;
+
+  /* Autres couleurs syntaxiques */
+  --color-orange-string: #CE9178;
+  --color-pink-keyword: #C586C0;
+
+  /* Couleurs d'interface */
+  --color-gray-inactive: #6B6B6B;
+  --color-border-ide: #3F3F3F;
+  --color-line-number: #858585;
+  --color-btn-bg: #323232;
+
+  /* Couleurs de notification et de statut */
+  --color-error-foreground: #F48771;
+  --color-success-foreground: #89D185;
+
+  /* Couleurs des logos de technologies */
+  --color-logo-html: #E34F26;
+  --color-logo-css: #1572B6;
+  --color-logo-javascript: #F7DF1E;
+  --color-logo-react: #61DAFB;
+  --color-logo-git: #F05032;
+  --color-logo-tailwind: #06B6D4;
+  --color-logo-json: #D35400;
+  --color-logo-markdown: #007BD4;
+
+  /* Couleurs syntaxiques supplémentaires */
+  --color-syntax-punctuation: #FFD700;
+
+  /* Couleurs d'interface supplémentaires */
+  --color-statusBar-background: #007ACC;
+  --color-focus-hover: #0E639C;
+
+  /* Police */
+  --font-mono: "JetBrains Mono", monospace;
 }
