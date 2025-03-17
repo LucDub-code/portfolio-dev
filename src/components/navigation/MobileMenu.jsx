@@ -12,7 +12,7 @@ export default function MobileMenu({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-x-0 top-12 z-40 flex flex-col">
+    <div className="fixed inset-0 top-12 z-40 flex flex-col">
       <div className="w-full bg-bg-terminal shrink-0">
         {Object.values(pages).map((page) => (
           <div 
@@ -28,7 +28,7 @@ export default function MobileMenu({ onClose }) {
           </div>
         ))}
       </div>
-      <div className="flex-1 bg-bg-ui"></div>
+      <div className="flex-1 bg-bg-ui" style={{ height: 'calc(100vh - 12rem)' }}></div>
     </div>
   );
 }
