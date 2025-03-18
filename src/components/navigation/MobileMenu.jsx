@@ -17,7 +17,7 @@ export default function MobileMenu({ onClose }) {
         {Object.values(pages).map((page) => (
           <div 
             key={page.id} 
-            className={`flex items-center p-3 border-b border-border-ide ${
+            className={`flex items-center p-3 border-b border-border-ide cursor-pointer ${
               activePage === page.id ? 'bg-slate-800' : ''
             }`}
             onClick={() => handleNavigation(page.id)}
