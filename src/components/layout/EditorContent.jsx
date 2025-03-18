@@ -5,6 +5,7 @@ import Terminal from '../terminal/Terminal';
 import StatusBar from '../statusBar/StatusBar';
 import AboutPage from '../pages/AboutPage';
 import ProjectsPage from '../pages/ProjectsPage';
+import ContactPage from '../pages/ContactPage';
 
 export default function EditorContent() {
   const { activePage } = useNavigation();
@@ -35,7 +36,13 @@ export default function EditorContent() {
               <StatusBar />
             </>
           );
-      // Ajouter d'autres cas pour les futures pages
+        case 'contact':
+          return (
+            <>
+              <ContactPage className="flex-1 overflow-auto" />
+              <StatusBar />
+            </>
+          );
       default:
         return (
           <>
