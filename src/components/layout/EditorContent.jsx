@@ -17,29 +17,29 @@ export default function EditorContent() {
         return (
           <>
             <FileHeader />
-            <EditorContainer className="flex-1 overflow-auto" />
-            <Terminal className="h-64" />
+            <EditorContainer className="flex-none max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+            <Terminal className="flex-1" />
             <StatusBar />
           </>
         );
       case 'a-propos':
         return (
           <>
-            <AboutPage className="flex-1 overflow-auto" />
+            <AboutPage className="flex-1 overflow-auto max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] mb-4" />
             <StatusBar />
           </>
         );
         case 'projets':
           return (
             <>
-              <ProjectsPage className="flex-1 overflow-auto" />
+              <ProjectsPage className="flex-1 overflow-auto max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
               <StatusBar />
             </>
           );
         case 'contact':
           return (
             <>
-              <ContactPage className="flex-1 overflow-auto" />
+              <ContactPage className="flex-1 overflow-auto max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
               <StatusBar />
             </>
           );
@@ -47,8 +47,8 @@ export default function EditorContent() {
         return (
           <>
             <FileHeader />
-            <EditorContainer className="flex-1 overflow-auto" />
-            <Terminal className="h-64" />
+            <EditorContainer className="flex-none max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+            <Terminal className="flex-1" />
             <StatusBar />
           </>
         );

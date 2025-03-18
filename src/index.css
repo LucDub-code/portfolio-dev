@@ -19,6 +19,11 @@ html, body, #root {
   overflow: hidden;
 }
 
+/* Force le maintien des espaces dans les spans de l'éditeur de code */
+span[class^="text-"] {
+  white-space: pre !important;
+}
+
 /* Thème visuel Portfolio IDE - Dark Mode */
 
 @theme {

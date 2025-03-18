@@ -11,7 +11,7 @@ export default function ProjectsPage() {
       <div className="flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
         <img src={jsonIcon} alt="Dossier" className="w-5 h-5 mr-2" />
-        <span className="text-text-default">_mes-projets.json</span>
+        <span className="text-text-default max-[376px]:text-[0.625rem]">_mes-projets.json</span>
       </div>
       
       <div className="flex-1 flex items-center justify-center">
@@ -27,8 +27,8 @@ export default function ProjectsPage() {
           
           {/* Méssage */}
           <div className="text-center">
-            <div className="text-green-comment mb-2">// Projets en cours de développement...</div>
-            <div className="text-green-comment mb-4">// De nouvelles créations seront déployées prochainement !</div>
+            <div className="text-green-comment mb-2 max-[376px]:text-[0.625rem] max-[321px]:text-[0.55rem]">// Projets en cours de développement...</div>
+            <div className="text-green-comment mb-4 max-[376px]:text-[0.625rem] max-[321px]:text-[0.55rem] max-[321px]:px-2">// De nouvelles créations seront déployées prochainement !</div>
           </div>
         </div>
       </div>
