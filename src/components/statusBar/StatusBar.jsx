@@ -4,11 +4,15 @@ import { useState, useEffect } from 'react'
 export default function StatusBar() {
   const { activePage } = useNavigation()
   const [isMobile, setIsMobile] = useState(false)
+  const [isVerySmall, setIsVerySmall] = useState(false)
+  const [isTinyScreen, setIsTinyScreen] = useState(false)
 
   useEffect(() => {
     // Fonction pour détecter si l'écran est en mode mobile
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth < 640)
+      setIsMobile(window.innerWidth <= 426)
+      setIsVerySmall(window.innerWidth <= 376)
+      setIsTinyScreen(window.innerWidth <= 321)
     }
     
     // Vérifier au chargement
@@ -28,16 +32,19 @@ export default function StatusBar() {
     'contact': '// Utilisez ce formulaire pour me contacter'
   }
 
-  // Déterminer les classes CSS à appliquer en fonction de la page active et du mode (mobile/desktop)
-  const getTextClasses = () => {
-    if (activePage === 'projets' && isMobile) {
-      return 'text-xs' // taille de texte plus petite sur mobile pour la page projets
+  // Déterminer la classe de taille de texte en fonction de la taille d'écran
+  const getTextClass = () => {
+    if (isTinyScreen) {
+      return 'text-[0.55rem]' // Équivalent à environ 9px, encore plus petit
     }
-    return 'text-sm' // taille normale pour les autres cas
+    if (isVerySmall) {
+      return 'text-[0.625rem]' // Équivalent à 10px, plus petit que xs
+    }
+    return isMobile ? 'text-xs' : 'text-sm'
   }
 
   return (
-    <div className={`h-6 bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClasses()}`}>
+    <div className={`h-6 bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClass()}`}>
       {statusMessages[activePage]}
     </div>
   )

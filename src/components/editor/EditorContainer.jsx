@@ -1,11 +1,11 @@
 import LineNumbers from './LineNumbers';
 import CodeEditor from './CodeEditor';
 
-export default function EditorContainer() {
+export default function EditorContainer({ className }) {
   return (
-    <div className="flex">
+    <div className={`flex ${className}`}>
       <LineNumbers />
-      <CodeEditor className="pl-1 flex-1" />
+      <CodeEditor />
     </div>
   );
 }

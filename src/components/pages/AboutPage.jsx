@@ -16,7 +16,7 @@ export default function AboutPage({ className }) {
       <div className="flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
         <img src={folderIcon} alt="Dossier" className="w-5 h-5 mr-2" />
-        <span className="text-text-default">_a-propos-de-moi</span>
+        <span className="text-text-default text-sm">_a-propos-de-moi</span>
       </div>
 
       {/* Navigation par onglets */}
@@ -31,12 +31,12 @@ export default function AboutPage({ className }) {
             <div className="relative">
               <div className="flex items-center">
                 <img src={mdIcon} alt="Markdown" className="w-4 h-4 mr-1" />
-                <span className={activeTab === tab ? 'text-text-selected' : 'text-text-default'}>
+                <span className={`${activeTab === tab ? 'text-text-selected' : 'text-text-default'} text-sm`}>
                   {tab}.md
                 </span>
               </div>
               {activeTab === tab && (
-                <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-orange-string"></div>
+                <div className="absolute bottom-[-5px] left-0 right-0 h-[3px] bg-orange-string"></div>
               )}
             </div>
           </div>
