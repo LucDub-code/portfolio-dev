@@ -7,11 +7,11 @@ import BioContent from '../aboutContent/BioContent';
 import InteretsContent from '../aboutContent/InteretsContent';
 import EducationContent from '../aboutContent/EducationContent';
 
-export default function AboutPage() {
+export default function AboutPage({ className }) {
   const [activeTab, setActiveTab] = useState('bio');
 
   return (
-    <div className="flex flex-col h-full">
+    <div className={`flex flex-col h-full ${className || ''}`}>
       {/* En-tête de la page */}
       <div className="flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
