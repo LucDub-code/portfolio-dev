@@ -3,9 +3,9 @@ import folderIcon from '../../assets/icons/navigation/folder.svg';
 import chevronDown from '../../assets/icons/navigation/nav-full-down.svg';
 import navIcon from '../../assets/icons/navigation/nav-light.svg';
 import mdIcon from '../../assets/icons/technos/md.svg';
-import BioContent from '../aboutContent/BioContent';
-import InteretsContent from '../aboutContent/InteretsContent';
-import EducationContent from '../aboutContent/EducationContent';
+import BioContent from '../about/BioContent';
+import InteretsContent from '../about/InteretsContent';
+import EducationContent from '../about/EducationContent';
 
 export default function AboutPage({ className }) {
   const [activeTab, setActiveTab] = useState('bio');
