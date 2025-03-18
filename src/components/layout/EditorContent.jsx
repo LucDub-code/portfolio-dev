@@ -4,6 +4,7 @@ import EditorContainer from '../editor/EditorContainer';
 import Terminal from '../terminal/Terminal';
 import StatusBar from '../statusBar/StatusBar';
 import AboutPage from '../pages/AboutPage';
+import ProjectsPage from '../pages/ProjectsPage';
 
 export default function EditorContent() {
   const { activePage } = useNavigation();
@@ -27,6 +28,13 @@ export default function EditorContent() {
             <StatusBar />
           </>
         );
+        case 'projets':
+          return (
+            <>
+              <ProjectsPage className="flex-1 overflow-auto" />
+              <StatusBar />
+            </>
+          );
       // Ajouter d'autres cas pour les futures pages
       default:
         return (
