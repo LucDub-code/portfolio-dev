@@ -24,7 +24,7 @@ export default function MobileMenu({ onClose }) {
           >
             <img src={chevronRight} alt="Chevron" className="w-4 h-4 mr-2" />
             <img src={page.icon} alt={`Icône ${page.title}`} className="w-6 h-6 mr-2" />
-            <span className="text-text-default">{page.title}</span>
+            <span className={activePage === page.id ? "text-text-selected" : "text-text-default"}>{page.title}</span>
           </div>
         ))}
       </div>
