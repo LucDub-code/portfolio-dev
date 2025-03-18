@@ -16,7 +16,7 @@ export default function Header() {
 
   return (
     <div className="border-b border-border-ide w-full bg-bg-terminal text-text-default px-4 py-2 flex justify-between items-center h-12">
-      <p className="font-medium ml-1">lucas-dubeau</p>
+      <p className="font-medium text-lg ml-1">lucas-dubeau</p>
       <button 
       className="md:hidden w-8 h-8 flex items-center justify-center focus:outline-none text-text-default"
       onClick={toggleMobileMenu}

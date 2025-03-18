@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <div className="border-t border-border-ide w-full bg-bg-terminal text-text-default flex justify-between h-12 relative z-50">
       <div className="flex items-center px-4">
-        <p className="text-gray-inactive text-sm max-[376px]:text-xs">retrouvez moi sur :</p>
+        <p className="text-gray-inactive text-sm max-[376px]:text-xs">retrouvez moi sur {"=>"}</p>
       </div>
       <div className="flex">
         <a href="#" className="flex items-center justify-center w-16 border-l border-border-ide">

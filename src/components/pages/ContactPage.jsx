@@ -128,7 +128,7 @@ export default function ContactPage() {
       <div className="flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
         <img src={htmlIcon} alt="Dossier" className="w-5 h-5 mr-2" />
-        <span className="text-text-default">_me-contacter.html</span>
+        <span className="text-text-default text-base">_me-contacter.html</span>
       </div>
       {/* Formulaire de contact */}
       <div className="flex-1 flex items-center justify-center p-4">
