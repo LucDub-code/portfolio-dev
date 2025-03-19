@@ -15,7 +15,7 @@ export default function AboutPage({ className }) {
       {/* En-tête de la page */}
       <div className="flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
-        <img src={folderIcon} alt="Dossier" className="w-5 h-5 mr-2" />
+        <img src={folderIcon} alt="Dossier" className="w-4 h-4 mr-2" />
         <span className="text-text-default text-base">_a-propos-de-moi</span>
       </div>
 
