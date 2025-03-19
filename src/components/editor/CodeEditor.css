@@ -1,0 +1,158 @@
+/* Animation typewriter avec masque */
+@keyframes typewriter-mask {
+  from { width: 100%; }
+  to { width: 0; }
+}
+
+/* Animation du curseur clignotant */
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Style de base pour toutes les lignes animées */
+.typing-line {
+  position: relative;
+  width: max-content; /* Prend uniquement la largeur du contenu */
+  display: flex; /* Pour assurer que la ligne ne prenne que la largeur de son contenu */
+}
+
+/* Masque qui se retire progressivement */
+.typing-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--bg-ui-color, #111827); /* Utilise la couleur bg-bg-ui si disponible */
+  z-index: 1;
+  animation-fill-mode: forwards;
+}
+
+/* Curseur clignotant - caché par défaut sauf pour la dernière ligne */
+.typing-line::after {
+  content: "";
+  position: absolute;
+  right: 0; /* Positionnement initial à droite */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 1em;
+  background-color: #64ffda;
+  opacity: 0; /* Invisible par défaut */
+  z-index: 2;
+  visibility: hidden; /* Complètement caché pour toutes les lignes sauf la dernière */
+}
+
+/* Animation spécifique pour chaque ligne avec des délais optimisés */
+.typing-line-1::before {
+  animation: typewriter-mask 1.2s steps(20) 0.2s forwards;
+  width: 100%;
+}
+
+.typing-line-3::before {
+  animation: typewriter-mask 1.2s steps(30) 1.4s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-5::before {
+  animation: typewriter-mask 0.8s steps(20) 2.6s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-6::before {
+  animation: typewriter-mask 0.8s steps(20) 3.4s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-7::before {
+  animation: typewriter-mask 1s steps(25) 4.2s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-8::before {
+  animation: typewriter-mask 1.3s steps(40) 5.2s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-9::before {
+  animation: typewriter-mask 0.8s steps(15) 6.5s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-10::before {
+  animation: typewriter-mask 0.4s steps(5) 7.3s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-12::before {
+  animation: typewriter-mask 1.2s steps(30) 7.7s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-14::before {
+  animation: typewriter-mask 1s steps(20) 8.9s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-15::before {
+  animation: typewriter-mask 1.3s steps(35) 9.9s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-16::before {
+  animation: typewriter-mask 1s steps(25) 11.2s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-17::before {
+  animation: typewriter-mask 1.3s steps(35) 12.2s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-18::before {
+  animation: typewriter-mask 1s steps(25) 13.5s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+/* Solution renforcée pour la ligne 19 (timeLimit: 30) */
+.typing-line-19 {
+  min-width: 115px; /* Force une largeur minimale pour cette ligne */
+  padding-right: 6px; /* Ajoute un espace supplémentaire à droite */
+}
+
+.typing-line-19::before {
+  animation: typewriter-mask 0.6s steps(15) 14.5s forwards; /* Augmenté davantage le nombre de steps */
+  width: 110%; /* Élargit le masque au-delà de la largeur du contenu */
+  right: -10px; /* Déplace davantage le masque vers la droite */
+}
+
+/* Assure que le nombre 30 n'est pas coupé */
+.typing-line-19 span.text-green-number {
+  padding-right: 6px; /* Ajoute plus d'espace à droite du nombre */
+  display: inline-block; /* Assure que le padding est respecté */
+  min-width: 22px; /* Donne une largeur minimale au chiffre */
+}
+
+.typing-line-20::before {
+  animation: typewriter-mask 0.5s steps(8) 15.1s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+.typing-line-21::before {
+  animation: typewriter-mask 0.3s steps(5) 15.6s forwards; /* Réduit le délai */
+  width: 100%;
+}
+
+/* Animation du curseur pour la dernière ligne uniquement après la fin de l'animation */
+.typing-line-21::after {
+  visibility: visible; /* Rendre le curseur visible uniquement pour la dernière ligne */
+  opacity: 0; /* Commence invisible */
+  animation: blink 0.7s 16s infinite; /* Commence à clignoter après la fin de toute l'animation */
+  right: -5px; /* Décale le curseur légèrement vers la droite pour l'éloigner du } */
+}
+
+/* Ajoute un petit espace après le dernier caractère */
+.typing-line-21 {
+  padding-right: 5px;
+} 
