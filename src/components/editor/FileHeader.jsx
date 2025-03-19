@@ -7,7 +7,7 @@ export default function FileHeader() {
   
   // Reste du code inchangé
   return (
-    <div className="flex items-center h-8 px-2 text-text-default text-sm bg-bg-ui w-full border-b border-border-ide">
+    <div className="flex items-center pt-1 pb-1 px-2 text-text-default text-sm bg-bg-ui w-full border-b border-border-ide">
       <span className="text-gray-inactive mr-1">&gt;</span>
       {currentPage && (
         <div className="flex items-center">
