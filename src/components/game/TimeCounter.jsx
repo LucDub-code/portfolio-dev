@@ -1,4 +1,4 @@
-export default function DebugControls() {
+export default function TimeCounter() {
   return (
     <div>
       
