@@ -10,7 +10,7 @@ export default function StatusBar() {
   useEffect(() => {
     // Fonction pour détecter si l'écran est en mode mobile
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 426)
+      setIsMobile(window.innerWidth <= 769)
       setIsVerySmall(window.innerWidth <= 376)
       setIsTinyScreen(window.innerWidth <= 321)
     }

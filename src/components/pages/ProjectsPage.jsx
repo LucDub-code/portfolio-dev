@@ -8,7 +8,7 @@ export default function ProjectsPage() {
   return (
     <div className={`flex flex-col h-full`}>
       {/* En-tête de la page */}
-      <div className="hidden max-[426px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
+      <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
         <img src={jsonIcon} alt="Dossier" className="w-5 h-5 mr-2" />
         <span className="text-text-default text-base">_mes-projets.json</span>

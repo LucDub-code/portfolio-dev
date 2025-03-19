@@ -1,8 +1,20 @@
 import { useNavigation } from '../context/NavigationContext';
 import { pages } from '../data/navigationData';
+import { useState, useEffect } from 'react';
 
 export default function TabNavigation() {
   const { activePage, setActivePage } = useNavigation();
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  
+  // Surveiller les changements de taille de la fenêtre
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   
   // Séparer les onglets en deux groupes
   const leftTabs = ['hello-world', 'a-propos', 'projets'];
@@ -18,7 +30,9 @@ export default function TabNavigation() {
             <div 
               key={page.id}
               className={`flex items-center px-4 h-12 cursor-pointer border-r border-border-ide ${
-                activePage === page.id ? 'bg-bg-terminal' : 'hover:bg-slate-800'
+                activePage === page.id 
+                  ? 'bg-bg-terminal border-b-[3px] border-b-blue-accent' 
+                  : 'hover:bg-slate-800 border-b border-border-ide'
               }`}
               onClick={() => setActivePage(page.id)}
             >
@@ -36,8 +50,12 @@ export default function TabNavigation() {
           return (
             <div 
               key={page.id}
-              className={`flex items-center px-4 h-12 cursor-pointer border-l border-border-ide ${
-                activePage === page.id ? 'bg-bg-terminal' : 'hover:bg-slate-800'
+              className={`flex items-center px-4 h-12 cursor-pointer ${
+                windowWidth > 1060 ? 'border-l border-border-ide' : ''
+              } ${
+                activePage === page.id 
+                  ? 'bg-bg-terminal border-b-[3px] border-b-blue-accent' 
+                  : 'hover:bg-slate-800 border-b border-border-ide'
               }`}
               onClick={() => setActivePage(page.id)}
             >

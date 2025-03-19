@@ -10,12 +10,12 @@ import { useEffect, useState } from 'react';
 
 export default function EditorContent() {
   const { activePage } = useNavigation();
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 426);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 769);
   
   // Effet pour détecter si on est en mode desktop
   useEffect(() => {
     const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 426);
+      setIsDesktop(window.innerWidth >= 769);
     };
     
     window.addEventListener('resize', handleResize);
@@ -29,7 +29,7 @@ export default function EditorContent() {
         return (
           <>
             {!isDesktop ? (activePage === 'hello-world' && <FileHeader />) : <FileHeader />}
-            <EditorContainer className="flex-none max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+            <EditorContainer className="flex-none max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
             <Terminal className="flex-1" />
             <StatusBar />
           </>
@@ -38,7 +38,7 @@ export default function EditorContent() {
         return (
           <>
             {isDesktop && <FileHeader />}
-            <AboutPage className="flex-1 overflow-auto max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] mb-4" />
+            <AboutPage className="flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] mb-4" />
             <StatusBar />
           </>
         );
@@ -46,7 +46,7 @@ export default function EditorContent() {
           return (
             <>
               {isDesktop && <FileHeader />}
-              <ProjectsPage className="flex-1 overflow-auto max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+              <ProjectsPage className="flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
               <StatusBar />
             </>
           );
@@ -54,7 +54,7 @@ export default function EditorContent() {
           return (
             <>
               {isDesktop && <FileHeader />}
-              <ContactPage className="flex-1 overflow-auto max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+              <ContactPage className="flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
               <StatusBar />
             </>
           );
@@ -62,7 +62,7 @@ export default function EditorContent() {
         return (
           <>
             {!isDesktop ? (activePage === 'hello-world' && <FileHeader />) : <FileHeader />}
-            <EditorContainer className="flex-none max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+            <EditorContainer className="flex-none max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
             <Terminal className="flex-1" />
             <StatusBar />
           </>
