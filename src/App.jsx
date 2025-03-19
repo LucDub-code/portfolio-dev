@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import Layout from './components/layout/Layout'
 import { NavigationProvider } from './components/context/NavigationContext'
+import { AboutProvider } from './context/AboutContext'
 
 function App() {
   return (
-    <NavigationProvider>
-      <Layout />
-    </NavigationProvider>
+    <AboutProvider>
+      <NavigationProvider>
+        <Layout />
+      </NavigationProvider>
+    </AboutProvider>
   )
 }
 
