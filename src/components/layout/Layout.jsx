@@ -7,12 +7,12 @@ import { useState, useEffect } from "react"
 export default function Layout() {
   
   // État pour détecter si on est en mode mobile
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
   
   // Effet pour mettre à jour isMobile lors du redimensionnement
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+      setIsMobile(window.innerWidth < 769);
     };
     
     window.addEventListener('resize', handleResize);

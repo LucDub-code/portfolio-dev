@@ -10,12 +10,12 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // État pour détecter si on est en mode mobile
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 426);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
 
   // Effet pour mettre à jour isMobile lors du redimensionnement
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 426);
+      setIsMobile(window.innerWidth < 769);
     };
     
     window.addEventListener('resize', handleResize);
@@ -29,7 +29,7 @@ export default function Header() {
 
   return (
     <div className="border-b border-border-ide w-full bg-bg-terminal text-text-default flex items-center h-12">
-      <div className="w-50 min-w-50 max-w-50 overflow-hidden border-r border-border-ide h-full flex items-center px-4">
+      <div className={`w-50 min-w-50 max-w-50 overflow-hidden ${!isMobile ? 'border-r border-border-ide' : ''} h-full flex items-center px-4`}>
         <p className="font-medium text-lg truncate">lucas-dubeau</p>
       </div>
 
