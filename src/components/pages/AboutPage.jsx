@@ -7,6 +7,7 @@ import InteretsContent from '../about/InteretsContent';
 import EducationContent from '../about/EducationContent';
 import AboutNavigation from '../about/AboutNavigation';
 import { useAboutContext } from '../../context/AboutContext';
+import { useEffect } from 'react';
 
 export default function AboutPage({ className }) {
   const { activeTab } = useAboutContext();
@@ -25,9 +26,16 @@ export default function AboutPage({ className }) {
 
       {/* Zone de contenu*/}
       <div className="flex-1 overflow-auto p-4">
-        {activeTab === 'bio' && <BioContent />}
-        {activeTab === 'interets' && <InteretsContent />}
-        {activeTab === 'education' && <EducationContent />}
+        {/* Nous rendons tous les composants mais avec isActive pour contrôler l'animation */}
+        <div style={{ display: activeTab === 'bio' ? 'block' : 'none' }}>
+          <BioContent isActive={activeTab === 'bio'} />
+        </div>
+        <div style={{ display: activeTab === 'interets' ? 'block' : 'none' }}>
+          <InteretsContent isActive={activeTab === 'interets'} />
+        </div>
+        <div style={{ display: activeTab === 'education' ? 'block' : 'none' }}>
+          <EducationContent isActive={activeTab === 'education'} />
+        </div>
       </div>
     </div>
   );

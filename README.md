@@ -12,11 +12,11 @@ Portfolio de développeur frontend créatif inspiré par un environnement de dé
 - **Interface inspirée d'un IDE** avec navigation par fichiers et onglets
 - **Terminal interactif** sur la page d'accueil
 - **Mini-jeu "Bug Squash"** pour une expérience ludique
-- **Présentation des projets** avec filtrage par technologie (React, HTML, CSS)
+- **Présentation des projets** avec filtrage par technologie (en cours de développement)
 - **Section "À propos"** organisée en fichiers Markdown
 - **Formulaire de contact** fonctionnel
 - **Animations Lottie** pour une meilleure expérience utilisateur
-- **Effet machine à écrire** pour le texte dynamique
+- **Effet machine à écrire** en CSS pur et avec librairie Typewriter pour le texte dynamique
 - **Design responsive** adapté aux appareils mobiles et desktop
 
 ## 🛠️ Technologies
@@ -25,7 +25,8 @@ Portfolio de développeur frontend créatif inspiré par un environnement de dé
 - **Vite** - Outil de build ultra-rapide
 - **Tailwind CSS** - Framework CSS utilitaire pour le design
 - **Lottie React** - Animations vectorielles dynamiques
-- **React Type Animation** - Effet de machine à écrire
+- **Animations CSS** - Effets visuels personnalisés
+- **Typewriter.js** - Bibliothèque pour les effets de machine à écrire
 - **Git & GitHub** - Gestion de version et déploiement
 
 ## 🔧 Installation et utilisation
@@ -54,15 +55,17 @@ src/
 ├── assets/            # Ressources statiques (images, animations)
 ├── components/        # Composants React réutilisables
 │   ├── layout/        # Composants de structure (Header, Footer)
-│   ├── ui/            # Composants d'interface utilisateur
-│   ├── home/          # Composants spécifiques à la page d'accueil
 │   ├── about/         # Composants de la section "À propos"
-│   └── projects/      # Composants de la section Projets
-├── context/           # Contextes React (si nécessaire)
-├── data/              # Données statiques (projets, infos personnelles)
-├── hooks/             # Hooks personnalisés
-├── pages/             # Composants de pages
-└── utils/             # Fonctions utilitaires
+│   ├── projects/      # Composants de la section Projets
+│   ├── editor/        # Composants de l'éditeur de code
+│   ├── terminal/      # Composants du terminal interactif
+│   ├── game/          # Composants du mini-jeu "Bug Squash"
+│   ├── navigation/    # Composants de navigation
+│   ├── statusBar/     # Composants de la barre de statut
+│   ├── context/       # Contextes locaux des composants
+│   └── data/          # Données statiques des composants
+├── context/           # Contextes React globaux
+└── main.jsx           # Point d'entrée de l'application
 ```
 
 ## 🌐 Déploiement
