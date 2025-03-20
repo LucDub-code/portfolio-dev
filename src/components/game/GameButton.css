@@ -1,0 +1,55 @@
+.game-button {
+  position: relative;
+  padding: 12px 24px;
+  cursor: pointer;
+  color: var(--color-text-default);
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  z-index: 1;
+  --angle: 0deg;
+}
+
+.game-button::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: conic-gradient(from var(--angle), #007ACC, #569CD6, #F48771, #E34F26, #F48771, #569CD6, #007ACC);
+  z-index: -1;
+  border-radius: 6px;
+  filter: blur(5px);
+  animation: rotate-colors 3s linear infinite;
+}
+
+/* Masque pour l'intérieur du bouton */
+.game-button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-bg-terminal);
+  z-index: -1;
+  border-radius: 2px;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate-colors {
+  0% {
+    --angle: 0deg;
+  }
+  100% {
+    --angle: 360deg;
+  }
+}
+
