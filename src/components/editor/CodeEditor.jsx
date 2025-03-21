@@ -136,7 +136,7 @@ export default function CodeEditor() {
       {/* Ligne 19 */}
       <div className="h-5 max-[426px]:h-3.5 max-[376px]:h-[0.9rem] max-[321px]:h-[0.8rem] flex items-center pl-4 text-xs max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] sm:text-sm typing-line typing-line-19">
         <span className="text-blue-attr">timeLimit: </span>
-        <span className="text-green-number">10</span>
+        <span className="text-green-number">20</span>
       </div>
       {/* Ligne 20 */}
       <div className="h-5 max-[426px]:h-3.5 max-[376px]:h-[0.9rem] max-[321px]:h-[0.8rem] flex items-center pl-4 text-xs max-[426px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] sm:text-sm typing-line typing-line-20">

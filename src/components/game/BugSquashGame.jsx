@@ -46,7 +46,10 @@ export default function BugSquashGame() {
   // Gérer le clic sur un bug
   const handleBugClick = useCallback((bugId) => {
     setScore(prevScore => prevScore + 1);
-    setBugs(prevBugs => prevBugs.filter(bug => bug.id !== bugId));
+    // Délai avant de supprimer le bug pour permettre à l'animation de se jouer
+    setTimeout(() => {
+      setBugs(prevBugs => prevBugs.filter(bug => bug.id !== bugId));
+    }, 1000);
   }, []);
   
   // Générer une position aléatoire dans la zone de jeu centrée
@@ -90,7 +93,7 @@ export default function BugSquashGame() {
         <TimeCounter 
           isActive={gameActive} 
           onTimeUp={handleTimeUp}
-          timeLimit={10}
+          timeLimit={20}
         />
       </div>
       <div className="absolute top-4 right-4">
@@ -112,7 +115,7 @@ export default function BugSquashGame() {
             <h2 className="text-green-number font-mono text-2xl mb-3">Félicitations !</h2>
             <div className="text-text-default font-mono text-lg mb-5">
               <div>Vous avez corrigé</div>
-              <div className="text-xl"><span className="text-orange-string">{finalScore}</span> bugs en 10 secondes!</div>
+              <div className="text-xl"><span className="text-orange-string">{finalScore}</span> bugs en 20 secondes!</div>
             </div>
             <button 
               className="py-2 px-4 bg-bg-terminal border border-blue-html text-text-default font-mono hover:bg-blue-html hover:bg-opacity-20 transition-colors"

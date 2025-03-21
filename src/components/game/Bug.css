@@ -1,12 +1,28 @@
 /* Animation d'apparition des bugs */
 .bug-appear {
   animation: bug-appear 0.3s ease-out forwards;
+  position: relative;
+  z-index: 10;
 }
 
 /* Animation de pulsation des bugs */
 .bug-text {
   display: inline-block;
   animation: bug-pulse 2s infinite;
+}
+
+/* Conteneur pour l'animation Lottie */
+.lottie-container {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes bug-appear {

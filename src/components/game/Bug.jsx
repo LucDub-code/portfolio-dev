@@ -25,7 +25,6 @@ export default function Bug({ type, position, onBugClick, removeAfterMs = 1500 }
   const handleClick = () => {
     if (isVisible) {
       setShowAnimation(true);
-      setIsVisible(false);
       onBugClick(type);
     }
   };
@@ -60,17 +59,18 @@ export default function Bug({ type, position, onBugClick, removeAfterMs = 1500 }
         top: `${position.y}%`,
         transform: 'translate(-50%, -50%)',
         transition: 'opacity 0.3s',
-        opacity: isVisible ? 1 : 0
+        opacity: isVisible ? 1 : 0,
+        position: 'absolute'
       }}
       onClick={handleClick}
     >
       {showAnimation ? (
-        <div className="w-10 h-10 sm:w-12 sm:h-12 md:w-16 md:h-16">
+        <div className="lottie-container" style={{ position: 'absolute', left: '50%', top: '50%', width: '80px', height: '80px' }}>
           <Lottie 
             animationData={checkAnimation} 
             loop={false}
             autoplay={true}
-            style={{ width: '100%', height: '100%' }}
+            style={{ width: '120%', height: '120%' }}
           />
         </div>
       ) : (
