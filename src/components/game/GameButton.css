@@ -1,9 +1,12 @@
+/* Conteneur principal avec z-index élevé */
 .game-button-container {
   position: relative;
   display: inline-block;
-  pointer-events: none;
+  pointer-events: auto;
+  z-index: 100;
 }
 
+/* Style du bouton lui-même */
 .game-button {
   position: relative;
   padding: 15px 30px;
@@ -13,12 +16,14 @@
   font-weight: bold;
   border: none;
   border-radius: 4px;
-  z-index: 1;
+  z-index: 100;
   --angle: 0deg;
   transition: transform 1s ease-in-out, box-shadow 0.6s ease-in-out;
   pointer-events: auto;
+  background-color: transparent;
 }
 
+/* Effet de bordure brillante */
 .game-button::before {
   content: '';
   position: absolute;
@@ -32,6 +37,7 @@
   filter: blur(5px);
   animation: rotate-colors 3s linear infinite;
   transition: filter 0.3s ease;
+  pointer-events: none;
 }
 
 /* Masque pour l'intérieur du bouton */
@@ -46,6 +52,7 @@
   z-index: -1;
   border-radius: 4px;
   transition: background-color 0.3s ease;
+  pointer-events: none;
 }
 
 /* Effets au survol */
@@ -85,7 +92,7 @@
   font-weight: bold;
   color: var(--color-text-default);
   opacity: 0;
-  z-index: 2;
+  z-index: 200;
   text-shadow: 0 0 10px #007ACC, 0 0 20px #569CD6;
   transition: opacity 0.3s ease, transform 0.5s ease;
   white-space: nowrap;

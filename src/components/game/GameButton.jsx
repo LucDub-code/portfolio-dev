@@ -6,7 +6,17 @@ export default function GameButton({ onGameStart }) {
   const [debugVisible, setDebugVisible] = useState(false);
   const [debugFadeOut, setDebugFadeOut] = useState(false);
 
+  // Réinitialiser le bouton lorsque le composant est monté
+  useEffect(() => {
+    // Forcer la réinitialisation des états
+    setClicked(false);
+    setDebugVisible(false);
+    setDebugFadeOut(false);
+  }, []);
+
   const handleClick = () => {
+    if (clicked) return; // Éviter les clics multiples
+    
     setClicked(true);
     
     // Afficher le message DEBUG après un court délai
@@ -26,10 +36,10 @@ export default function GameButton({ onGameStart }) {
   };
 
   return (
-    <div className="game-button-container">
+    <div className="game-button-container" onClick={handleClick}>
       <button 
         className={`game-button ${clicked ? 'clicked' : ''}`} 
-        onClick={handleClick}
+        type="button"
         disabled={clicked}
       >
         START
