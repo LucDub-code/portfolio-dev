@@ -1,8 +1,10 @@
 import chevronDown from '../../assets/icons/navigation/nav-full-down.svg';
 import htmlIcon from '../../assets/icons/technos/html.svg';
 import { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function ContactPage() {
+  const [state, handleFormspreeSubmit] = useForm("xpwppjvg");
   const [formData, setFormData] = useState({
     nom: '',
     email: '',
@@ -105,10 +107,9 @@ export default function ContactPage() {
     
     setErrors(newErrors);
     
-    // Si pas d'erreurs, envoyer le formulaire
+    // Si pas d'erreurs, envoyer le formulaire via Formspree
     if (Object.keys(newErrors).length === 0) {
-      console.log('Formulaire envoyé:', formData);
-      // Logique d'envoi du formulaire
+      handleFormspreeSubmit(e);
     }
   };
 
@@ -121,6 +122,25 @@ export default function ContactPage() {
         ? 'border-success-foreground' 
         : 'border-error-foreground';
   };
+
+  // Afficher un message de succès si l'envoi a réussi
+  if (state.succeeded) {
+    return (
+      <div className="flex flex-col h-full">
+        <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
+          <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
+          <img src={htmlIcon} alt="Dossier" className="w-5 h-5 mr-2" />
+          <span className="text-text-default text-base">_me-contacter.html</span>
+        </div>
+        <div className="flex-1 flex items-center justify-center p-4">
+          <div className="w-full max-w-md p-6 text-center">
+            <h2 className="text-xl text-success-foreground mb-4">Message envoyé avec succès !</h2>
+            <p className="text-text-default">Merci pour votre message. Je vous répondrai dans les plus brefs délais.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className={`flex flex-col h-full`}>
@@ -139,6 +159,7 @@ export default function ContactPage() {
             <input 
               type="text" 
               id="_nom" 
+              name="nom"
               className={`w-full bg-bg-terminal border ${getBorderClass('nom')} rounded p-2 text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Votre nom */"
               value={formData.nom}
@@ -149,6 +170,7 @@ export default function ContactPage() {
             {touched.nom && errors.nom && (
               <p className="mt-1 text-error-foreground text-sm">{errors.nom}</p>
             )}
+            <ValidationError prefix="Nom" field="nom" errors={state.errors} />
           </div>
           
           {/* Champ Email */}
@@ -157,6 +179,7 @@ export default function ContactPage() {
             <input 
               type="email" 
               id="_email" 
+              name="email"
               className={`w-full bg-bg-terminal border ${getBorderClass('email')} rounded p-2 text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Votre email */"
               value={formData.email}
@@ -167,6 +190,7 @@ export default function ContactPage() {
             {touched.email && errors.email && (
               <p className="mt-1 text-error-foreground text-sm">{errors.email}</p>
             )}
+            <ValidationError prefix="Email" field="email" errors={state.errors} />
           </div>
           
           {/* Champ Message */}
@@ -174,6 +198,7 @@ export default function ContactPage() {
             <label htmlFor="_message" className="block text-text-default mb-2">_message<span className="text-error-foreground">*</span></label>
             <textarea 
               id="_message" 
+              name="message"
               rows="6" 
               className={`w-full bg-bg-terminal border ${getBorderClass('message')} rounded p-2 text-text-default focus:outline-none focus:border-blue-accent resize-none placeholder:text-gray-inactive`}
               placeholder="/* Écrivez votre message ici... */"
@@ -185,15 +210,17 @@ export default function ContactPage() {
             {touched.message && errors.message && (
               <p className="mt-1 text-error-foreground text-sm">{errors.message}</p>
             )}
+            <ValidationError prefix="Message" field="message" errors={state.errors} />
           </div>
           
-          {/* Bouton Envoyer avec effet Hover */}
+          {/* Bouton Envoyer avec état de soumission */}
           <div className="flex">
             <button 
               type="submit" 
               className="bg-blue-accent hover:bg-focus-hover text-white py-2 px-8 rounded border border-border-ide shadow-md transition-colors"
+              disabled={state.submitting}
             >
-              Envoyer
+              {state.submitting ? 'Envoi en cours...' : 'Envoyer'}
             </button>
           </div>
         </form>
