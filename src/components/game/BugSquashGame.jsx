@@ -112,10 +112,10 @@ export default function BugSquashGame() {
         {/* Écran de fin de jeu */}
         {gameOver && (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center">
-            <h2 className="text-green-number font-mono text-2xl mb-3">Félicitations !</h2>
+            <h2 className="text-green-number font-mono text-2xl mb-3">Bravo !</h2>
             <div className="text-text-default font-mono text-lg mb-5">
-              <div>Vous avez corrigé</div>
-              <div className="text-xl"><span className="text-orange-string">{finalScore}</span> bugs en 20 secondes!</div>
+              <div>Vous m'avez aidé</div>
+              <div className="text-xl">à corriger <span className="text-orange-string">{finalScore}</span> bugs !</div>
             </div>
             <button 
               className="py-2 px-4 bg-bg-terminal border border-blue-html text-text-default font-mono hover:bg-blue-html hover:bg-opacity-20 transition-colors"
