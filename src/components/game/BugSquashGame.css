@@ -1,0 +1,30 @@
+/* Style pour assurer que le conteneur du bouton soit cliquable et correctement centré */
+.game-button-wrapper {
+  position: absolute;
+  z-index: 999;
+  pointer-events: all;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style pour la zone de jeu délimitée */
+.game-area {
+  width: 80%;
+  height: 80%;
+  max-width: 800px;
+  max-height: 600px;
+  border-radius: 8px;
+  position: relative;
+  z-index: 5;
+}
+
+/* Ajustement de la taille sur grands écrans */
+@media (min-width: 1024px) {
+  .game-area {
+    width: 70%;
+    height: 70%;
+  }
+} 
