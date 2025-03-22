@@ -5,7 +5,8 @@
 
 ## 📋 Présentation
 
-Portfolio de développeur frontend créatif inspiré par un environnement de développement. Ce portfolio interactif présente mes projets et compétences à travers une interface unique simulant un IDE.
+Portfolio de développeur frontend inspiré par un environnement de développement. 
+Ce portfolio interactif présente mes projets et compétences à travers une interface simulant un IDE.
 
 ## 🚀 Fonctionnalités
 
@@ -30,36 +31,6 @@ Portfolio de développeur frontend créatif inspiré par un environnement de dé
 - **Typewriter.js** - Bibliothèque pour les effets de machine à écrire
 - **Git & GitHub** - Gestion de version et déploiement
 
-## 🔧 Installation et utilisation
-
-```bash
-# Cloner le dépôt
-git clone https://github.com/LucDub-code/portfolio-dev.git
-
-# Naviguer dans le répertoire
-cd portfolio-dev
-
-# Installer les dépendances
-npm install
-
-# Lancer le serveur de développement
-npm run dev
-
-# Construire pour la production
-npm run build
-```
-
-## 📤 Configuration du formulaire de contact
-
-Le formulaire de contact utilise Formspree pour traiter et envoyer les messages par email :
-
-1. Créez un compte sur [Formspree](https://formspree.io)
-2. Configurez un nouveau formulaire et obtenez votre identifiant unique
-3. Installez la dépendance : `npm install @formspree/react --legacy-peer-deps`
-4. Utilisez le hook `useForm` de Formspree dans le composant de contact avec votre identifiant
-
-Le formulaire est limité à 50 soumissions par mois avec le plan gratuit de Formspree.
-
 ## 📂 Structure du projet
 
 ```
@@ -83,7 +54,7 @@ src/
 
 ## 🌐 Déploiement
 
-Le portfolio est configuré pour être facilement déployé sur des plateformes comme Vercel ou Netlify.
+Le portfolio est déployé et hébergé sur Vercel, une plateforme optimisée pour les applications React et Next.js.
 
 ## 📝 Licence
 
