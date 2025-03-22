@@ -3,12 +3,12 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-## 📋 Présentation
+## Présentation
 
 Portfolio de développeur frontend inspiré par un environnement de développement. 
 Ce portfolio interactif présente mes projets et compétences à travers une interface simulant un IDE.
 
-## 🚀 Fonctionnalités
+## Fonctionnalités
 
 - **Interface inspirée d'un IDE** avec navigation par fichiers et onglets
 - **Terminal interactif** sur la page d'accueil
@@ -20,7 +20,7 @@ Ce portfolio interactif présente mes projets et compétences à travers une int
 - **Effet machine à écrire** en CSS pur et avec librairie Typewriter pour le texte dynamique
 - **Design responsive** adapté aux appareils mobiles et desktop
 
-## 🛠️ Technologies
+## Technologies
 
 - **React** - Framework JavaScript pour la construction de l'interface
 - **Vite** - Outil de build ultra-rapide
@@ -31,7 +31,7 @@ Ce portfolio interactif présente mes projets et compétences à travers une int
 - **Typewriter.js** - Bibliothèque pour les effets de machine à écrire
 - **Git & GitHub** - Gestion de version et déploiement
 
-## 📂 Structure du projet
+## Structure du projet
 
 ```
 src/
@@ -52,10 +52,10 @@ src/
 └── main.jsx           # Point d'entrée de l'application
 ```
 
-## 🌐 Déploiement
+## Déploiement
 
 Le portfolio est déployé et hébergé sur Vercel, une plateforme optimisée pour les applications React et Next.js.
 
-## 📝 Licence
+## Licence
 
 Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
