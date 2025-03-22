@@ -1,7 +1,6 @@
-import { useState } from 'react'
 import Layout from './components/layout/Layout'
 import { NavigationProvider } from './components/context/NavigationContext'
-import { AboutProvider } from './context/AboutContext'
+import { AboutProvider } from './components/context/AboutContext'
 
 function App() {
   return (
