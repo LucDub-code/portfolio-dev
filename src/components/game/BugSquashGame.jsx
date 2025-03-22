@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
 import ScoreCounter from './ScoreCounter'
 import TimeCounter from './TimeCounter'
 import GameButton from './GameButton'
@@ -12,7 +12,49 @@ export default function BugSquashGame() {
   const [gameOver, setGameOver] = useState(false);
   const [finalScore, setFinalScore] = useState(0);
   const [buttonKey, setButtonKey] = useState(0); // Clé pour forcer le remontage
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const gameAreaRef = useRef(null);
+  
+  // Mise à jour de la largeur de fenêtre lors des redimensionnements
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  // Obtenir les classes appropriées en fonction de la taille d'écran
+  const getTitleSizeClass = () => {
+    if (windowWidth <= 321) return "text-lg";
+    if (windowWidth <= 376) return "text-xl";
+    if (windowWidth <= 426) return "text-xl";
+    return "text-2xl";
+  };
+  
+  const getTextSizeClass = () => {
+    if (windowWidth <= 321) return "text-xs";
+    if (windowWidth <= 376) return "text-sm";
+    if (windowWidth <= 426) return "text-sm";
+    return "text-base";
+  };
+  
+  const getScoreSizeClass = () => {
+    if (windowWidth <= 321) return "text-sm";
+    if (windowWidth <= 376) return "text-base";
+    if (windowWidth <= 426) return "text-base";
+    return "text-lg";
+  };
+  
+  const getButtonSizeClass = () => {
+    if (windowWidth <= 321) return "text-xs py-1 px-3";
+    if (windowWidth <= 376) return "text-sm py-1.5 px-3";
+    if (windowWidth <= 426) return "text-sm py-2 px-4";
+    return "py-2 px-4";
+  };
   
   // Types de bugs
   const bugTypes = [
@@ -111,14 +153,16 @@ export default function BugSquashGame() {
         
         {/* Écran de fin de jeu */}
         {gameOver && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center">
-            <h2 className="text-green-number font-mono text-2xl mb-3">Bravo !</h2>
-            <div className="text-text-default font-mono text-lg mb-5">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm">
+            <h2 className={`text-green-number font-mono ${getTitleSizeClass()} mb-2 sm:mb-3`}>Bravo !</h2>
+            <div className={`text-text-default font-mono ${getTextSizeClass()} mb-3 sm:mb-5 w-full`}>
               <div>Vous m'avez aidé</div>
-              <div className="text-xl">à corriger <span className="text-orange-string">{finalScore}</span> bugs !</div>
+              <div className={getScoreSizeClass()}>
+                à corriger <span className="text-orange-string">{finalScore}</span> bugs !
+              </div>
             </div>
             <button 
-              className="py-2 px-4 bg-bg-terminal border border-blue-html text-text-default font-mono hover:bg-blue-html hover:bg-opacity-20 transition-colors"
+              className={`${getButtonSizeClass()} bg-bg-terminal border border-blue-html text-text-default font-mono hover:bg-blue-html hover:bg-opacity-20 transition-colors`}
               onClick={() => {
                 setGameOver(false);
                 setScore(0);

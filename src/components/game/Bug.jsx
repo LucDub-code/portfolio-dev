@@ -53,7 +53,7 @@ export default function Bug({ type, position, onBugClick, removeAfterMs = 1500 }
 
   return (
     <div 
-      className={`absolute cursor-pointer text-xl sm:text-2xl md:text-3xl font-mono bug-appear ${bugStyle.className}`}
+      className={`absolute cursor-pointer text-lg sm:text-xl md:text-2xl font-mono bug-appear ${bugStyle.className}`}
       style={{ 
         left: `${position.x}%`, 
         top: `${position.y}%`,
@@ -65,12 +65,12 @@ export default function Bug({ type, position, onBugClick, removeAfterMs = 1500 }
       onClick={handleClick}
     >
       {showAnimation ? (
-        <div className="lottie-container" style={{ position: 'absolute', left: '50%', top: '50%', width: '80px', height: '80px' }}>
+        <div className="lottie-container" style={{ position: 'absolute', left: '50%', top: '50%', width: '70px', height: '70px' }}>
           <Lottie 
             animationData={checkAnimation} 
             loop={false}
             autoplay={true}
-            style={{ width: '120%', height: '120%' }}
+            style={{ width: '110%', height: '110%' }}
           />
         </div>
       ) : (

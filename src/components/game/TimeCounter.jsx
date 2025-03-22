@@ -1,10 +1,36 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useLayoutEffect } from 'react';
 
 export default function TimeCounter({ timeLimit = 30, isActive = false, onTimeUp }) {
   const [timeLeft, setTimeLeft] = useState(timeLimit);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const timerInitializedRef = useRef(false);
   const lastUpdateTimeRef = useRef(0);
   const requestAnimationFrameRef = useRef(null);
+  
+  // Mise à jour de la largeur de fenêtre lors des redimensionnements
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+  
+  // Déterminer les classes en fonction de la taille de l'écran
+  const getTextSizeClasses = () => {
+    if (windowWidth <= 321) {
+      return 'text-xs';
+    } else if (windowWidth <= 376) {
+      return 'text-sm';
+    } else if (windowWidth <= 426) {
+      return 'text-sm';
+    } else {
+      return 'text-base';
+    }
+  };
   
   // Fonction de mise à jour du timer basée sur requestAnimationFrame
   const updateTimer = (currentTime) => {
@@ -77,8 +103,8 @@ export default function TimeCounter({ timeLimit = 30, isActive = false, onTimeUp
   
   return (
     <div className="flex items-center">
-      <span className="text-blue-html font-mono font-bold text-base mr-1">Temps:</span>
-      <span className={`font-mono text-base ${getTimeColor()}`}>{timeLeft}</span>
+      <span className={`text-blue-html font-mono font-bold ${getTextSizeClasses()} mr-1`}>Temps:</span>
+      <span className={`font-mono ${getTextSizeClasses()} ${getTimeColor()}`}>{timeLeft}</span>
     </div>
   );
 }

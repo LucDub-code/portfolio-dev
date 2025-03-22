@@ -43,8 +43,19 @@ export default function StatusBar() {
     return isMobile ? 'text-xs' : 'text-sm'
   }
 
+  // Déterminer la hauteur de la barre de statut en fonction de la taille d'écran
+  const getHeightClass = () => {
+    if (isTinyScreen) {
+      return 'h-4' // 1rem ou 16px
+    }
+    if (isVerySmall || isMobile) {
+      return 'h-5' // 1.25rem ou 20px
+    }
+    return 'h-6' // 1.5rem ou 24px (taille par défaut)
+  }
+
   return (
-    <div className={`h-6 bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClass()}`}>
+    <div className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClass()}`}>
       {statusMessages[activePage]}
     </div>
   )

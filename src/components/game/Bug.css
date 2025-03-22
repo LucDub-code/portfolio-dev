@@ -13,8 +13,8 @@
 
 /* Conteneur pour l'animation Lottie */
 .lottie-container {
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   position: absolute;
   z-index: 100;
   top: 0;
