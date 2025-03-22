@@ -6,7 +6,7 @@ import BioContent from '../about/BioContent';
 import InteretsContent from '../about/InteretsContent';
 import EducationContent from '../about/EducationContent';
 import AboutNavigation from '../about/AboutNavigation';
-import { useAboutContext } from '../../context/AboutContext';
+import { useAboutContext } from '../context/AboutContext';
 import { useEffect } from 'react';
 
 export default function AboutPage({ className }) {

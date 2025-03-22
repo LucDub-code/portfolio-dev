@@ -1,6 +1,7 @@
 import navIcon from '../../assets/icons/navigation/nav-light.svg';
 import mdIcon from '../../assets/icons/technos/md.svg';
-import { useAboutContext } from '../../context/AboutContext';
+import { useState } from 'react';
+import { useAboutContext } from '../context/AboutContext';
 
 export default function AboutNavigation({ isSideMenu = false }) {
   const { activeTab, setActiveTab } = useAboutContext();
