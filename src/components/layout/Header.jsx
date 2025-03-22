@@ -30,7 +30,7 @@ export default function Header() {
   return (
     <div className="border-b border-border-ide w-full bg-bg-terminal text-text-default flex items-center h-12">
       <div className={`w-50 min-w-50 max-w-50 overflow-hidden ${!isMobile ? 'border-r border-border-ide' : ''} h-full flex items-center px-4`}>
-        <p className="font-medium text-lg truncate">lucas-dubeau</p>
+        <p className={`font-medium truncate ${isMobile ? 'text-base' : 'text-lg'}`}>lucas-dubeau</p>
       </div>
 
       {!isMobile && <TabNavigation />}
