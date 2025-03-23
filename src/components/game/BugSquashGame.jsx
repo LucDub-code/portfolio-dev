@@ -37,14 +37,14 @@ export default function BugSquashGame() {
   
   const getTextSizeClass = () => {
     if (windowWidth <= 321) return "text-xs";
-    if (windowWidth <= 376) return "text-sm";
+    if (windowWidth <= 376) return "text-xs";
     if (windowWidth <= 426) return "text-sm";
     return "text-base";
   };
   
   const getScoreSizeClass = () => {
-    if (windowWidth <= 321) return "text-sm";
-    if (windowWidth <= 376) return "text-base";
+    if (windowWidth <= 321) return "text-xs";
+    if (windowWidth <= 376) return "text-sm";
     if (windowWidth <= 426) return "text-base";
     return "text-lg";
   };
@@ -168,15 +168,15 @@ export default function BugSquashGame() {
         
         {/* Écran de fin de jeu */}
         {gameOver && (
-          <div className="absolute flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm"
+          <div className="absolute flex flex-col items-center text-center w-full max-w-sm md:max-w-md"
                style={{ 
                  top: windowWidth <= 768 ? '43%' : '50%', 
                  left: '50%', 
                  transform: 'translate(-50%, -50%)' 
                }}>
-            <div className={`font-mono mb-3 sm:mb-5 w-full flex flex-wrap justify-center ${windowWidth <= 426 ? getTextSizeClass() : getScoreSizeClass()}`}>
+            <div className={`font-mono mb-2 sm:mb-4 w-full flex flex-wrap justify-center ${windowWidth <= 426 ? getTextSizeClass() : getScoreSizeClass()}`}>
               <span className="text-green-number">Bravo ! </span>
-              <span className="text-text-default">Vous avez corrigé </span>
+              <span className="text-text-default whitespace-nowrap">Vous avez corrigé </span>
               <span className="text-orange-string">{finalScore}</span>
               <span className="text-text-default"> bugs !</span>
             </div>
