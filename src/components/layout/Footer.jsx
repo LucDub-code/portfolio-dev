@@ -6,16 +6,31 @@ import { useState, useEffect } from 'react'
 
 export default function Footer() {
   const { activePage } = useNavigation();
-  const [isMobilePage, setIsMobilePage] = useState(window.innerWidth < 769);
+  const [isMobilePage, setIsMobilePage] = useState(false);
+  // État pour suivre si l'initialisation est terminée
+  const [isInitialized, setIsInitialized] = useState(false);
 
   // Effet pour mettre à jour isMobilePage lors du redimensionnement
   useEffect(() => {
-    const handleResize = () => {
+    // Fonction pour vérifier la taille de l'écran
+    const checkIfMobile = () => {
       setIsMobilePage(window.innerWidth < 769);
     };
     
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Première vérification avec un délai pour s'assurer que le navigateur a bien établi la taille
+    const initialCheck = setTimeout(() => {
+      checkIfMobile();
+      setIsInitialized(true);
+    }, 100);
+    
+    // Ajouter un écouteur d'événement pour le redimensionnement
+    window.addEventListener('resize', checkIfMobile);
+    
+    // Nettoyer
+    return () => {
+      clearTimeout(initialCheck);
+      window.removeEventListener('resize', checkIfMobile);
+    };
   }, []);
 
   // Adapter la hauteur en fonction de la page et du support
@@ -28,6 +43,11 @@ export default function Footer() {
     // En mobile, garder les hauteurs réactives existantes
     return 'h-12 max-[426px]:h-10 max-[376px]:h-9 max-[321px]:h-8';
   };
+
+  // Si l'initialisation n'est pas terminée, ne pas encore afficher le footer
+  if (!isInitialized) {
+    return null;
+  }
 
   return (
     <div className={`border-t border-border-ide w-full bg-bg-terminal text-text-default flex justify-between ${getFooterHeight()} relative z-40`}>
