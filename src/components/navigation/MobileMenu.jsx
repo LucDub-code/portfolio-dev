@@ -28,7 +28,7 @@ export default function MobileMenu({ onClose }) {
           </div>
         ))}
       </div>
-      <div className="flex-1 bg-bg-ui" style={{ height: 'calc(100vh - 12rem)' }}></div>
+      <div className="flex-1 bg-bg-ui" style={{ height: 'calc(100vh - 12rem - 3rem)' }}></div>
     </div>
   );
 }
