@@ -54,7 +54,7 @@ export default function Bug({ type, position, onBugClick, removeAfterMs = 1500 }
   // Ajuster la position Y pour les écrans mobiles
   const adjustedPosition = {
     x: position.x,
-    y: window.innerWidth <= 768 ? Math.min(Math.max(position.y, 10), 60) : position.y
+    y: window.innerWidth <= 768 ? Math.min(Math.max(position.y, 15), 65) : position.y
   };
 
   return (
