@@ -9,13 +9,16 @@ export default function Layout() {
   
   // État pour détecter si on est en mode mobile
   const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
+  // État pour détecter si l'écran est assez grand en hauteur
+  const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
   // Récupérer la page active depuis le contexte
   const { activePage } = useNavigation();
   
-  // Effet pour mettre à jour isMobile lors du redimensionnement
+  // Effet pour mettre à jour isMobile et isLargeHeight lors du redimensionnement
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 769);
+      setIsLargeHeight(window.innerHeight > 950);
     };
     
     window.addEventListener('resize', handleResize);
@@ -30,8 +33,8 @@ export default function Layout() {
         {!isMobile && <SideMenu />}
         <EditorContent className="overflow-auto" />
       </div>
-      {/* Footer uniquement visible en desktop et pas sur la page hello-world */}
-      {!isMobile && activePage !== 'hello-world' && <Footer />}
+      {/* Footer visible en desktop s'il ne s'agit pas de la page hello-world OU si on est sur hello-world avec un grand écran */}
+      {!isMobile && (activePage !== 'hello-world' || isLargeHeight) && <Footer />}
     </div>
   );
 }
