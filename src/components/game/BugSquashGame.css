@@ -33,7 +33,7 @@
 @media (max-width: 768px) {
   .game-area {
     height: 75%;
-    top: 40% !important; /* Décaler vers le haut */
+    top: 42% !important; /* Légèrement plus bas */
   }
 }
 
@@ -41,6 +41,6 @@
 @media (max-width: 480px) {
   .game-area {
     height: 70%;
-    top: 35% !important; /* Décaler davantage vers le haut sur très petits écrans */
+    top: 38% !important; /* Légèrement plus bas */
   }
 } 

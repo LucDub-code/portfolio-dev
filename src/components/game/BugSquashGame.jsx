@@ -102,7 +102,7 @@ export default function BugSquashGame() {
     if (isMobile) {
       return {
         x: Math.random() * 60 + 20, // entre 20% et 80% de la largeur
-        y: Math.random() * 40 + 10  // entre 10% et 50% de la hauteur pour mobile
+        y: Math.random() * 40 + 15  // entre 15% et 55% de la hauteur pour mobile
       };
     }
     
@@ -158,7 +158,7 @@ export default function BugSquashGame() {
         {!gameActive && !gameOver && (
           <div className="game-button-wrapper absolute flex items-center justify-center" 
                style={{ 
-                 top: windowWidth <= 768 ? '40%' : '50%', 
+                 top: windowWidth <= 768 ? '43%' : '50%', 
                  left: '50%', 
                  transform: 'translate(-50%, -50%)' 
                }}>
@@ -170,7 +170,7 @@ export default function BugSquashGame() {
         {gameOver && (
           <div className="absolute flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm"
                style={{ 
-                 top: windowWidth <= 768 ? '40%' : '50%', 
+                 top: windowWidth <= 768 ? '43%' : '50%', 
                  left: '50%', 
                  transform: 'translate(-50%, -50%)' 
                }}>
