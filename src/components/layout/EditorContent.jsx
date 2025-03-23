@@ -10,22 +10,46 @@ import { useEffect, useState } from 'react';
 
 export default function EditorContent() {
   const { activePage } = useNavigation();
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 769);
+  const [isDesktop, setIsDesktop] = useState(false);
+  // État pour suivre si l'initialisation est terminée
+  const [isInitialized, setIsInitialized] = useState(false);
   
   // Effet pour détecter si on est en mode desktop
   useEffect(() => {
-    const handleResize = () => {
+    // Fonction pour vérifier la taille de l'écran
+    const checkIfDesktop = () => {
       setIsDesktop(window.innerWidth >= 769);
     };
     
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Première vérification avec un délai pour s'assurer que le navigateur a bien établi la taille
+    const initialCheck = setTimeout(() => {
+      checkIfDesktop();
+      setIsInitialized(true);
+    }, 100);
+    
+    // Ajouter un écouteur d'événement pour le redimensionnement
+    window.addEventListener('resize', checkIfDesktop);
+    
+    // Nettoyer
+    return () => {
+      clearTimeout(initialCheck);
+      window.removeEventListener('resize', checkIfDesktop);
+    };
   }, []);
   
   // Obtenir la classe pour l'espacement du bas en mode mobile
   const getMobilePaddingClass = () => {
     return !isDesktop ? 'pb-4' : '';
   };
+  
+  // Si l'initialisation n'est pas terminée, afficher un contenu minimal
+  if (!isInitialized) {
+    return (
+      <div className="flex flex-col flex-1 overflow-hidden relative">
+        <div className="flex-1"></div>
+      </div>
+    );
+  }
   
   // Rendu conditionnel selon la page active
   const renderPageContent = () => {
