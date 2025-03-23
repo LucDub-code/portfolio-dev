@@ -96,7 +96,17 @@ export default function BugSquashGame() {
   
   // Générer une position aléatoire dans la zone de jeu centrée
   const getRandomPosition = () => {
-    // Limiter la zone de spawn à une zone centrale de 60% x 60% de l'écran
+    const isMobile = windowWidth <= 768;
+    
+    // Limiter davantage les zones verticales sur mobile
+    if (isMobile) {
+      return {
+        x: Math.random() * 60 + 20, // entre 20% et 80% de la largeur
+        y: Math.random() * 40 + 10  // entre 10% et 50% de la hauteur pour mobile
+      };
+    }
+    
+    // Distribution par défaut pour desktop
     return {
       x: Math.random() * 60 + 20, // entre 20% et 80% de la largeur
       y: Math.random() * 60 + 20  // entre 20% et 80% de la hauteur
@@ -146,14 +156,24 @@ export default function BugSquashGame() {
       <div className="game-area absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         {/* Bouton START */}
         {!gameActive && !gameOver && (
-          <div className="game-button-wrapper absolute flex items-center justify-center" style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+          <div className="game-button-wrapper absolute flex items-center justify-center" 
+               style={{ 
+                 top: windowWidth <= 768 ? '40%' : '50%', 
+                 left: '50%', 
+                 transform: 'translate(-50%, -50%)' 
+               }}>
             <GameButton key={buttonKey} onGameStart={handleGameStart} />
           </div>
         )}
         
         {/* Écran de fin de jeu */}
         {gameOver && (
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm">
+          <div className="absolute flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm"
+               style={{ 
+                 top: windowWidth <= 768 ? '40%' : '50%', 
+                 left: '50%', 
+                 transform: 'translate(-50%, -50%)' 
+               }}>
             <div className={`font-mono mb-3 sm:mb-5 w-full flex flex-wrap justify-center ${windowWidth <= 426 ? getTextSizeClass() : getScoreSizeClass()}`}>
               <span className="text-green-number">Bravo ! </span>
               <span className="text-text-default">Vous avez corrigé </span>
