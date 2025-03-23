@@ -9,10 +9,8 @@ export default function Layout() {
   
   // État pour détecter si on est en mode mobile
   const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
-  // Récupérer la page active
-  const { activePage } = useNavigation();
-  // État pour suivre l'état du menu mobile (synchronisé avec le Header)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Récupérer la page active et l'état du menu mobile depuis le contexte
+  const { activePage, isMobileMenuOpen } = useNavigation();
   
   // Effet pour mettre à jour isMobile lors du redimensionnement
   useEffect(() => {
@@ -24,14 +22,9 @@ export default function Layout() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
-  // Méthode pour mise à jour de l'état du menu mobile
-  const setMobileMenuState = (isOpen) => {
-    setIsMobileMenuOpen(isOpen);
-  };
-  
   return (
     <div className="h-screen w-full bg-bg-ui flex flex-col overflow-hidden">
-      <Header onMobileMenuChange={setMobileMenuState} />
+      <Header />
       <div className="flex flex-1 overflow-hidden">
         {/* SideMenu uniquement en desktop */}
         {!isMobile && <SideMenu />}
