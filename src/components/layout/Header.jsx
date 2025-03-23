@@ -11,31 +11,16 @@ export default function Header() {
   const { isMobileMenuOpen, setIsMobileMenuOpen } = useNavigation();
 
   // État pour détecter si on est en mode mobile
-  const [isMobile, setIsMobile] = useState(false);
-  // État pour suivre si l'initialisation est terminée
-  const [isInitialized, setIsInitialized] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
 
   // Effet pour mettre à jour isMobile lors du redimensionnement
   useEffect(() => {
-    // Fonction pour vérifier la taille de l'écran
-    const checkIfMobile = () => {
+    const handleResize = () => {
       setIsMobile(window.innerWidth < 769);
     };
     
-    // Première vérification avec un délai pour s'assurer que le navigateur a bien établi la taille
-    const initialCheck = setTimeout(() => {
-      checkIfMobile();
-      setIsInitialized(true);
-    }, 100);
-    
-    // Ajouter un écouteur d'événement pour le redimensionnement
-    window.addEventListener('resize', checkIfMobile);
-    
-    // Nettoyer
-    return () => {
-      clearTimeout(initialCheck);
-      window.removeEventListener('resize', checkIfMobile);
-    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Fonction pour contrôler l'ouverture/fermeture du menu mobile
