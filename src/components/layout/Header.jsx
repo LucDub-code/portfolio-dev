@@ -3,11 +3,12 @@ import hamburgerIcon from '../../assets/icons/hamburger.svg';
 import closeIcon from "../../assets/icons/close.svg"
 import MobileMenu from '../navigation/MobileMenu';
 import TabNavigation from '../navigation/TabNavigation';
+import { useNavigation } from '../context/NavigationContext';
 
-export default function Header({ onMobileMenuChange }) {
+export default function Header() {
 
-  // État pour contrôler l'ouverture/fermeture du menu mobile
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  // Utilisation du contexte pour l'état du menu mobile
+  const { isMobileMenuOpen, setIsMobileMenuOpen } = useNavigation();
 
   // État pour détecter si on est en mode mobile
   const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
@@ -24,23 +25,12 @@ export default function Header({ onMobileMenuChange }) {
 
   // Fonction pour contrôler l'ouverture/fermeture du menu mobile
   const toggleMobileMenu = () => {
-    const newState = !isMobileMenuOpen;
-    setIsMobileMenuOpen(newState);
-    
-    // Informer le parent (Layout) du changement d'état
-    if (onMobileMenuChange) {
-      onMobileMenuChange(newState);
-    }
+    setIsMobileMenuOpen(!isMobileMenuOpen);
   }
   
-  // Effet pour notifier le Layout lors de la fermeture du menu
+  // Fonction pour fermer le menu
   const handleCloseMenu = () => {
     setIsMobileMenuOpen(false);
-    
-    // Informer le parent (Layout) du changement d'état
-    if (onMobileMenuChange) {
-      onMobileMenuChange(false);
-    }
   }
 
   return (

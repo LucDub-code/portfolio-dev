@@ -2,7 +2,7 @@ import { useNavigation } from '../context/NavigationContext'
 import { useState, useEffect } from 'react'
 
 export default function StatusBar() {
-  const { activePage } = useNavigation()
+  const { activePage, isMobileMenuOpen } = useNavigation()
   const [isMobile, setIsMobile] = useState(false)
   const [isVerySmall, setIsVerySmall] = useState(false)
   const [isTinyScreen, setIsTinyScreen] = useState(false)
@@ -24,6 +24,11 @@ export default function StatusBar() {
     // Nettoyer l'écouteur
     return () => window.removeEventListener('resize', checkIfMobile)
   }, [])
+
+  // Ne pas afficher la barre de statut si le menu mobile est ouvert
+  if (isMobile && isMobileMenuOpen) {
+    return null;
+  }
 
   const statusMessages = {
     'hello-world': '// Cliquez sur les bugs pour les corriger',
@@ -53,9 +58,14 @@ export default function StatusBar() {
     }
     return 'h-5' // 1.25rem ou 20px (taille par défaut)
   }
+  
+  // Déterminer si on utilise la position fixe en mode mobile
+  const getPositionClass = () => {
+    return isMobile ? 'fixed bottom-0 left-0 right-0 z-50' : '';
+  }
 
   return (
-    <div className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClass()}`}>
+    <div className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClass()} ${getPositionClass()}`}>
       {statusMessages[activePage]}
     </div>
   )

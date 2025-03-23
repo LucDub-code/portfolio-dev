@@ -22,6 +22,11 @@ export default function EditorContent() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
   
+  // Obtenir la classe pour l'espacement du bas en mode mobile
+  const getMobilePaddingClass = () => {
+    return !isDesktop ? 'pb-4' : '';
+  };
+  
   // Rendu conditionnel selon la page active
   const renderPageContent = () => {
     switch(activePage) {
@@ -38,7 +43,7 @@ export default function EditorContent() {
         return (
           <>
             {isDesktop && <FileHeader />}
-            <AboutPage className="flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] mb-4" />
+            <AboutPage className={`flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] mb-4 ${getMobilePaddingClass()}`} />
             <StatusBar />
           </>
         );
@@ -46,7 +51,7 @@ export default function EditorContent() {
           return (
             <>
               {isDesktop && <FileHeader />}
-              <ProjectsPage className="flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+              <ProjectsPage className={`flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] ${getMobilePaddingClass()}`} />
               <StatusBar />
             </>
           );
@@ -54,7 +59,7 @@ export default function EditorContent() {
           return (
             <>
               {isDesktop && <FileHeader />}
-              <ContactPage className="flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem]" />
+              <ContactPage className={`flex-1 overflow-auto max-[769px]:text-[0.7rem] max-[376px]:text-[0.625rem] max-[321px]:text-[0.5rem] ${getMobilePaddingClass()}`} />
               <StatusBar />
             </>
           );
@@ -71,7 +76,7 @@ export default function EditorContent() {
   };
   
   return (
-    <div className="flex flex-col flex-1 overflow-hidden relative">
+    <div className={`flex flex-col flex-1 overflow-hidden relative ${getMobilePaddingClass()}`}>
       {renderPageContent()}
     </div>
   );
