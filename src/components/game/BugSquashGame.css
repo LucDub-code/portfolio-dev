@@ -28,3 +28,19 @@
     height: 70%;
   }
 } 
+
+/* Ajustements pour les mobiles */
+@media (max-width: 768px) {
+  .game-area {
+    height: 75%;
+    top: 40% !important; /* Décaler vers le haut */
+  }
+}
+
+/* Ajustements spécifiques pour les petits écrans */
+@media (max-width: 480px) {
+  .game-area {
+    height: 70%;
+    top: 35% !important; /* Décaler davantage vers le haut sur très petits écrans */
+  }
+} 

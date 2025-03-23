@@ -51,12 +51,18 @@ export default function Bug({ type, position, onBugClick, removeAfterMs = 1500 }
 
   if (!isVisible && !showAnimation) return null;
 
+  // Ajuster la position Y pour les écrans mobiles
+  const adjustedPosition = {
+    x: position.x,
+    y: window.innerWidth <= 768 ? Math.min(Math.max(position.y, 10), 60) : position.y
+  };
+
   return (
     <div 
       className={`absolute cursor-pointer text-lg sm:text-xl md:text-2xl font-mono bug-appear ${bugStyle.className}`}
       style={{ 
-        left: `${position.x}%`, 
-        top: `${position.y}%`,
+        left: `${adjustedPosition.x}%`, 
+        top: `${adjustedPosition.y}%`,
         transform: 'translate(-50%, -50%)',
         transition: 'opacity 0.3s',
         opacity: isVisible ? 1 : 0,
