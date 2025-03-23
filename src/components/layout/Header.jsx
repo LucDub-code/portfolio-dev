@@ -4,7 +4,7 @@ import closeIcon from "../../assets/icons/close.svg"
 import MobileMenu from '../navigation/MobileMenu';
 import TabNavigation from '../navigation/TabNavigation';
 
-export default function Header() {
+export default function Header({ onMobileMenuChange }) {
 
   // État pour contrôler l'ouverture/fermeture du menu mobile
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,7 +24,23 @@ export default function Header() {
 
   // Fonction pour contrôler l'ouverture/fermeture du menu mobile
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen)
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+    
+    // Informer le parent (Layout) du changement d'état
+    if (onMobileMenuChange) {
+      onMobileMenuChange(newState);
+    }
+  }
+  
+  // Effet pour notifier le Layout lors de la fermeture du menu
+  const handleCloseMenu = () => {
+    setIsMobileMenuOpen(false);
+    
+    // Informer le parent (Layout) du changement d'état
+    if (onMobileMenuChange) {
+      onMobileMenuChange(false);
+    }
   }
 
   return (
@@ -49,7 +65,7 @@ export default function Header() {
         </button>
       )}
       
-      {isMobileMenuOpen && <MobileMenu onClose={() => setIsMobileMenuOpen(false)} />}
+      {isMobileMenuOpen && <MobileMenu onClose={handleCloseMenu} />}
     </div>
   )
 }
