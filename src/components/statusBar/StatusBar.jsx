@@ -46,12 +46,12 @@ export default function StatusBar() {
   // Déterminer la hauteur de la barre de statut en fonction de la taille d'écran
   const getHeightClass = () => {
     if (isTinyScreen) {
-      return 'h-4' // 1rem ou 16px
+      return 'h-3' // 0.75rem ou 12px
     }
     if (isVerySmall || isMobile) {
-      return 'h-5' // 1.25rem ou 20px
+      return 'h-4' // 1rem ou 16px
     }
-    return 'h-6' // 1.5rem ou 24px (taille par défaut)
+    return 'h-5' // 1.25rem ou 20px (taille par défaut)
   }
 
   return (
