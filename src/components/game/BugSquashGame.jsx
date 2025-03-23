@@ -131,14 +131,14 @@ export default function BugSquashGame() {
   
   return (
     <div className="relative w-full h-full" ref={gameAreaRef}>
-      <div className="absolute top-4 left-4">
+      <div className="absolute top-2 left-4">
         <TimeCounter 
           isActive={gameActive} 
           onTimeUp={handleTimeUp}
           timeLimit={20}
         />
       </div>
-      <div className="absolute top-4 right-4">
+      <div className="absolute top-2 right-4">
         <ScoreCounter score={score} gameActive={gameActive} />
       </div>
       
@@ -154,12 +154,11 @@ export default function BugSquashGame() {
         {/* Écran de fin de jeu */}
         {gameOver && (
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center text-center w-full max-w-xs sm:max-w-sm">
-            <h2 className={`text-green-number font-mono ${getTitleSizeClass()} mb-2 sm:mb-3`}>Bravo !</h2>
-            <div className={`text-text-default font-mono ${getTextSizeClass()} mb-3 sm:mb-5 w-full`}>
-              <div>Vous m'avez aidé</div>
-              <div className={getScoreSizeClass()}>
-                à corriger <span className="text-orange-string">{finalScore}</span> bugs !
-              </div>
+            <div className={`font-mono mb-3 sm:mb-5 w-full flex flex-wrap justify-center ${windowWidth <= 426 ? getTextSizeClass() : getScoreSizeClass()}`}>
+              <span className="text-green-number">Bravo ! </span>
+              <span className="text-text-default">Vous avez corrigé </span>
+              <span className="text-orange-string">{finalScore}</span>
+              <span className="text-text-default"> bugs !</span>
             </div>
             <button 
               className={`${getButtonSizeClass()} bg-bg-terminal border border-blue-html text-text-default font-mono hover:bg-blue-html hover:bg-opacity-20 transition-colors`}
