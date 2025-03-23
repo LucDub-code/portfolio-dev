@@ -14,10 +14,10 @@ export default function ProjectsPage() {
         <span className="text-text-default text-base">_mes-projets.json</span>
       </div>
       
-      <div className="flex-1 flex items-center justify-center">
+      <div className="flex-1 flex items-center justify-center max-[769px]:items-start max-[769px]:pt-8">
         <div className="flex flex-col items-center">
           {/* Animation Lottie */}
-          <div className="w-96 h-96">
+          <div className="w-96 h-96 max-[769px]:w-72 max-[769px]:h-72">
             <Lottie 
               animationData={constructionAnimation} 
               loop={true}

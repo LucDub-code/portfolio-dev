@@ -151,7 +151,7 @@ export default function ContactPage() {
         <span className="text-text-default text-base">_me-contacter.html</span>
       </div>
       {/* Formulaire de contact */}
-      <div className="flex-1 flex items-center justify-center p-4">
+      <div className="flex-1 flex items-start justify-center p-4 pt-2">
         <form className="w-full max-w-md p-6" onSubmit={handleSubmit}>
           {/* Champ Nom */}
           <div className="mb-4">
