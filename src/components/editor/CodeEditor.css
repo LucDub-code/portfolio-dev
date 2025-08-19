@@ -1,13 +1,22 @@
 /* Animation typewriter avec masque */
 @keyframes typewriter-mask {
-  from { width: 100%; }
-  to { width: 0; }
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0;
+  }
 }
 
 /* Animation du curseur clignotant */
 @keyframes blink {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* Style de base pour toutes les lignes animées */
@@ -17,6 +26,14 @@
   display: flex; /* Pour assurer que la ligne ne prenne que la largeur de son contenu */
 }
 
+/* Forcer une largeur minimale pour les lignes avec accolades */
+.typing-line-14,
+.typing-line-16,
+.typing-line-18 {
+  min-width: 200px; /* Force une largeur minimale pour ces lignes */
+  padding-right: 10px; /* Ajoute de l'espace à droite */
+}
+
 /* Masque qui se retire progressivement */
 .typing-line::before {
   content: "";
@@ -24,7 +41,10 @@
   top: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--bg-ui-color, #111827); /* Utilise la couleur bg-bg-ui si disponible */
+  background-color: var(
+    --bg-ui-color,
+    #111827
+  ); /* Utilise la couleur bg-bg-ui si disponible */
   z-index: 1;
   animation-fill-mode: forwards;
 }
@@ -44,74 +64,74 @@
   visibility: hidden; /* Complètement caché pour toutes les lignes sauf la dernière */
 }
 
-/* Animation spécifique pour chaque ligne avec des délais optimisés */
+/* Animation spécifique pour chaque ligne avec des délais optimisés - VERSION CORRIGÉE */
 .typing-line-1::before {
-  animation: typewriter-mask 1.2s steps(20) 0.2s forwards;
+  animation: typewriter-mask 0.6s steps(20) 0.1s forwards;
   width: 100%;
 }
 
 .typing-line-3::before {
-  animation: typewriter-mask 1.2s steps(30) 1.4s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.6s steps(30) 0.7s forwards;
   width: 100%;
 }
 
 .typing-line-5::before {
-  animation: typewriter-mask 0.8s steps(20) 2.6s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.45s steps(20) 1.5s forwards;
   width: 100%;
 }
 
 .typing-line-6::before {
-  animation: typewriter-mask 0.8s steps(20) 3.4s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.45s steps(20) 1.95s forwards;
   width: 100%;
 }
 
 .typing-line-7::before {
-  animation: typewriter-mask 1s steps(25) 4.2s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.6s steps(25) 2.4s forwards;
   width: 100%;
 }
 
 .typing-line-8::before {
-  animation: typewriter-mask 1.3s steps(40) 5.2s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.8s steps(40) 3s forwards;
   width: 100%;
 }
 
 .typing-line-9::before {
-  animation: typewriter-mask 0.8s steps(15) 6.5s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.45s steps(28) 3.8s forwards;
   width: 100%;
 }
 
 .typing-line-10::before {
-  animation: typewriter-mask 0.4s steps(5) 7.3s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.25s steps(5) 4.25s forwards;
   width: 100%;
 }
 
 .typing-line-12::before {
-  animation: typewriter-mask 1.2s steps(30) 7.7s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.7s steps(30) 4.5s forwards;
   width: 100%;
 }
 
 .typing-line-14::before {
-  animation: typewriter-mask 1s steps(20) 8.9s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.6s steps(25) 5.2s forwards;
   width: 100%;
 }
 
 .typing-line-15::before {
-  animation: typewriter-mask 1.3s steps(35) 9.9s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.8s steps(35) 5.8s forwards;
   width: 100%;
 }
 
 .typing-line-16::before {
-  animation: typewriter-mask 1s steps(25) 11.2s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.6s steps(28) 6.6s forwards;
   width: 100%;
 }
 
 .typing-line-17::before {
-  animation: typewriter-mask 1.3s steps(35) 12.2s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.8s steps(38) 7.2s forwards;
   width: 100%;
 }
 
 .typing-line-18::before {
-  animation: typewriter-mask 1s steps(25) 13.5s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.6s steps(32) 8s forwards;
   width: 100%;
 }
 
@@ -122,7 +142,7 @@
 }
 
 .typing-line-19::before {
-  animation: typewriter-mask 0.6s steps(15) 14.5s forwards; /* Augmenté davantage le nombre de steps */
+  animation: typewriter-mask 0.35s steps(15) 8.6s forwards;
   width: 110%; /* Élargit le masque au-delà de la largeur du contenu */
   right: -10px; /* Déplace davantage le masque vers la droite */
 }
@@ -135,12 +155,12 @@
 }
 
 .typing-line-20::before {
-  animation: typewriter-mask 0.5s steps(8) 15.1s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.3s steps(15) 8.95s forwards;
   width: 100%;
 }
 
 .typing-line-21::before {
-  animation: typewriter-mask 0.3s steps(5) 15.6s forwards; /* Réduit le délai */
+  animation: typewriter-mask 0.2s steps(5) 9.25s forwards;
   width: 100%;
 }
 
@@ -148,11 +168,11 @@
 .typing-line-21::after {
   visibility: visible; /* Rendre le curseur visible uniquement pour la dernière ligne */
   opacity: 0; /* Commence invisible */
-  animation: blink 0.7s 16s infinite; /* Commence à clignoter après la fin de toute l'animation */
+  animation: blink 0.7s 9.45s infinite; /* Commence à clignoter après la fin de toute l'animation */
   right: -5px; /* Décale le curseur légèrement vers la droite pour l'éloigner du } */
 }
 
 /* Ajoute un petit espace après le dernier caractère */
 .typing-line-21 {
   padding-right: 5px;
-} 
+}
