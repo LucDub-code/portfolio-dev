@@ -1,4 +1,4 @@
-# Portfolio Développeur Web de Lucas Dubeau
+# Mon Portfolio de Développeur Web
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
@@ -16,24 +16,40 @@ Portfolio de développeur web présentant mes projets et compétences à travers
 - **Tailwind CSS** - Framework CSS utilitaire pour le design
 - **Lottie React** - Animations vectorielles dynamiques
 - **Animations CSS** - Effets typewriter custom pour la page d'accueil
-- **Typewriter.js** - Bibliothèque pour les effets de machine à écrire de la page à propos
+- **Typewriter.js** - Bibliothèque typewriter de la page à propos
 - **Git & GitHub** - Gestion de version
 
 ### Fonctionnalités
 
+**Page d'accueil (\_hello-world.js)**
+
 - **Interface inspirée d'un IDE** avec navigation par fichiers et onglets
-- **Terminal interactif** sur la page d'accueil
-- **Mini-jeu "Bug Squash"** pour une expérience ludique interactive
-- **Présentation des projets** avec filtrage par technologie
-- **Section "À propos"** organisée en fichiers Markdown
-- **Formulaire de contact** fonctionnel intégré avec Formspree
-- **Animations Lottie** pour une meilleure expérience utilisateur
-- **Effet machine à écrire** en CSS pur et avec librairie Typewriter
+- **Terminal interactif** avec mini-jeu "Bug Squash" (cliquer sur un maximum de "bugs" en 20s)
+- **Animations Lottie** lors du clic sur un "bug"
+- **Animation CSS pure** : Effet machine à écrire personnalisé
+- **Interface Three.js** : Animation 3D en page d'accueil
+
+**Section "À propos" (\_a-propos-de-moi)**
+
+- **Organisation en fichiers Markdown** structurés
+- **Librairie Typewriter.js** : Effet machine à écrire dynamique
+
+**Section "Projets" (\_mes-projets.json)**
+
+- **Présentation des projets** avec cartes détaillées
+- **Système de filtrage** dynamique par technologies dans la sidebar
+
+**Section "Contact" (\_me-contacter.html)**
+
+- **Formulaire de contact** fonctionnel
+
+**Page CV (\_mon-cv.pdf)**
+
+- **Téléchargement du CV** en format PDF
+
+**Général**
+
 - **Design responsive** adapté aux appareils mobiles et desktop
-- **Page CV** : `_mon-cv.pdf` avec option de téléchargement
-- **Gestion des projets** : Cartes avec titre, descriptif et technologies
-- **Filtrage par technos** : Sidebar avec filtres dynamiques
-- **Interface Three.js** : Animation 3D en page d'accueil (inspirée de gateremark.me)
 
 ### Structure du code
 
@@ -75,7 +91,7 @@ frontend/
 - **Authentification** JWT pour l'accès administrateur
 - **CRUD projets** : Création, lecture, mise à jour, suppression
 - **Gestion des technologies** et filtres
-- **Formulaire de contact** : Réception et stockage des messages
+- **Formulaire de contact** : Réception des messages et envoi par email
 
 ### Structure de l'API
 
@@ -113,7 +129,3 @@ npm run start:dev
 
 - **Frontend** : Déployé sur Vercel
 - **Backend** : Déployé sur Render (API en production)
-
-## Licence
-
-Ce projet est sous licence MIT - voir le fichier LICENSE pour plus de détails.
