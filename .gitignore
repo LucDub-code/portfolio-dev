@@ -1,38 +1,21 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
 # Dependencies
-node_modules
-frontend/node_modules
-backend/node_modules
+node_modules/
 
 # Build outputs
-dist
-dist-ssr
-frontend/dist
-backend/dist
-backend/build
+dist/
 
 # Environment variables
 .env
-.env.local
-.env.development
-.env.production
-.env.test
+
+# Logs
+logs/
+*.log
+npm-debug.log*
 
 # IDE and editor files
-.vscode/*
-!.vscode/extensions.json
-.idea
+.vscode/
+.idea/
 .DS_Store
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+
+# Vercel
+.vercel
