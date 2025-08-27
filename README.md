@@ -7,6 +7,14 @@
 
 Portfolio de développeur web présentant mes projets et compétences à travers une interface interactive inspirée d'un environnement de développement (IDE).
 
+## Architecture
+
+Ce projet utilise une **architecture monorepo** avec :
+
+- **Frontend React** à la racine du projet
+- **API Hono** dans le dossier `portfolio-api/`
+- **Déploiement unifié** sur Vercel
+
 ## Frontend
 
 ### Technologies
@@ -54,30 +62,29 @@ Portfolio de développeur web présentant mes projets et compétences à travers
 ### Structure du code
 
 ```
-frontend/
-└── src/
-    ├── assets/            # Ressources statiques (images, animations)
-    ├── components/        # Composants React réutilisables
-    │   ├── layout/        # Composants de structure (Header, Footer)
-    │   ├── about/         # Composants de la section "À propos"
-    │   ├── projects/      # Composants de la section Projets
-    │   ├── editor/        # Composants de l'éditeur de code
-    │   ├── terminal/      # Composants du terminal interactif
-    │   ├── game/          # Composants du mini-jeu "Bug Squash"
-    │   ├── navigation/    # Composants de navigation
-    │   ├── statusBar/     # Composants de la barre de statut
-    │   ├── context/       # Contextes locaux des composants
-    │   ├── pages/         # Pages principales de l'application
-    │   └── data/          # Données statiques des composants
-    ├── context/           # Contextes React globaux
-    └── main.jsx           # Point d'entrée de l'application
+src/
+├── assets/            # Ressources statiques (images, animations)
+├── components/        # Composants React réutilisables
+│   ├── layout/        # Composants de structure (Header, Footer)
+│   ├── about/         # Composants de la section "À propos"
+│   ├── projects/      # Composants de la section Projets
+│   ├── editor/        # Composants de l'éditeur de code
+│   ├── terminal/      # Composants du terminal interactif
+│   ├── game/          # Composants du mini-jeu "Bug Squash"
+│   ├── navigation/    # Composants de navigation
+│   ├── statusBar/     # Composants de la barre de statut
+│   ├── context/       # Contextes locaux des composants
+│   ├── pages/         # Pages principales de l'application
+│   └── data/          # Données statiques des composants
+├── context/           # Contextes React globaux
+└── main.jsx           # Point d'entrée de l'application
 ```
 
 ## Backend
 
 ### Technologies
 
-- **NestJS** - Framework Node.js pour l'API
+- **Hono** - Framework web ultra-rapide pour l'API
 - **TypeScript** - Langage de programmation typé
 - **MongoDB** - Base de données NoSQL
 - **Mongoose** - ODM pour MongoDB
@@ -87,8 +94,8 @@ frontend/
 ### Fonctionnalités
 
 - **API REST** pour la gestion des projets
-- **Base de données** MongoDB pour stocker les projets
-- **Authentification** JWT pour l'accès administrateur
+- **Base de données** pour stocker les projets
+- **Authentification** pour l'accès administrateur
 - **CRUD projets** : Création, lecture, mise à jour, suppression
 - **Gestion des technologies** et filtres
 - **Formulaire de contact** : Réception des messages et envoi par email
@@ -96,15 +103,11 @@ frontend/
 ### Structure de l'API
 
 ```
-backend/
+portfolio-api/
 ├── src/
-│   ├── projects/          # Module gestion des projets
-│   ├── auth/              # Module authentification
-│   ├── users/             # Module utilisateurs
-│   ├── common/            # Utilitaires et décorateurs
-│   └── main.ts            # Point d'entrée de l'API
-├── test/                  # Tests unitaires et e2e
-└── dist/                  # Code compilé
+│   └── index.ts           # Point d'entrée de l'API Hono
+├── package.json            # Dépendances Hono
+└── tsconfig.json          # Configuration TypeScript
 ```
 
 ## Installation
@@ -112,7 +115,6 @@ backend/
 ### Frontend
 
 ```bash
-cd frontend
 npm install
 npm run dev
 ```
@@ -120,12 +122,17 @@ npm run dev
 ### Backend
 
 ```bash
-cd backend
-npm install
-npm run start:dev
+# Installer Vercel CLI
+npm i -g vercel
+
+# Développement local
+cd portfolio-api
+npm i
+vercel dev
+# L'API sera accessible sur http://localhost:3000
 ```
 
 ## Déploiement
 
 - **Frontend** : Déployé sur Vercel
-- **Backend** : Déployé sur Render (API en production)
+- **Backend** : Déployé sur Vercel (API serverless)
