@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const projectsController = require('../controllers/projects');
-const auth = require('../middleware/auth');
+const auth = require('../middlewares/auth');
 
 router.get('/', projectsController.getAllProjects);
 router.get('/filter/:technology', projectsController.getProjectsByTech);
