@@ -17,5 +17,6 @@ npm-debug.log*
 .idea/
 .DS_Store
 
-# Vercel
+# Deployment
 .vercel
+.render
