@@ -9,11 +9,13 @@ Portfolio de développeur web présentant mes projets et compétences à travers
 
 ## Architecture
 
-Ce projet utilise une **architecture monorepo** avec :
+- **Frontend React** dans le dossier `frontend-portfolio/`
+- **Backend Express/Node.js** dans le dossier `backend-portfolio/`
 
-- **Frontend React** à la racine du projet
-- **API Hono** dans le dossier `portfolio-api/`
-- **Déploiement unifié** sur Vercel
+## Déploiement
+
+- **Frontend** déployé sur Vercel
+- **Backend** déployé sur Render
 
 ## Frontend
 
@@ -32,7 +34,7 @@ Ce projet utilise une **architecture monorepo** avec :
 **Page d'accueil (\_hello-world.js)**
 
 - **Interface inspirée d'un IDE** avec navigation par fichiers et onglets
-- **Terminal interactif** avec mini-jeu "Bug Squash" (cliquer sur un maximum de "bugs" en 20s)
+- **Terminal interactif** avec mini-jeu "Bug Squash"
 - **Animations Lottie** lors du clic sur un "bug"
 - **Animation CSS pure** : Effet machine à écrire personnalisé
 - **Interface Three.js** : Animation 3D en page d'accueil
@@ -53,7 +55,7 @@ Ce projet utilise une **architecture monorepo** avec :
 
 **Page CV (\_mon-cv.pdf)**
 
-- **Téléchargement du CV** en format PDF
+- **Présentation et téléchargement du CV** en format PDF
 
 **Général**
 
@@ -84,12 +86,11 @@ src/
 
 ### Technologies
 
-- **Hono** - Framework web ultra-rapide pour l'API
-- **TypeScript** - Langage de programmation typé
+- **Express** - Framework web Node.js pour l'API
+- **Node.js** - Environnement d'exécution JavaScript
 - **MongoDB** - Base de données NoSQL
 - **Mongoose** - ODM pour MongoDB
 - **JWT** - Authentification sécurisée
-- **Passport** - Stratégies d'authentification
 
 ### Fonctionnalités
 
@@ -97,17 +98,17 @@ src/
 - **Base de données** pour stocker les projets
 - **Authentification** pour l'accès administrateur
 - **CRUD projets** : Création, lecture, mise à jour, suppression
-- **Gestion des technologies** et filtres
+- **Filtrage des projets** par technologies
 - **Formulaire de contact** : Réception des messages et envoi par email
 
 ### Structure de l'API
 
 ```
-portfolio-api/
+backend-portfolio/
 ├── src/
-│   └── index.ts           # Point d'entrée de l'API Hono
-├── package.json            # Dépendances Hono
-└── tsconfig.json          # Configuration TypeScript
+│   └── index.js           # Point d'entrée de l'API Express
+├── package.json           # Dépendances Node.js
+└── .env                   # Variables d'environnement
 ```
 
 ## Installation
@@ -115,6 +116,7 @@ portfolio-api/
 ### Frontend
 
 ```bash
+cd frontend-portfolio
 npm install
 npm run dev
 ```
@@ -122,18 +124,7 @@ npm run dev
 ### Backend
 
 ```bash
-# Installer Vercel CLI
-npm i -g vercel
-
-# Développement local
-cd portfolio-api
-npm i
-vercel dev
-# L'API sera accessible sur http://localhost:3000
+cd backend-portfolio
+npm install
+nodemon server
 ```
-
-## Déploiement
-
-- **Frontend** : Déployé sur Vercel
-- **Backend** : Déployé sur Vercel (API serverless)
- 
