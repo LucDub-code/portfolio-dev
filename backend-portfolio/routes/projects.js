@@ -5,7 +5,6 @@ const projectsController = require('../controllers/projects');
 const auth = require('../middlewares/auth');
 
 router.get('/', projectsController.getAllProjects);
-router.get('/filter/:technology', projectsController.getProjectsByTech);
 router.get('/:id', projectsController.getOneProject);
 router.post('/', auth, projectsController.createProject);
 router.put('/:id', auth, projectsController.updateProject);
