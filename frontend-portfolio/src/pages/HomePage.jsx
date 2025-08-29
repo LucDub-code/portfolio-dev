@@ -1,6 +1,6 @@
-import FileHeader from "../editor/FileHeader";
-import EditorContainer from "../editor/EditorContainer";
-import Terminal from "../terminal/Terminal";
+import FileHeader from "../components/editor/FileHeader";
+import EditorContainer from "../components/editor/EditorContainer";
+import Terminal from "../components/terminal/Terminal";
 
 export default function HomePage() {
   return (

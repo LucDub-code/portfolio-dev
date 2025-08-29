@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import { AboutProvider } from "./components/context/AboutContext";
+import { AboutProvider } from "./contexts/AboutContext";
 
 // Import des pages
-import HomePage from "./components/pages/HomePage";
-import AboutPage from "./components/pages/AboutPage";
-import ProjectsPage from "./components/pages/ProjectsPage";
-import ContactPage from "./components/pages/ContactPage";
+import HomePage from "./pages/HomePage";
+import AboutPage from "./pages/AboutPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (

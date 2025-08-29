@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { pages } from "../data/navigationData";
+import { pages } from "../../data/navigationData";
 
 export default function FileHeader() {
   const location = useLocation();
