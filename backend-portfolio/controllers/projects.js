@@ -31,15 +31,23 @@ exports.getOneProject = (req, res, next) => {
 
 // Créer un nouveau projet (admin)
 exports.createProject = (req, res, next) => {
-  res.json({ message: "TODO" });
+  const project = new Project(req.body);
+  project
+    .save()
+    .then(() => res.status(201).json({ message: "Projet créé !" }))
+    .catch((error) => res.status(400).json({ error }));
 };
 
 // Modifier un projet existant (admin)
 exports.updateProject = (req, res, next) => {
-  res.json({ message: "TODO" });
+  Project.updateOne({ _id: req.params.id }, req.body)
+    .then(() => res.status(200).json({ message: "Projet modifié !" }))
+    .catch((error) => res.status(400).json({ error }));
 };
 
 // Supprimer un projet (admin)
 exports.deleteProject = (req, res, next) => {
-  res.json({ message: "TODO" });
+  Project.deleteOne({ _id: req.params.id })
+    .then(() => res.status(200).json({ message: "Projet supprimé !" }))
+    .catch((error) => res.status(400).json({ error }));
 };

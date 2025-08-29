@@ -10,8 +10,8 @@ const app = express();
 require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI)
-.then(() => console.log('Connexion à MongoDB réussie !'))
-.catch(() => console.log('Connexion à MongoDB échouée !'));
+.then(() => console.log('Connexion à MongoDB réussie'))
+.catch(() => console.log('Connexion à MongoDB échouée'));
 
 app.set("port", process.env.PORT || 3000);
 
