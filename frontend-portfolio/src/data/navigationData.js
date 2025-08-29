@@ -1,7 +1,7 @@
-import jsIcon from "../../assets/icons/technos/js.svg";
-import folderIcon from "../../assets/icons/navigation/folder.svg";
-import jsonIcon from "../../assets/icons/technos/json.svg";
-import htmlIcon from "../../assets/icons/technos/html.svg";
+import jsIcon from "../assets/icons/technos/js.svg";
+import folderIcon from "../assets/icons/navigation/folder.svg";
+import jsonIcon from "../assets/icons/technos/json.svg";
+import htmlIcon from "../assets/icons/technos/html.svg";
 
 export const pages = {
   "hello-world": {

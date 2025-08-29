@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { pages } from "../data/navigationData";
+import { pages } from "../../data/navigationData";
 import chevronRight from "../../assets/icons/navigation/nav-full.svg";
 
 export default function MobileMenu({ onClose }) {

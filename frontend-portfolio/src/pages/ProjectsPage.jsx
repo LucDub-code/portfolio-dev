@@ -1,7 +1,7 @@
 import Lottie from "lottie-react";
-import chevronDown from "../../assets/icons/navigation/nav-full-down.svg";
-import jsonIcon from "../../assets/icons/technos/json.svg";
-import constructionAnimation from "../../assets/animations/construction-animation.json";
+import chevronDown from "../assets/icons/navigation/nav-full-down.svg";
+import jsonIcon from "../assets/icons/technos/json.svg";
+import constructionAnimation from "../assets/animations/construction-animation.json";
 
 export default function ProjectsPage() {
   return (

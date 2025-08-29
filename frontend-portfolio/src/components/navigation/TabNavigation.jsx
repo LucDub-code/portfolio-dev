@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { pages } from "../data/navigationData";
+import { pages } from "../../data/navigationData";
 import { useState, useEffect } from "react";
 
 export default function TabNavigation() {
