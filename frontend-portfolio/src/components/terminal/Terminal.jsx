@@ -1,10 +1,10 @@
 import TerminalHeader from './TerminalHeader'
 import BugSquashGame from '../game/BugSquashGame'
-import { useNavigation } from '../context/NavigationContext'
+import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 export default function Terminal({ className }) {
-  const { activePage } = useNavigation();
+  const location = useLocation();
   const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
   const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
 
@@ -20,10 +20,12 @@ export default function Terminal({ className }) {
 
   // Déterminer si le header doit être affiché
   const shouldShowHeader = () => {
-    if (activePage !== 'hello-world') {
+    // Si on n'est pas sur la page d'accueil, toujours afficher le header
+    if (location.pathname !== '/') {
       return true;
     }
     
+    // Si on est sur la page d'accueil, afficher seulement en desktop avec grand écran
     return !isMobile && isLargeHeight;
   };
 
