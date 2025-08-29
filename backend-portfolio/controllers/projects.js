@@ -2,7 +2,7 @@ const Project = require("../models/projects");
 
 // Récupérer tous les projets avec fonction de filtrage par technologie
 
-exports.getAllProjects = (req, res, next) => {
+exports.getAllProjects = (req, res) => {
   // Récupère ce qui est après "tech=" dans l'URL de la requête
   const tech = req.query.tech;
 
@@ -23,14 +23,14 @@ exports.getAllProjects = (req, res, next) => {
 };
 
 // Récupérer un projet spécifique par ID
-exports.getOneProject = (req, res, next) => {
+exports.getOneProject = (req, res) => {
   Project.findOne({ _id: req.params.id })
     .then((project) => res.status(200).json(project))
     .catch((error) => res.status(404).json({ error }));
 };
 
 // Créer un nouveau projet (admin)
-exports.createProject = (req, res, next) => {
+exports.createProject = (req, res) => {
   const project = new Project(req.body);
   project
     .save()
@@ -39,14 +39,14 @@ exports.createProject = (req, res, next) => {
 };
 
 // Modifier un projet existant (admin)
-exports.updateProject = (req, res, next) => {
+exports.updateProject = (req, res) => {
   Project.updateOne({ _id: req.params.id }, req.body)
     .then(() => res.status(200).json({ message: "Projet modifié !" }))
     .catch((error) => res.status(400).json({ error }));
 };
 
 // Supprimer un projet (admin)
-exports.deleteProject = (req, res, next) => {
+exports.deleteProject = (req, res) => {
   Project.deleteOne({ _id: req.params.id })
     .then(() => res.status(200).json({ message: "Projet supprimé !" }))
     .catch((error) => res.status(400).json({ error }));
