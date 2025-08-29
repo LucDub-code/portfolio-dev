@@ -1,11 +1,9 @@
 import xIcon from '../../assets/icons/socials/x.svg'
 import linkedinIcon from '../../assets/icons/socials/linkedin.svg'
 import githubIcon from '../../assets/icons/socials/github.svg'
-import { useNavigation } from '../context/NavigationContext'
 import { useState, useEffect } from 'react'
 
 export default function Footer() {
-  const { activePage } = useNavigation();
   const [isMobilePage, setIsMobilePage] = useState(window.innerWidth < 769);
 
   // Effet pour mettre à jour isMobilePage lors du redimensionnement
