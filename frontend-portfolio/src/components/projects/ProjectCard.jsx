@@ -1,5 +1,7 @@
-// TODO: Implémenter ProjectCard pour afficher les projets de l'API
-
 export default function ProjectCard() {
-  return <div>{/* Card project sera implémentée ici */}</div>;
+  return (
+    <div className="bg-bg-terminal border border-border-ide rounded-lg overflow-hidden w-80 h-96">
+
+    </div>
+  )
 }
