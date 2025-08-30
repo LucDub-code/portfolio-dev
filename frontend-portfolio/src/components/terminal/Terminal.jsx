@@ -5,12 +5,12 @@ import { useState, useEffect } from 'react'
 
 export default function Terminal({ className }) {
   const location = useLocation();
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 770);
   const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 769);
+      setIsMobile(window.innerWidth < 770);
       setIsLargeHeight(window.innerHeight > 950);
     };
     

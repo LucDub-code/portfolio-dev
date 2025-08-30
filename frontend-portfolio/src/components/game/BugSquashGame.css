@@ -27,10 +27,10 @@
     width: 70%;
     height: 70%;
   }
-} 
+}
 
 /* Ajustements pour les mobiles */
-@media (max-width: 768px) {
+@media (max-width: 770px) {
   .game-area {
     height: 75%;
     top: 42% !important; /* Légèrement plus bas */
@@ -38,9 +38,9 @@
 }
 
 /* Ajustements spécifiques pour les petits écrans */
-@media (max-width: 480px) {
+@media (max-width: 425px) {
   .game-area {
     height: 70%;
     top: 38% !important; /* Légèrement plus bas */
   }
-} 
+}

@@ -130,16 +130,16 @@ export default function ContactPage() {
     return (
       <div className="flex flex-col h-full">
         {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
-        <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
-          <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
-          <img src={htmlIcon} alt="Dossier" className="w-5 h-5 mr-2" />
-          <span className="text-text-default text-base">
+        <div className="hidden max-[770px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
+          <img src={chevronDown} alt="Chevron" className="mr-2 w-4 h-4" />
+          <img src={htmlIcon} alt="Dossier" className="mr-2 w-5 h-5" />
+          <span className="text-base text-text-default">
             _me-contacter.html
           </span>
         </div>
-        <div className="flex-1 flex items-center justify-center p-4">
-          <div className="w-full max-w-md p-6 text-center">
-            <h2 className="text-xl text-success-foreground mb-4">
+        <div className="flex flex-1 justify-center items-center p-4">
+          <div className="p-6 w-full max-w-md text-center">
+            <h2 className="mb-4 text-xl text-success-foreground">
               Message envoyé avec succès !
             </h2>
             <p className="text-text-default">
@@ -155,26 +155,24 @@ export default function ContactPage() {
   return (
     <div className={`flex flex-col h-full`}>
       {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
-      <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
-        <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
-        <img src={htmlIcon} alt="Dossier" className="w-5 h-5 mr-2" />
-        <span className="text-text-default text-base">_me-contacter.html</span>
+      <div className="hidden max-[1060px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
+        <img src={chevronDown} alt="Chevron" className="mr-2 w-4 h-4" />
+        <img src={htmlIcon} alt="Dossier" className="mr-2 w-5 h-5" />
+        <span className="text-base text-text-default">_me-contacter.html</span>
       </div>
       {/* Formulaire de contact */}
-      <div className="flex-1 flex items-start justify-center p-4 pt-2">
-        <form className="w-full max-w-md p-6" onSubmit={handleSubmit}>
+      <div className="flex flex-1 justify-center items-start p-4 pt-2">
+        <form className="p-6 w-full max-w-md" onSubmit={handleSubmit}>
           {/* Champ Nom */}
           <div className="mb-4">
-            <label htmlFor="_nom" className="block text-text-default mb-2">
+            <label htmlFor="_nom" className="block mb-2 text-text-default">
               _nom<span className="text-error-foreground">*</span>
             </label>
             <input
               type="text"
               id="_nom"
               name="nom"
-              className={`w-full bg-bg-terminal border ${getBorderClass(
-                "nom"
-              )} rounded p-2 text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              className={`w-full border bg-bg-terminal ${getBorderClass("nom")} p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Votre nom */"
               value={formData.nom}
               onChange={handleChange}
@@ -182,23 +180,21 @@ export default function ContactPage() {
               required
             />
             {touched.nom && errors.nom && (
-              <p className="mt-1 text-error-foreground text-sm">{errors.nom}</p>
+              <p className="mt-1 text-sm text-error-foreground">{errors.nom}</p>
             )}
             <ValidationError prefix="Nom" field="nom" errors={state.errors} />
           </div>
 
           {/* Champ Email */}
           <div className="mb-4">
-            <label htmlFor="_email" className="block text-text-default mb-2">
+            <label htmlFor="_email" className="block mb-2 text-text-default">
               _email<span className="text-error-foreground">*</span>
             </label>
             <input
               type="email"
               id="_email"
               name="email"
-              className={`w-full bg-bg-terminal border ${getBorderClass(
-                "email"
-              )} rounded p-2 text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              className={`w-full border bg-bg-terminal ${getBorderClass("email")} p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Votre email */"
               value={formData.email}
               onChange={handleChange}
@@ -206,7 +202,7 @@ export default function ContactPage() {
               required
             />
             {touched.email && errors.email && (
-              <p className="mt-1 text-error-foreground text-sm">
+              <p className="mt-1 text-sm text-error-foreground">
                 {errors.email}
               </p>
             )}
@@ -219,16 +215,14 @@ export default function ContactPage() {
 
           {/* Champ Message */}
           <div className="mb-6">
-            <label htmlFor="_message" className="block text-text-default mb-2">
+            <label htmlFor="_message" className="block mb-2 text-text-default">
               _message<span className="text-error-foreground">*</span>
             </label>
             <textarea
               id="_message"
               name="message"
               rows="6"
-              className={`w-full bg-bg-terminal border ${getBorderClass(
-                "message"
-              )} rounded p-2 text-text-default focus:outline-none focus:border-blue-accent resize-none placeholder:text-gray-inactive`}
+              className={`w-full border bg-bg-terminal ${getBorderClass("message")} p-2 rounded resize-none text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Écrivez votre message ici... */"
               value={formData.message}
               onChange={handleChange}
@@ -236,7 +230,7 @@ export default function ContactPage() {
               required
             ></textarea>
             {touched.message && errors.message && (
-              <p className="mt-1 text-error-foreground text-sm">
+              <p className="mt-1 text-sm text-error-foreground">
                 {errors.message}
               </p>
             )}
@@ -251,7 +245,7 @@ export default function ContactPage() {
           <div className="flex">
             <button
               type="submit"
-              className="bg-blue-accent hover:bg-focus-hover text-white py-2 px-8 rounded border border-border-ide shadow-md transition-colors cursor-pointer"
+              className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide"
               disabled={state.submitting}
             >
               {state.submitting ? "Envoi en cours..." : "Envoyer"}

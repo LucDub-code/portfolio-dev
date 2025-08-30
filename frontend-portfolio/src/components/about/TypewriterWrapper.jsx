@@ -16,8 +16,7 @@ export default function TypewriterWrapper({ isActive = false, children }) {
     <div
       ref={contentRef}
       className={`markdown-content text-text-default ${
-        showContent ? "" : "hidden"
-      }`}
+        showContent ? "":"hidden"}`}
     >
       {showContent && children}
     </div>
