@@ -6,12 +6,12 @@ import EducationContent from "../components/about/EducationContent";
 import AboutNavigation from "../components/about/AboutNavigation";
 import { useAboutContext } from "../contexts/AboutContext";
 
-export default function AboutPage({ className }) {
+export default function AboutPage() {
   const { activeTab } = useAboutContext();
 
   return (
-    <div className={`flex flex-col h-full ${className || ""}`}>
-      {/* En-tête de la page */}
+    <div className="flex flex-col h-full">
+      {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
       <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
         <img src={folderIcon} alt="Dossier" className="w-4 h-4 mr-2" />

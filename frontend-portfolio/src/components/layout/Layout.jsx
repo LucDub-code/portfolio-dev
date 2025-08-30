@@ -2,6 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import SideMenu from "./SideMenu";
 import StatusBar from "../statusBar/StatusBar";
+import FileHeader from "../editor/FileHeader";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -36,10 +37,13 @@ export default function Layout({ children }) {
       <div className="flex flex-1 overflow-hidden">
         {/* SideMenu uniquement en desktop */}
         {!isMobile && <SideMenu />}
-        {/* Le contenu vient de React Router */}
+        {/* Zone principale : FileHeader + contenu React Router + StatusBar */}
         <div className="flex flex-col flex-1 overflow-hidden">
+          {/* FileHeader adaptatif selon la route actuelle */}
+          <FileHeader />
+          {/* Contenu des pages (HomePage, AboutPage, ProjectsPage, ContactPage) */}
           <div className="flex-1 overflow-auto">{children}</div>
-          {/* StatusBar géré globalement ici */}
+          {/* StatusBar avec messages contextuels */}
           <StatusBar isMobileMenuOpen={isMobileMenuOpen} />
         </div>
       </div>

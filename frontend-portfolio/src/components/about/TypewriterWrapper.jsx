@@ -1,5 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
-import Typewriter from 'typewriter-effect';
+import { useEffect, useState, useRef } from "react";
 
 export default function TypewriterWrapper({ isActive = false, children }) {
   const [showContent, setShowContent] = useState(false);
@@ -14,11 +13,13 @@ export default function TypewriterWrapper({ isActive = false, children }) {
   }, [isActive]);
 
   return (
-    <div 
+    <div
       ref={contentRef}
-      className={`markdown-content text-text-default ${showContent ? '' : 'hidden'}`}
+      className={`markdown-content text-text-default ${
+        showContent ? "" : "hidden"
+      }`}
     >
       {showContent && children}
     </div>
   );
-} 
+}
