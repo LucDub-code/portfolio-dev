@@ -129,6 +129,7 @@ export default function ContactPage() {
   if (state.succeeded) {
     return (
       <div className="flex flex-col h-full">
+        {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
         <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
           <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
           <img src={htmlIcon} alt="Dossier" className="w-5 h-5 mr-2" />
@@ -153,7 +154,7 @@ export default function ContactPage() {
 
   return (
     <div className={`flex flex-col h-full`}>
-      {/* En-tête de la page */}
+      {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
       <div className="hidden max-[769px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
         <img src={htmlIcon} alt="Dossier" className="w-5 h-5 mr-2" />

@@ -27,7 +27,7 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
   const statusMessages = {
     "/": "// Cliquez sur les bugs pour les corriger",
     "/about": "// Utilisez les onglets pour naviguer",
-    "/projects": "// Revenez bientôt pour découvrir mes nouveaux projets",
+    "/projects": "// Découvrez mes projets et filtrez par technologie",
     "/contact": "// Utilisez ce formulaire pour me contacter",
   };
 
