@@ -39,8 +39,8 @@ export default function Layout({ children }) {
         {!isMobile && <SideMenu />}
         {/* Zone principale : FileHeader + contenu React Router + StatusBar */}
         <div className="flex flex-col flex-1 overflow-hidden">
-          {/* FileHeader adaptatif selon la route actuelle */}
-          <FileHeader />
+          {/* FileHeader visible : desktop partout OU mobile page d'accueil uniquement */}
+          {(!isMobile || location.pathname === "/") && <FileHeader />}
           {/* Contenu des pages (HomePage, AboutPage, ProjectsPage, ContactPage) */}
           <div className="flex-1 overflow-auto">{children}</div>
           {/* StatusBar avec messages contextuels */}
