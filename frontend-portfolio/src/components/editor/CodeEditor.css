@@ -64,90 +64,90 @@
   visibility: hidden; /* Complètement caché pour toutes les lignes sauf la dernière */
 }
 
-/* Animation spécifique pour chaque ligne avec des délais optimisés - VERSION CORRIGÉE */
+/* Animation spécifique pour chaque ligne avec des délais ACCÉLÉRÉS x2 */
 .typing-line-1::before {
-  animation: typewriter-mask 0.6s steps(20) 0.1s forwards;
+  animation: typewriter-mask 0.3s steps(20) 0.05s forwards;
   width: 100%;
 }
 
 .typing-line-3::before {
-  animation: typewriter-mask 0.6s steps(30) 0.7s forwards;
+  animation: typewriter-mask 0.3s steps(30) 0.35s forwards;
   width: 100%;
 }
 
 .typing-line-5::before {
-  animation: typewriter-mask 0.45s steps(20) 1.5s forwards;
+  animation: typewriter-mask 0.25s steps(20) 0.75s forwards;
   width: 100%;
 }
 
 .typing-line-6::before {
-  animation: typewriter-mask 0.45s steps(20) 1.95s forwards;
+  animation: typewriter-mask 0.25s steps(20) 1s forwards;
   width: 100%;
 }
 
 .typing-line-7::before {
-  animation: typewriter-mask 0.6s steps(25) 2.4s forwards;
+  animation: typewriter-mask 0.3s steps(25) 1.2s forwards;
   width: 100%;
 }
 
 .typing-line-8::before {
-  animation: typewriter-mask 0.8s steps(40) 3s forwards;
+  animation: typewriter-mask 0.4s steps(40) 1.5s forwards;
   width: 100%;
 }
 
 .typing-line-9::before {
-  animation: typewriter-mask 0.45s steps(28) 3.8s forwards;
+  animation: typewriter-mask 0.25s steps(28) 1.9s forwards;
   width: 100%;
 }
 
 .typing-line-10::before {
-  animation: typewriter-mask 0.25s steps(5) 4.25s forwards;
+  animation: typewriter-mask 0.15s steps(5) 2.15s forwards;
   width: 100%;
 }
 
 .typing-line-12::before {
-  animation: typewriter-mask 0.7s steps(30) 4.5s forwards;
+  animation: typewriter-mask 0.35s steps(30) 2.25s forwards;
   width: 100%;
 }
 
 .typing-line-14::before {
-  animation: typewriter-mask 0.6s steps(25) 5.2s forwards;
+  animation: typewriter-mask 0.3s steps(25) 2.6s forwards;
   width: 100%;
 }
 
 .typing-line-15::before {
-  animation: typewriter-mask 0.8s steps(35) 5.8s forwards;
+  animation: typewriter-mask 0.4s steps(35) 2.9s forwards;
   width: 100%;
 }
 
 .typing-line-16::before {
-  animation: typewriter-mask 0.6s steps(28) 6.6s forwards;
+  animation: typewriter-mask 0.3s steps(28) 3.3s forwards;
   width: 100%;
 }
 
 .typing-line-17::before {
-  animation: typewriter-mask 0.8s steps(38) 7.2s forwards;
+  animation: typewriter-mask 0.4s steps(38) 3.6s forwards;
   width: 100%;
 }
 
 .typing-line-18::before {
-  animation: typewriter-mask 0.6s steps(32) 8s forwards;
+  animation: typewriter-mask 0.3s steps(32) 4s forwards;
   width: 100%;
 }
 
-/* Solution renforcée pour la ligne 19 (timeLimit: 30) */
+/* Solution renforcée pour la ligne 19 (timeLimit: 20) */
 .typing-line-19 {
   min-width: 115px; /* Force une largeur minimale pour cette ligne */
   padding-right: 6px; /* Ajoute un espace supplémentaire à droite */
 }
 
 .typing-line-19::before {
-  animation: typewriter-mask 0.35s steps(15) 8.6s forwards;
+  animation: typewriter-mask 0.2s steps(15) 4.3s forwards;
   width: 110%; /* Élargit le masque au-delà de la largeur du contenu */
   right: -10px; /* Déplace davantage le masque vers la droite */
 }
 
-/* Assure que le nombre 30 n'est pas coupé */
+/* Assure que le nombre 20 n'est pas coupé */
 .typing-line-19 span.text-green-number {
   padding-right: 6px; /* Ajoute plus d'espace à droite du nombre */
   display: inline-block; /* Assure que le padding est respecté */
@@ -155,12 +155,12 @@
 }
 
 .typing-line-20::before {
-  animation: typewriter-mask 0.3s steps(15) 8.95s forwards;
+  animation: typewriter-mask 0.15s steps(15) 4.5s forwards;
   width: 100%;
 }
 
 .typing-line-21::before {
-  animation: typewriter-mask 0.2s steps(5) 9.25s forwards;
+  animation: typewriter-mask 0.1s steps(5) 4.65s forwards;
   width: 100%;
 }
 
@@ -168,7 +168,7 @@
 .typing-line-21::after {
   visibility: visible; /* Rendre le curseur visible uniquement pour la dernière ligne */
   opacity: 0; /* Commence invisible */
-  animation: blink 0.7s 9.45s infinite; /* Commence à clignoter après la fin de toute l'animation */
+  animation: blink 0.8s 4.75s infinite; /* Commence à clignoter après la fin de toute l'animation */
   right: -5px; /* Décale le curseur légèrement vers la droite pour l'éloigner du } */
 }
 
