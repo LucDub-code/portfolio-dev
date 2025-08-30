@@ -7,8 +7,8 @@ export default function AboutNavigation({ isSideMenu = false }) {
 
   // Styles différents selon l'emplacement (SideMenu ou mobile)
   const containerClass = isSideMenu
-    ? "min-[770px]:block hidden pt-4 pb-3"
-    : "hidden max-[769px]:block bg-bg-terminal border-b border-border-ide pb-2";
+    ? "min-[1060px]:block hidden pt-4 pb-3"
+    : "hidden max-[1059px]:block bg-bg-terminal border-b border-border-ide pb-2";
 
   const itemClass = isSideMenu
     ? "flex items-center px-2 py-1.5 cursor-pointer hover:bg-bg-selected rounded"
@@ -22,10 +22,10 @@ export default function AboutNavigation({ isSideMenu = false }) {
     <div className={containerClass}>
       {["bio", "interets", "education"].map((tab) => (
         <div key={tab} className={itemClass} onClick={() => setActiveTab(tab)}>
-          <img src={navIcon} alt="Chevron" className="w-4 h-4 mr-1" />
+          <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
           <div className="relative">
             <div className="flex items-center">
-              <img src={mdIcon} alt="Markdown" className="w-4 h-4 mr-1" />
+              <img src={mdIcon} alt="Markdown" className="mr-1 w-4 h-4" />
               <span
                 className={`${
                   activeTab === tab ? "text-text-selected" : "text-text-default"

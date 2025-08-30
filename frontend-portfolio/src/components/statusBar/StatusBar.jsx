@@ -9,9 +9,9 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
 
   useEffect(() => {
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 769);
-      setIsVerySmall(window.innerWidth <= 376);
-      setIsTinyScreen(window.innerWidth <= 321);
+      setIsMobile(window.innerWidth <= 770);
+      setIsVerySmall(window.innerWidth <= 380);
+      setIsTinyScreen(window.innerWidth <= 320);
     };
 
     checkIfMobile();

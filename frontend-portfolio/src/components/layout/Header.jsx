@@ -5,11 +5,11 @@ import MobileMenu from "../navigation/MobileMenu";
 import TabNavigation from "../navigation/TabNavigation";
 
 export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1060);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 769);
+      setIsMobile(window.innerWidth < 1060);
     };
 
     window.addEventListener("resize", handleResize);

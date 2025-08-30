@@ -12,7 +12,7 @@ export default function MobileMenu({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 top-12 z-40 flex flex-col">
+    <div className="flex fixed inset-0 top-12 z-40 flex-col">
       <div className="w-full bg-bg-terminal shrink-0">
         {Object.values(pages).map((page) => {
           const route = pageRoutes[page.id];
@@ -32,12 +32,12 @@ export default function MobileMenu({ onClose }) {
                   <img
                     src={chevronRight}
                     alt="Chevron"
-                    className="w-4 h-4 mr-2"
+                    className="mr-2 w-4 h-4"
                   />
                   <img
                     src={page.icon}
                     alt={`Icône ${page.title}`}
-                    className="w-6 h-6 mr-2"
+                    className="mr-2 w-6 h-6"
                   />
                   <span
                     className={

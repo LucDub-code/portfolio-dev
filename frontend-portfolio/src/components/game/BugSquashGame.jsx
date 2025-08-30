@@ -1,9 +1,15 @@
-import { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react';
-import ScoreCounter from './ScoreCounter'
-import TimeCounter from './TimeCounter'
-import GameButton from './GameButton'
-import Bug from './Bug'
-import './BugSquashGame.css'
+import {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  useLayoutEffect,
+} from "react";
+import ScoreCounter from "./ScoreCounter";
+import TimeCounter from "./TimeCounter";
+import GameButton from "./GameButton";
+import Bug from "./Bug";
+import "./BugSquashGame.css";
 
 export default function BugSquashGame() {
   const [gameActive, setGameActive] = useState(false);
@@ -14,60 +20,60 @@ export default function BugSquashGame() {
   const [buttonKey, setButtonKey] = useState(0); // Clé pour forcer le remontage
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const gameAreaRef = useRef(null);
-  
+
   // Mise à jour de la largeur de fenêtre lors des redimensionnements
   useLayoutEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-    
-    window.addEventListener('resize', handleResize);
+
+    window.addEventListener("resize", handleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
+
   // Obtenir les classes appropriées en fonction de la taille d'écran
   const getTitleSizeClass = () => {
-    if (windowWidth <= 321) return "text-lg";
-    if (windowWidth <= 376) return "text-xl";
-    if (windowWidth <= 426) return "text-xl";
+    if (windowWidth <= 320) return "text-lg";
+    if (windowWidth <= 380) return "text-xl";
+    if (windowWidth <= 425) return "text-xl";
     return "text-2xl";
   };
-  
+
   const getTextSizeClass = () => {
-    if (windowWidth <= 321) return "text-xs";
-    if (windowWidth <= 376) return "text-xs";
-    if (windowWidth <= 426) return "text-sm";
+    if (windowWidth <= 320) return "text-xs";
+    if (windowWidth <= 380) return "text-xs";
+    if (windowWidth <= 425) return "text-sm";
     return "text-base";
   };
-  
+
   const getScoreSizeClass = () => {
-    if (windowWidth <= 321) return "text-xs";
-    if (windowWidth <= 376) return "text-sm";
-    if (windowWidth <= 426) return "text-base";
+    if (windowWidth <= 320) return "text-xs";
+    if (windowWidth <= 380) return "text-sm";
+    if (windowWidth <= 425) return "text-base";
     return "text-lg";
   };
-  
+
   const getButtonSizeClass = () => {
-    if (windowWidth <= 321) return "text-xs py-1 px-3";
-    if (windowWidth <= 376) return "text-sm py-1.5 px-3";
-    if (windowWidth <= 426) return "text-sm py-2 px-4";
+    if (windowWidth <= 320) return "text-xs py-1 px-3";
+    if (windowWidth <= 380) return "text-sm py-1.5 px-3";
+    if (windowWidth <= 425) return "text-sm py-2 px-4";
     return "py-2 px-4";
   };
-  
+
   // Types de bugs
   const bugTypes = [
-    'braces',
-    'exclamation',
-    'error',
-    'tag',
-    'nan',
-    'notFound',
-    'question',
-    'undefined'
+    "braces",
+    "exclamation",
+    "error",
+    "tag",
+    "nan",
+    "notFound",
+    "question",
+    "undefined",
   ];
-  
+
   // Démarrer le jeu
   const handleGameStart = useCallback(() => {
     setGameActive(true);
@@ -75,44 +81,44 @@ export default function BugSquashGame() {
     setScore(0);
     setBugs([]);
   }, []);
-  
+
   // Gérer la fin du jeu
   const handleTimeUp = useCallback(() => {
     setGameActive(false);
     setGameOver(true);
     setFinalScore(score);
     setBugs([]);
-    setButtonKey(prevKey => prevKey + 1); // Incrémenter la clé pour forcer le remontage
+    setButtonKey((prevKey) => prevKey + 1); // Incrémenter la clé pour forcer le remontage
   }, [score]);
-  
+
   // Gérer le clic sur un bug
   const handleBugClick = useCallback((bugId) => {
-    setScore(prevScore => prevScore + 1);
+    setScore((prevScore) => prevScore + 1);
     // Délai avant de supprimer le bug pour permettre à l'animation de se jouer
     setTimeout(() => {
-      setBugs(prevBugs => prevBugs.filter(bug => bug.id !== bugId));
+      setBugs((prevBugs) => prevBugs.filter((bug) => bug.id !== bugId));
     }, 1000);
   }, []);
-  
+
   // Générer une position aléatoire dans la zone de jeu centrée
   const getRandomPosition = () => {
-    const isMobile = windowWidth <= 768;
-    
+    const isMobile = windowWidth <= 770;
+
     // Limiter davantage les zones verticales sur mobile
     if (isMobile) {
       return {
         x: Math.random() * 60 + 20, // entre 20% et 80% de la largeur
-        y: Math.random() * 40 + 15  // entre 15% et 55% de la hauteur pour mobile
+        y: Math.random() * 40 + 15, // entre 15% et 55% de la hauteur pour mobile
       };
     }
-    
+
     // Distribution par défaut pour desktop
     return {
       x: Math.random() * 60 + 20, // entre 20% et 80% de la largeur
-      y: Math.random() * 60 + 20  // entre 20% et 80% de la hauteur
+      y: Math.random() * 60 + 20, // entre 20% et 80% de la hauteur
     };
   };
-  
+
   // Créer un nouveau bug avec un ID unique et un type aléatoire
   const createBug = () => {
     return {
@@ -120,30 +126,30 @@ export default function BugSquashGame() {
       type: bugTypes[Math.floor(Math.random() * bugTypes.length)],
       position: getRandomPosition(),
       // Temps de vie aléatoire entre 1.2 et 2.5 secondes
-      lifespan: Math.random() * 1300 + 1200
+      lifespan: Math.random() * 1300 + 1200,
     };
   };
-  
+
   // Générer des bugs pendant que le jeu est actif
   useEffect(() => {
     if (!gameActive) return;
-    
+
     // Générer un bug toutes les 0.5 à 1 seconde
     const generateInterval = setInterval(() => {
       // Limiter le nombre de bugs simultanés à 6 pour éviter de surcharger l'écran
       if (bugs.length < 6) {
-        setBugs(prevBugs => [...prevBugs, createBug()]);
+        setBugs((prevBugs) => [...prevBugs, createBug()]);
       }
     }, Math.random() * 500 + 500);
-    
+
     return () => clearInterval(generateInterval);
   }, [gameActive, bugs.length]);
-  
+
   return (
     <div className="relative w-full h-full" ref={gameAreaRef}>
       <div className="absolute top-2 left-4">
-        <TimeCounter 
-          isActive={gameActive} 
+        <TimeCounter
+          isActive={gameActive}
           onTimeUp={handleTimeUp}
           timeLimit={20}
         />
@@ -151,52 +157,62 @@ export default function BugSquashGame() {
       <div className="absolute top-2 right-4">
         <ScoreCounter score={score} gameActive={gameActive} />
       </div>
-      
+
       {/* Zone de jeu centrale */}
-      <div className="game-area absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 game-area">
         {/* Bouton START */}
         {!gameActive && !gameOver && (
-          <div className="game-button-wrapper absolute flex items-center justify-center" 
-               style={{ 
-                 top: windowWidth <= 768 ? '43%' : '50%', 
-                 left: '50%', 
-                 transform: 'translate(-50%, -50%)' 
-               }}>
+          <div
+            className="flex absolute justify-center items-center game-button-wrapper"
+            style={{
+              top: windowWidth <= 770 ? "43%" : "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
             <GameButton key={buttonKey} onGameStart={handleGameStart} />
           </div>
         )}
-        
+
         {/* Écran de fin de jeu */}
         {gameOver && (
-          <div className="absolute flex flex-col items-center text-center w-full max-w-sm md:max-w-md"
-               style={{ 
-                 top: windowWidth <= 768 ? '43%' : '50%', 
-                 left: '50%', 
-                 transform: 'translate(-50%, -50%)' 
-               }}>
-            <div className={`font-mono mb-2 sm:mb-4 w-full flex flex-wrap justify-center ${windowWidth <= 426 ? getTextSizeClass() : getScoreSizeClass()}`}>
+          <div
+            className="flex absolute flex-col items-center w-full max-w-sm text-center md:max-w-md"
+            style={{
+              top: windowWidth <= 770 ? "43%" : "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <div
+              className={`font-mono mb-2 sm:mb-4 w-full flex flex-wrap justify-center ${
+                windowWidth <= 425 ? getTextSizeClass() : getScoreSizeClass()
+              }`}
+            >
               <span className="text-green-number">Bravo ! </span>
-              <span className="text-text-default whitespace-nowrap">Vous avez corrigé </span>
+              <span className="whitespace-nowrap text-text-default">
+                Vous avez corrigé{" "}
+              </span>
               <span className="text-orange-string">{finalScore}</span>
               <span className="text-text-default"> bugs !</span>
             </div>
-            <button 
-              className={`${getButtonSizeClass()} bg-bg-terminal border border-blue-html text-text-default font-mono hover:bg-blue-html hover:bg-opacity-20 transition-colors`}
+            <button
+              className={`font-mono border transition-colors ${getButtonSizeClass()} bg-bg-terminal border-blue-html text-text-default hover:bg-blue-html hover:bg-opacity-20`}
               onClick={() => {
                 setGameOver(false);
                 setScore(0);
                 setBugs([]);
-                setButtonKey(prevKey => prevKey + 1);
+                setButtonKey((prevKey) => prevKey + 1);
               }}
             >
               REJOUER
             </button>
           </div>
         )}
-        
+
         {/* Bugs du jeu */}
-        {bugs.map(bug => (
-          <Bug 
+        {bugs.map((bug) => (
+          <Bug
             key={bug.id}
             type={bug.type}
             position={bug.position}
@@ -206,5 +222,5 @@ export default function BugSquashGame() {
         ))}
       </div>
     </div>
-  )
+  );
 }

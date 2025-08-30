@@ -8,7 +8,7 @@ import { useLocation } from "react-router-dom";
 
 export default function Layout({ children }) {
   // État pour détecter si on est en mode mobile
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 769);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 1060);
   // État pour détecter si l'écran est assez grand en hauteur
   const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
   // État pour le menu mobile (centralisé ici)
@@ -20,7 +20,7 @@ export default function Layout({ children }) {
   // Effet pour mettre à jour isMobile et isLargeHeight lors du redimensionnement
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 769);
+      setIsMobile(window.innerWidth < 1060);
       setIsLargeHeight(window.innerHeight > 950);
     };
 

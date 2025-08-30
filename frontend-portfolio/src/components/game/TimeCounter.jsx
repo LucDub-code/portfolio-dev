@@ -21,11 +21,11 @@ export default function TimeCounter({ timeLimit = 30, isActive = false, onTimeUp
   
   // Déterminer les classes en fonction de la taille de l'écran
   const getTextSizeClasses = () => {
-    if (windowWidth <= 321) {
+    if (windowWidth <= 320) {
       return 'text-[0.6rem]';
-    } else if (windowWidth <= 376) {
+    } else if (windowWidth <= 380) {
       return 'text-[0.75rem]';
-    } else if (windowWidth <= 426) {
+    } else if (windowWidth <= 425) {
       return 'text-[0.8rem]';
     } else {
       return 'text-sm sm:text-base';
