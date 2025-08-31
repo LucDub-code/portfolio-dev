@@ -12,7 +12,7 @@ export default function ProjectsPage() {
         <span className="text-base text-text-default">_mes-projets.json</span>
       </div>
       <div className="flex justify-center p-8">
-        <div className="grid grid-cols-1 min-[770px]:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 min-[600px]:grid-cols-2 min-[880px]:grid-cols-3 gap-6">
           <ProjectCard />
           <ProjectCard />
           <ProjectCard />
