@@ -7,6 +7,8 @@ const projectSchema = mongoose.Schema({
   githubUrl: { type: String, required: true },
   projectUrl: { type: String, required: true },
   technologies: { type: [String], required: true },
+  mainTechnologies: { type: [String], required: true },
+  platform: { type: [String], required: true },
 });
 
 module.exports = mongoose.model("Project", projectSchema);

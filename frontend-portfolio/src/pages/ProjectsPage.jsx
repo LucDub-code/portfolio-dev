@@ -1,8 +1,22 @@
 import chevronDown from "../assets/icons/navigation/nav-full-down.svg";
 import jsonIcon from "../assets/icons/technos/json.svg";
 import ProjectCard from "../components/projects/ProjectCard";
+import { useEffect, useState } from "react";
 
 export default function ProjectsPage() {
+  const [projects, setProjects] = useState([]);
+
+  const getProjects = () => {
+    fetch("http://localhost:3000/api/projects")
+      .then((response) => response.json())
+      .then((data) => setProjects(data))
+      .catch((error) => console.error(error));
+  };
+
+  useEffect(() => {
+    getProjects();
+  }, []);
+
   return (
     <div className="flex flex-col h-full">
       {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
@@ -13,17 +27,12 @@ export default function ProjectsPage() {
       </div>
       <div className="flex justify-center p-8">
         <div className="grid grid-cols-1 min-[600px]:grid-cols-2 min-[880px]:grid-cols-3 gap-6">
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
-          <ProjectCard />
+          {projects.map((project) => (
+            <ProjectCard 
+            key={project._id} 
+            project={project} 
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import AboutNavigation from '../about/AboutNavigation';
+import ProjectFilters from '../projects/ProjectFilters';
 import { useLocation } from 'react-router-dom';
 
 export default function SideMenu() {
@@ -9,6 +10,10 @@ export default function SideMenu() {
       {/* Navigation par onglets pour About - uniquement visible quand on est sur /about */}
       {location.pathname === '/about' && (
         <AboutNavigation isSideMenu={true} />
+      )}
+      {/* Filtres pour les projets - uniquement visible quand on est sur /projects */}
+      {location.pathname === '/projects' && (
+        <ProjectFilters isSideMenu={true} />
       )}
     </div>
   )
