@@ -9,6 +9,7 @@ const projectSchema = mongoose.Schema({
   technologies: { type: [String], required: true },
   mainTechnologies: { type: [String], required: true },
   platform: { type: [String], required: true },
+  order: { type: Number, default: 0 },
 });
 
 module.exports = mongoose.model("Project", projectSchema);

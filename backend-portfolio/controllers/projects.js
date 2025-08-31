@@ -7,7 +7,7 @@ exports.getAllProjects = (req, res) => {
   const tech = req.query.tech;
 
   if (!tech) {
-    Project.find()
+    Project.find().sort({ order: -1, _id: -1 })
       .then((projects) => res.status(200).json(projects))
       .catch((error) => res.status(400).json({ error }));
   } else {
@@ -16,7 +16,7 @@ exports.getAllProjects = (req, res) => {
     const technologies = Array.isArray(tech) ? tech : [tech];
     // $in = opérateur MongoDB qui trouve les documents contenant
     // AU MOINS UNE valeur du tableau
-    Project.find({ technologies: { $in: technologies } })
+    Project.find({ technologies: { $in: technologies } }).sort({ order: -1, _id: -1 })
       .then((projects) => res.status(200).json(projects))
       .catch((error) => res.status(400).json({ error }));
   }
