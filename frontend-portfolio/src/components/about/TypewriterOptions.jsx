@@ -1,5 +1,5 @@
 export const typewriterDefaultOptions = {
-  delay: 1,
+  delay: 0,
   cursor: '',
   autoStart: true,
   loop: false,
