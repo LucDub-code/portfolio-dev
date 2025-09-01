@@ -1,21 +1,10 @@
 import chevronDown from "../assets/icons/navigation/nav-full-down.svg";
 import jsonIcon from "../assets/icons/technos/json.svg";
 import ProjectCard from "../components/projects/ProjectCard";
-import { useEffect, useState } from "react";
+import { useProjectsContext } from "../contexts/ProjectsContext";
 
 export default function ProjectsPage() {
-  const [projects, setProjects] = useState([]);
-
-  const getProjects = () => {
-    fetch("http://localhost:3000/api/projects")
-      .then((response) => response.json())
-      .then((data) => setProjects(data))
-      .catch((error) => console.error(error));
-  };
-
-  useEffect(() => {
-    getProjects();
-  }, []);
+  const { projects } = useProjectsContext();
 
   return (
     <div className="flex flex-col h-full">

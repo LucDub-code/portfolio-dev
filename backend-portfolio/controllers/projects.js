@@ -3,23 +3,27 @@ const Project = require("../models/projects");
 // Récupérer tous les projets avec fonction de filtrage par technologie
 
 exports.getAllProjects = (req, res) => {
-  // Récupère ce qui est après "tech=" dans l'URL de la requête
   const tech = req.query.tech;
-
-  if (!tech) {
-    Project.find().sort({ order: -1, _id: -1 })
-      .then((projects) => res.status(200).json(projects))
-      .catch((error) => res.status(400).json({ error }));
-  } else {
-    // Vérifie si tech est un tableau, sinon on le transforme en tableau
-    // obligatoire car $in a besoin d'un tableau pour fonctionner
+  const platform = req.query.platform;
+  
+  // Objet pour construire les critères de filtrage MongoDB
+  let query = {};
+  
+  // Filtrage par technologies
+  if (tech) {
     const technologies = Array.isArray(tech) ? tech : [tech];
-    // $in = opérateur MongoDB qui trouve les documents contenant
-    // AU MOINS UNE valeur du tableau
-    Project.find({ technologies: { $in: technologies } }).sort({ order: -1, _id: -1 })
-      .then((projects) => res.status(200).json(projects))
-      .catch((error) => res.status(400).json({ error }));
+    query.technologies = { $in: technologies };
   }
+  
+  // Filtrage par plateformes
+  if (platform) {
+    const platforms = Array.isArray(platform) ? platform : [platform];
+    query.platform = { $in: platforms };
+  }
+  
+  Project.find(query).sort({ order: -1, _id: -1 })
+    .then((projects) => res.status(200).json(projects))
+    .catch((error) => res.status(400).json({ error }));
 };
 
 // Récupérer un projet spécifique par ID
