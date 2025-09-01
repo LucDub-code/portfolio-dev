@@ -1,50 +1,56 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect } from "react";
 
+// Création du contexte pour partager les données des projets
 const ProjectsContext = createContext();
 
+// Provider qui enveloppe l'application et fournit les données
 export const ProjectsProvider = ({ children }) => {
-  // État des projets
+  // État pour stocker la liste des projets
   const [projects, setProjects] = useState([]);
-  
-  // État des filtres actifs
-  const [filters, setFilters] = useState([]);
 
-  // Fonction fetch avec gestion des filtres
-  const fetchProjects = (filters = []) => {
+  // États pour gérer les filtres sélectionnés
+  const [platformFilters, setPlatformFilters] = useState([]);
+  const [technologyFilters, setTechnologyFilters] = useState([]);
+
+  // Fonction pour récupérer les projets depuis l'API
+  const fetchProjects = () => {
     let url = "http://localhost:3000/api/projects";
-    
-    // Ajouter les filtres à l'URL si présents
-    if (filters.length > 0) {
-      const techParams = filters.map(tech => `tech=${tech}`).join('&');
-      url += `?${techParams}`;
+
+    // Construction de l'url de la requête
+    const params = [];
+
+    if (platformFilters.length > 0) {
+      params.push(`platform=${platformFilters.join(",")}`);
     }
-    
+
+    if (technologyFilters.length > 0) {
+      params.push(`tech=${technologyFilters.join(",")}`);
+    }
+
+    // Ajout des paramètres à l'URL
+    if (params.length > 0) {
+      url += "?" + params.join("&");
+    }
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => setProjects(data))
       .catch((error) => console.error(error));
   };
 
-  // Fonction pour gérer les filtres
-  const toggleFilter = (tech) => {
-    const newFilters = filters.includes(tech)
-      ? filters.filter(f => f !== tech)
-      : [...filters, tech];
-    
-    setFilters(newFilters);
-    fetchProjects(newFilters);
-  };
-
-  // Charger tous les projets au montage
+  // Déclencher fetchProjects quand les filtres changent
   useEffect(() => {
     fetchProjects();
-  }, []);
+  }, [platformFilters, technologyFilters]);
 
+  // Objet contenant toutes les valeurs partagées par le contexte
   const value = {
     projects,
-    filters,
-    toggleFilter,
-    fetchProjects
+    fetchProjects,
+    platformFilters,
+    technologyFilters,
+    setPlatformFilters,
+    setTechnologyFilters,
   };
 
   return (
@@ -54,6 +60,7 @@ export const ProjectsProvider = ({ children }) => {
   );
 };
 
+// Hook personnalisé pour utiliser le contexte des projets
 export function useProjectsContext() {
   return useContext(ProjectsContext);
 }

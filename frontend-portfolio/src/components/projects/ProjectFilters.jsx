@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useProjectsContext } from "../../contexts/ProjectsContext";
 import desktopIconWhite from "../../assets/icons/platforms/desktop-w.svg";
 import mobileIconWhite from "../../assets/icons/platforms/mobile-w.svg";
 import chevronRight from "../../assets/icons/navigation/nav-full.svg";
@@ -13,8 +13,7 @@ import mongodbIcon from "../../assets/icons/technos/mongo.svg";
 import nodeIcon from "../../assets/icons/technos/node.svg";
 
 export default function ProjectFilters() {
-  const [platformFilters, setPlatformFilters] = useState([]);
-  const [technologyFilters, setTechnologyFilters] = useState([]);
+  const { platformFilters, setPlatformFilters, technologyFilters, setTechnologyFilters } = useProjectsContext();
 
   return (
     <div className="flex flex-col gap-4 pt-8">
