@@ -12,13 +12,13 @@ exports.getAllProjects = (req, res) => {
   // Filtrage par technologies
   if (tech) {
     const technologies = Array.isArray(tech) ? tech : [tech];
-    query.technologies = { $in: technologies };
+    query.technologies = { $all: technologies };
   }
   
   // Filtrage par plateformes
   if (platform) {
     const platforms = Array.isArray(platform) ? platform : [platform];
-    query.platform = { $in: platforms };
+    query.platform = { $all: platforms };
   }
   
   Project.find(query).sort({ order: -1, _id: -1 })

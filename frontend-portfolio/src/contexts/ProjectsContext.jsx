@@ -20,11 +20,15 @@ export const ProjectsProvider = ({ children }) => {
     const params = [];
 
     if (platformFilters.length > 0) {
-      params.push(`platform=${platformFilters.join(",")}`);
+      platformFilters.forEach((platform) => {
+        params.push(`platform=${platform}`);
+      });
     }
 
     if (technologyFilters.length > 0) {
-      params.push(`tech=${technologyFilters.join(",")}`);
+      technologyFilters.forEach((tech) => {
+        params.push(`tech=${tech}`);
+      });
     }
 
     // Ajout des paramètres à l'URL

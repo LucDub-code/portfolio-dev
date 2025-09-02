@@ -1,5 +1,5 @@
 import AboutNavigation from '../about/AboutNavigation';
-import ProjectFilters from '../projects/ProjectFilters';
+import ProjectsFilters from '../projects/ProjectsFilters';
 import { useLocation } from 'react-router-dom';
 
 export default function SideMenu() {
@@ -13,7 +13,7 @@ export default function SideMenu() {
       )}
       {/* Filtres pour les projets - uniquement visible quand on est sur /projects */}
       {location.pathname === '/projects' && (
-        <ProjectFilters isSideMenu={true} />
+        <ProjectsFilters isSideMenu={true} />
       )}
     </div>
   )
