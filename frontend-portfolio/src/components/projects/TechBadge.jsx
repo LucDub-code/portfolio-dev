@@ -3,6 +3,10 @@ import cssIcon from "../../assets/icons/technos/css.svg";
 import jsIcon from "../../assets/icons/technos/js.svg";
 import reactIcon from "../../assets/icons/technos/react.svg";
 import tailwindIcon from "../../assets/icons/technos/tailwind.svg";
+import sassIcon from "../../assets/icons/technos/sass.svg";
+import expressIcon from "../../assets/icons/technos/express.svg";
+import mongodbIcon from "../../assets/icons/technos/mongo.svg";
+import nodeIcon from "../../assets/icons/technos/node.svg";
 
 export default function TechBadge({ tech }) {
   return (
@@ -12,6 +16,10 @@ export default function TechBadge({ tech }) {
       {tech === "JavaScript" && <img src={jsIcon} alt="JavaScript" />}
       {tech === "React" && <img src={reactIcon} alt="React" />}
       {tech === "Tailwind" && <img src={tailwindIcon} alt="Tailwind" />}
+      {tech === "Sass" && <img src={sassIcon} alt="Sass" />}
+      {tech === "Express" && <img src={expressIcon} alt="Express" />}
+      {tech === "MongoDB" && <img src={mongodbIcon} alt="MongoDB" />}
+      {tech === "Node.js" && <img src={nodeIcon} alt="Node.js" />}
     </div>
   );
 }

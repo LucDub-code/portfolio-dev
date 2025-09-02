@@ -12,11 +12,15 @@ import expressIcon from "../../assets/icons/technos/express.svg";
 import mongodbIcon from "../../assets/icons/technos/mongo.svg";
 import nodeIcon from "../../assets/icons/technos/node.svg";
 
-export default function ProjectFilters() {
+export default function ProjectFilters({ isSideMenu = false }) {
   const { platformFilters, setPlatformFilters, technologyFilters, setTechnologyFilters } = useProjectsContext();
 
+  const containerClass = isSideMenu
+    ? "flex flex-col gap-4 pt-8"
+    : "hidden";
+
   return (
-    <div className="flex flex-col gap-4 pt-8">
+    <div className={containerClass}>
       {/* Filtre Desktop & Mobile */}
       <div className="flex items-center gap-2 border-b border-border-ide pb-2">
         <img src={chevronRight} alt="Chevron" className="w-4 h-4" />
