@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { pages } from "../../data/navigationData";
+import { pagesData } from "../../data/navigationData";
 import { useState, useEffect } from "react";
 
 export default function TabNavigation() {
@@ -32,7 +32,7 @@ export default function TabNavigation() {
       {/* Onglets alignés à gauche */}
       <div className="flex">
         {leftTabs.map((tabId) => {
-          const page = pages[tabId];
+          const page = pagesData[tabId];
           const route = pageRoutes[tabId];
           return (
             <NavLink
@@ -70,7 +70,7 @@ export default function TabNavigation() {
       {/* Onglet aligné à droite */}
       <div>
         {(() => {
-          const page = pages[rightTab];
+          const page = pagesData[rightTab];
           const route = pageRoutes[rightTab];
           return (
             <NavLink

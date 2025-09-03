@@ -3,7 +3,7 @@ import folderIcon from "../assets/icons/navigation/folder.svg";
 import jsonIcon from "../assets/icons/technos/json.svg";
 import htmlIcon from "../assets/icons/technos/html.svg";
 
-export const pages = {
+export const pagesData = {
   "hello-world": {
     id: "hello-world",
     icon: jsIcon,
