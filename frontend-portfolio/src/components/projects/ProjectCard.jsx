@@ -29,10 +29,10 @@ export default function ProjectCard({ project }) {
       </div>
       {/* Zone contenu */}
       <div className="flex-1 p-4 max-[1280px]:p-3">
-        <h3 className="text-lg max-[1280px]:text-base text-text-selected font-bold pb-2 max-[1280px]:pb-1.5">
+        <h3 className="text-lg max-[1280px]:text-sm text-text-selected font-bold pb-2">
           {project.title}
         </h3>
-        <p className="text-sm max-[1280px]:text-xs pb-4 max-[1280px]:pb-3">
+        <p className="text-sm max-[1280px]:text-xs pb-4">
           {project.description}
         </p>
         <div className="flex justify-around">
@@ -40,7 +40,7 @@ export default function ProjectCard({ project }) {
             href={project.projectUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-text-default text-bg-terminal px-4 py-2 max-[1280px]:px-3 max-[1280px]:py-1.5 max-[1280px]:text-sm rounded-lg cursor-pointer flex items-center gap-2 max-[1280px]:gap-1.5"
+            className="bg-text-default hover:bg-text-selected text-bg-terminal px-4 py-2 max-[1280px]:px-3 max-[1280px]:py-1.5 max-[1280px]:text-sm rounded-lg cursor-pointer flex items-center gap-2 max-[1280px]:gap-1.5"
           >
             Le projet
             <img
@@ -53,7 +53,7 @@ export default function ProjectCard({ project }) {
             href={project.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-text-default text-bg-terminal px-4 py-2 max-[1280px]:px-3 max-[1280px]:py-1.5 max-[1280px]:text-sm rounded-lg flex items-center gap-2 max-[1280px]:gap-1.5 cursor-pointer"
+            className="bg-text-default hover:bg-text-selected text-bg-terminal px-4 py-2 max-[1280px]:px-3 max-[1280px]:py-1.5 max-[1280px]:text-sm rounded-lg flex items-center gap-2 max-[1280px]:gap-1.5 cursor-pointer"
           >
             Le code
             <img
