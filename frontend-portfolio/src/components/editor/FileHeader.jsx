@@ -1,5 +1,5 @@
 import { useLocation } from "react-router-dom";
-import { pages } from "../../data/navigationData";
+import { pagesData } from "../../data/navigationData";
 
 export default function FileHeader() {
   const location = useLocation();
@@ -13,7 +13,7 @@ export default function FileHeader() {
   };
 
   const currentPageKey = routeToPageKey[location.pathname] || "hello-world";
-  const currentPage = pages[currentPageKey];
+  const currentPage = pagesData[currentPageKey];
 
   return (
     <div className="flex items-center pt-1 pb-1 px-2 text-text-default text-xs max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] sm:text-sm bg-bg-ui w-full border-b border-border-ide tracking-wide">

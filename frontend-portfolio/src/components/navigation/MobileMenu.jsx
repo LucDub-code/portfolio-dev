@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { pages } from "../../data/navigationData";
+import { pagesData } from "../../data/navigationData";
 import chevronRight from "../../assets/icons/navigation/nav-full.svg";
 
 export default function MobileMenu({ onClose }) {
@@ -14,7 +14,7 @@ export default function MobileMenu({ onClose }) {
   return (
     <div className="flex fixed inset-0 top-12 z-40 flex-col">
       <div className="w-full bg-bg-terminal shrink-0">
-        {Object.values(pages).map((page) => {
+        {Object.values(pagesData).map((page) => {
           const route = pageRoutes[page.id];
           return (
             <NavLink
