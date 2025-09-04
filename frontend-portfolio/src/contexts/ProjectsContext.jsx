@@ -1,14 +1,22 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
-// Création du contexte pour partager les données des projets
 const ProjectsContext = createContext();
 
-// Provider qui enveloppe l'application et fournit les données
 export const ProjectsProvider = ({ children }) => {
   // État pour stocker la liste des projets
   const [projects, setProjects] = useState([]);
 
-  // États pour gérer les filtres sélectionnés
+  // États temporaires pour la sélections des filtres mobile
+  const [tempPlatformFilters, setTempPlatformFilters] = useState([]);
+  const [tempTechnologyFilters, setTempTechnologyFilters] = useState([]);
+
+  // Fonction pour appliquer les filtres temporaires
+  const applyFilters = () => {
+    setPlatformFilters(tempPlatformFilters);
+    setTechnologyFilters(tempTechnologyFilters);
+  };
+
+  // États finaux pour appliquer les filtres
   const [platformFilters, setPlatformFilters] = useState([]);
   const [technologyFilters, setTechnologyFilters] = useState([]);
 
@@ -51,10 +59,18 @@ export const ProjectsProvider = ({ children }) => {
   const value = {
     projects,
     fetchProjects,
+    // États finaux
     platformFilters,
     technologyFilters,
     setPlatformFilters,
     setTechnologyFilters,
+    // États temporaires
+    tempPlatformFilters,
+    tempTechnologyFilters,
+    setTempPlatformFilters,
+    setTempTechnologyFilters,
+    // Fonction d'application
+    applyFilters,
   };
 
   return (
