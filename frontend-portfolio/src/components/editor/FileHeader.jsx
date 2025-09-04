@@ -10,6 +10,8 @@ export default function FileHeader() {
     "/about": "a-propos",
     "/projects": "projets",
     "/contact": "contact",
+    "/login": "login",
+    "/admin": "admin",
   };
 
   const currentPageKey = routeToPageKey[location.pathname] || "hello-world";
