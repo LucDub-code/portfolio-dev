@@ -2,6 +2,8 @@ import jsIcon from "../assets/icons/technos/js.svg";
 import folderIcon from "../assets/icons/navigation/folder.svg";
 import jsonIcon from "../assets/icons/technos/json.svg";
 import htmlIcon from "../assets/icons/technos/html.svg";
+import loginIcon from "../assets/icons/navigation/login.svg";
+import adminIcon from "../assets/icons/navigation/admin.svg";
 
 export const pagesData = {
   "hello-world": {
@@ -23,5 +25,15 @@ export const pagesData = {
     id: "contact",
     icon: htmlIcon,
     title: "_me-contacter.html",
+  },
+  login: {
+    id: "login",
+    icon: loginIcon,
+    title: "_login.html",
+  },
+  admin: {
+    id: "admin",
+    icon: adminIcon,
+    title: "_admin.html",
   },
 };
