@@ -1,144 +1,60 @@
 import chevronDown from "../assets/icons/navigation/nav-full-down.svg";
 import loginIcon from "../assets/icons/navigation/login.svg";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useNavigate } from "react-router-dom";
+
+// Schema de validation Zod
+const loginSchema = z.object({
+  email: z
+    .string()
+    .min(1, { message: "L'adresse email est requise" })
+    .email("Le format de l'email est incorrect"),
+  password: z
+    .string()
+    .min(1, { message: "Le mot de passe est requis" }),
+});
 
 export default function LoginPage() {
 
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({ 
-    email: "",
-    password: ""
+  // Configuration React Hook Form avec Zod
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, touchedFields, isSubmitting },
+    setError,
+    watch,
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+    mode: "onBlur",
   });
 
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  // Gestion des changements dans les champs
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    const fieldName = id.replace("_", "");
-    setFormData({
-      ...formData,
-      [fieldName]: value,
-    });
-
-    // Valider le champ si déjà touché
-    if (touched[fieldName]) {
-      validateField(fieldName, value);
-    }
-  };
-
-  // Marquer un champ comme touché lors de la perte de focus
-  const handleBlur = (e) => {
-    const fieldName = e.target.id.replace("_", "");
-    setTouched({
-      ...touched,
-      [fieldName]: true,
-    });
-    validateField(fieldName, formData[fieldName]);
-  };
-
-  // Vérifier le format et afficher les erreurs de validation
-  const validateField = (fieldName, value) => {
-    let fieldErrors = { ...errors };
-    let hasError = false;
-
-    switch (fieldName) {
-      case "email": {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!value.trim()) {
-          fieldErrors.email = "L'email admin est requis";
-          hasError = true;
-        } else if (!emailRegex.test(value)) {
-          fieldErrors.email = "L'adresse email admin entrée est incorrecte";
-          hasError = true;
-        } else {
-          delete fieldErrors.email;
-        }
-        break;
+  // Fonction de soumission du formulaire
+  const onSubmit = (data) => {
+    fetch('http://localhost:3000/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        throw new Error('Identifiants incorrects');
       }
-      case "password":
-        if (!value.trim()) {
-          fieldErrors.password = "Le mot de passe est requis";
-          hasError = true;
-        } else {
-          delete fieldErrors.password;
-        }
-        break;
-      default:
-        break;
-    }
-
-    setErrors(fieldErrors);
-    return hasError;
+    })
+    .then(result => {
+      localStorage.setItem('token', result.token);
+      navigate('/admin');
+    })
+    .catch(error => {
+      setError('root', { message: error.message || 'Erreur de connexion' });
+    });
   };
-
-  // Déterminer la classe de bordure en fonction de la validation
-  const getBorderClass = (fieldName) => {
-    if (!touched[fieldName]) {
-      return "border-border-ide";
-    } else {
-      return errors[fieldName]
-        ? "border-error-foreground"
-        : formData[fieldName].trim() !== ""
-        ? "border-success-foreground"
-        : "border-error-foreground";
-    }
-  };
-
-  // Soumission du formulaire vers l'API
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Marquer tous les champs comme touchés
-    const allTouched = {
-      email: true,
-      password: true,
-    };
-    setTouched(allTouched);
-
-    // Valider tous les champs et récupérer les erreurs
-    const emailError = validateField("email", formData.email);
-    const passwordError = validateField("password", formData.password);
-
-    // Si pas d'erreurs, envoi vers l'API
-    if (!emailError && !passwordError) {
-      setIsSubmitting(true);
-      
-      fetch('http://localhost:3000/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password
-        })
-      })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Identifiants incorrects');
-        }
-      })
-      .then(data => {
-        // Stockage du token et redirection vers la page admin
-        localStorage.setItem('token', data.token);
-        navigate('/admin');
-        console.log('Connexion réussie !', data);
-      })
-      .catch(error => {
-        setErrors({ general: error.message || 'Erreur de connexion' });
-      })
-      .finally(() => {
-        setIsSubmitting(false);
-      });
-    }
-  };
+   
 
   return (
     <div className="flex flex-col h-full">
@@ -151,57 +67,61 @@ export default function LoginPage() {
 
       {/* Formulaire de connexion */}
       <div className="flex flex-1 justify-center items-start pt-8">
-        <form className="p-6 w-full max-w-md" onSubmit={handleSubmit}>
+        <form className="p-6 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Message d'erreur général */}
-          {errors.general && (
+          {errors.root && (
             <div className="mb-4 p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
-              {errors.general}
+              {errors.root.message}
             </div>
           )}
 
           {/* Champ Email */}
           <div className="mb-4">
-            <label htmlFor="_email" className="block mb-2 text-text-default">
+            <label htmlFor="email" className="block mb-2 text-text-default">
               _email<span className="text-error-foreground">*</span>
             </label>
             <input
               type="email"
-              id="_email"
-              name="email"
-              className={`w-full border bg-bg-terminal ${getBorderClass("email")} p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              id="email"
+              className={`w-full border bg-bg-terminal ${
+                errors.email
+                  ? 'border-error-foreground' 
+                  : touchedFields.email && !errors.email && watch('email')?.trim() !== ""
+                  ? 'border-success-foreground' 
+                  : 'border-border-ide'         
+              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Email admin */"
-              value={formData.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
+              {...register("email")}
             />
-            {touched.email && errors.email && (
+            {errors.email && (
               <p className="mt-1 text-sm text-error-foreground">
-                {errors.email}
+                {errors.email.message}
               </p>
             )}
           </div>
 
           {/* Champ Mot de passe */}
           <div className="mb-4">
-            <label htmlFor="_password" className="block mb-2 text-text-default">
+            <label htmlFor="password" className="block mb-2 text-text-default">
               _password<span className="text-error-foreground">*</span>
             </label>
             <input
               type="password"
-              id="_password"
-              name="password"
-              className={`w-full border bg-bg-terminal ${getBorderClass("password")} p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              id="password"
+              className={`w-full border bg-bg-terminal ${
+                errors.password 
+                  ? 'border-error-foreground' 
+                  : touchedFields.password && !errors.password && watch('password')?.trim() !== ""
+                  ? 'border-success-foreground'
+                  : 'border-border-ide'         
+              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Mot de passe admin */"
-              value={formData.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
+              {...register("password")}
             />
-            {touched.password && errors.password && (
+            {errors.password && (
               <p className="mt-1 text-sm text-error-foreground">
-                {errors.password}
+                {errors.password.message}
               </p>
             )}
           </div>
