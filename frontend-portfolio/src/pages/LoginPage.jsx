@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 const loginSchema = z.object({
   email: z
     .string()
-    .min(1, { message: "L'adresse email est requise" })
-    .email("Le format de l'email est incorrect"),
+    .min(1, { message: "L'email est requis" })
+    .email("L'email est incorrect"),
   password: z
     .string()
     .min(1, { message: "Le mot de passe est requis" }),
@@ -70,14 +70,16 @@ export default function LoginPage() {
         <form className="p-6 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
           
           {/* Message d'erreur général */}
-          {errors.root && (
-            <div className="mb-4 p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
-              {errors.root.message}
-            </div>
-          )}
+          <div className="mb-4 min-h-14">
+            {errors.root && (
+              <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
+                {errors.root.message}
+              </div>
+            )}
+          </div>
 
           {/* Champ Email */}
-          <div className="mb-4">
+          <div className="mb-6">
             <label htmlFor="email" className="block mb-2 text-text-default">
               _email<span className="text-error-foreground">*</span>
             </label>
