@@ -1,156 +1,49 @@
 import chevronDown from "../assets/icons/navigation/nav-full-down.svg";
 import htmlIcon from "../assets/icons/technos/html.svg";
-import { useState } from "react";
-import { useForm, ValidationError } from "@formspree/react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
+import { useForm as useFormspree, ValidationError } from "@formspree/react";
+
+// Schema de validation Zod
+const contactSchema = z.object({
+  name: z
+    .string()
+    .min(1, { message: "Le nom est requis" }),
+  email: z
+    .string().min(1, { message: "L'email est requis" })
+    .email("L'email est incorrect"),
+  message: z
+    .string()
+    .min(1, { message: "Le message est requis" }),
+});
 
 export default function ContactPage() {
-  const [state, handleFormspreeSubmit] = useForm("xpwppjvg");
-  const [formData, setFormData] = useState({
-    nom: "",
-    email: "",
-    message: "",
+
+  // Configuration React Hook Form avec Zod
+  const {
+    register,
+    handleSubmit,
+    formState: { errors: reactHookFormErrors, touchedFields },
+    watch,
+  } = useForm({
+    resolver: zodResolver(contactSchema),
+    mode: "onBlur",
   });
 
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
+  // Configuration Formspree
+  const [state, handleFormspreeSubmit] = useFormspree("xpwppjvg");
 
-  // Gestion des changements dans les champs
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    const fieldName = id.replace("_", "");
-    setFormData({
-      ...formData,
-      [fieldName]: value,
-    });
+  const { 
+  errors: formspreeErrors, 
+  submitting: formspreeSubmitting, 
+  succeeded: formspreeSucceeded 
+} = state;
 
-    // Valider le champ si déjà touché
-    if (touched[fieldName]) {
-      validateField(fieldName, value);
-    }
+  // Fonction de soumission du formulaire
+  const onSubmit = (data) => {
+    handleFormspreeSubmit(data);
   };
-
-  // Marquer un champ comme touché lors de la perte de focus
-  const handleBlur = (e) => {
-    const fieldName = e.target.id.replace("_", "");
-    setTouched({
-      ...touched,
-      [fieldName]: true,
-    });
-    validateField(fieldName, formData[fieldName]);
-  };
-
-  // Valider un champ spécifique
-  const validateField = (fieldName, value) => {
-    let fieldErrors = { ...errors };
-
-    switch (fieldName) {
-      case "nom":
-        if (!value.trim()) {
-          fieldErrors.nom = "Le nom est requis";
-        } else {
-          delete fieldErrors.nom;
-        }
-        break;
-      case "email": {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!value.trim()) {
-          fieldErrors.email = "L'email est requis";
-        } else if (!emailRegex.test(value)) {
-          fieldErrors.email = "L'adresse email entrée est incorrecte";
-        } else {
-          delete fieldErrors.email;
-        }
-        break;
-      }
-      case "message":
-        if (!value.trim()) {
-          fieldErrors.message = "Le message est requis";
-        } else {
-          delete fieldErrors.message;
-        }
-        break;
-      default:
-        break;
-    }
-
-    setErrors(fieldErrors);
-  };
-
-  // Soumission du formulaire
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // Marquer tous les champs comme touchés
-    const allTouched = {
-      nom: true,
-      email: true,
-      message: true,
-    };
-    setTouched(allTouched);
-
-    // Valider tous les champs
-    validateField("nom", formData.nom);
-    validateField("email", formData.email);
-    validateField("message", formData.message);
-
-    // Vérifier s'il y a des erreurs
-    const newErrors = {};
-    if (!formData.nom.trim()) newErrors.nom = "Merci de remplir votre nom";
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.email.trim()) {
-      newErrors.email = "Merci d'entrer votre email";
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = "L'adresse email entrée est incorrecte";
-    }
-
-    if (!formData.message.trim())
-      newErrors.message = "Merci de me laisser votre message";
-
-    setErrors(newErrors);
-
-    // Si pas d'erreurs, envoyer le formulaire via Formspree
-    if (Object.keys(newErrors).length === 0) {
-      handleFormspreeSubmit(e);
-    }
-  };
-
-  // Déterminer la classe de bordure en fonction de la validation
-  const getBorderClass = (fieldName) => {
-    if (!touched[fieldName]) return "border-border-ide";
-    return errors[fieldName]
-      ? "border-error-foreground"
-      : formData[fieldName].trim() !== ""
-      ? "border-success-foreground"
-      : "border-error-foreground";
-  };
-
-  // Afficher un message de succès si l'envoi a réussi
-  if (state.succeeded) {
-    return (
-      <div className="flex flex-col h-full">
-        {/* En-tête mobile (caché sur desktop où FileHeader prend le relais) */}
-        <div className="hidden max-[770px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
-          <img src={chevronDown} alt="Chevron" className="mr-2 w-4 h-4" />
-          <img src={htmlIcon} alt="Dossier" className="mr-2 w-5 h-5" />
-          <span className="text-base text-text-default">
-            _me-contacter.html
-          </span>
-        </div>
-        <div className="flex flex-1 justify-center items-center p-4">
-          <div className="p-6 w-full max-w-md text-center">
-            <h2 className="mb-4 text-xl text-success-foreground">
-              Message envoyé avec succès !
-            </h2>
-            <p className="text-text-default">
-              Merci pour votre message. Je vous répondrai dans les plus brefs
-              délais.
-            </p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className={`flex flex-col h-full`}>
@@ -160,85 +53,81 @@ export default function ContactPage() {
         <img src={htmlIcon} alt="Dossier" className="mr-2 w-5 h-5" />
         <span className="text-base text-text-default">_me-contacter.html</span>
       </div>
+
       {/* Formulaire de contact */}
-      <div className="flex flex-1 justify-center items-start p-4 pt-2">
-        <form className="p-6 w-full max-w-md" onSubmit={handleSubmit}>
+      <div className="flex flex-1 justify-center items-start p-4">
+        <form className="p-6 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
+
           {/* Champ Nom */}
           <div className="mb-4">
-            <label htmlFor="_nom" className="block mb-2 text-text-default">
+            <label htmlFor="name" className="block mb-2 text-text-default">
               _nom<span className="text-error-foreground">*</span>
             </label>
             <input
               type="text"
-              id="_nom"
-              name="nom"
-              className={`w-full border bg-bg-terminal ${getBorderClass("nom")} p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              id="name"
+              className={`w-full border bg-bg-terminal ${reactHookFormErrors.name
+                ? 'border-error-foreground' 
+                : touchedFields.name && !reactHookFormErrors.name && watch('name')?.trim() !== ""
+                ? 'border-success-foreground' 
+                : 'border-border-ide'         
+              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Votre nom */"
-              value={formData.nom}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
+              {...register("name")}
             />
-            {touched.nom && errors.nom && (
-              <p className="mt-1 text-sm text-error-foreground">{errors.nom}</p>
+            {reactHookFormErrors.name && (
+              <p className="mt-1 text-sm text-error-foreground">
+                {reactHookFormErrors.name.message}</p>
             )}
-            <ValidationError prefix="Nom" field="nom" errors={state.errors} />
           </div>
 
           {/* Champ Email */}
           <div className="mb-4">
-            <label htmlFor="_email" className="block mb-2 text-text-default">
+            <label htmlFor="email" className="block mb-2 text-text-default">
               _email<span className="text-error-foreground">*</span>
             </label>
             <input
               type="email"
-              id="_email"
-              name="email"
-              className={`w-full border bg-bg-terminal ${getBorderClass("email")} p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              id="email"
+              className={`w-full border bg-bg-terminal ${reactHookFormErrors.email
+                ? 'border-error-foreground' 
+                : touchedFields.email && !reactHookFormErrors.email && watch('email')?.trim() !== ""
+                ? 'border-success-foreground' 
+                : 'border-border-ide'         
+              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Votre email */"
-              value={formData.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
+              {...register("email")}
             />
-            {touched.email && errors.email && (
+            {reactHookFormErrors.email && (
               <p className="mt-1 text-sm text-error-foreground">
-                {errors.email}
+                {reactHookFormErrors.email.message}
               </p>
             )}
-            <ValidationError
-              prefix="Email"
-              field="email"
-              errors={state.errors}
-            />
           </div>
 
           {/* Champ Message */}
           <div className="mb-6">
-            <label htmlFor="_message" className="block mb-2 text-text-default">
+            <label htmlFor="message" className="block mb-2 text-text-default">
               _message<span className="text-error-foreground">*</span>
             </label>
             <textarea
-              id="_message"
+              id="message"
               name="message"
               rows="6"
-              className={`w-full border bg-bg-terminal ${getBorderClass("message")} p-2 rounded resize-none text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              className={`w-full border bg-bg-terminal ${reactHookFormErrors.message
+                ? 'border-error-foreground' 
+                : touchedFields.message && !reactHookFormErrors.message && watch('message')?.trim() !== ""
+                ? 'border-success-foreground' 
+                : 'border-border-ide'         
+              } p-2 rounded resize-none text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Écrivez votre message ici... */"
-              value={formData.message}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              required
+              {...register("message")}
             ></textarea>
-            {touched.message && errors.message && (
+            {reactHookFormErrors.message && (
               <p className="mt-1 text-sm text-error-foreground">
-                {errors.message}
+                {reactHookFormErrors.message.message}
               </p>
             )}
-            <ValidationError
-              prefix="Message"
-              field="message"
-              errors={state.errors}
-            />
           </div>
 
           {/* Bouton Envoyer avec état de soumission */}
@@ -246,11 +135,26 @@ export default function ContactPage() {
             <button
               type="submit"
               className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide"
-              disabled={state.submitting}
+              disabled={formspreeSubmitting}
             >
-              {state.submitting ? "Envoi en cours..." : "Envoyer"}
+              {formspreeSubmitting ? "Envoi en cours..." : "Envoyer"}
             </button>
           </div>
+
+          {/* Message de succès Formspree*/}
+          {formspreeSucceeded && (
+            <div className="mt-8 p-3 bg-success-foreground/10 border border-success-foreground rounded text-success-foreground">
+              Message envoyé avec succès
+            </div>
+          )}
+
+          {/* Message d'erreur Formspree*/}
+          {formspreeErrors && formspreeErrors.length > 0 && (
+            <div className="mt-8 p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
+              Erreur lors de l'envoi du message
+            </div>
+          )}
+
         </form>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { pagesData } from "../../data/navigationData";
 import chevronRight from "../../assets/icons/navigation/nav-full.svg";
 
 export default function MobileMenu({ onClose }) {
+  
   // Mapping direct pages vers routes
   const pageRoutes = {
     "hello-world": "/",
@@ -14,13 +15,15 @@ export default function MobileMenu({ onClose }) {
   return (
     <div className="flex fixed inset-0 top-12 z-40 flex-col">
       <div className="w-full bg-bg-terminal shrink-0">
-        {Object.values(pagesData).map((page) => {
+        {Object.values(pagesData)
+          .filter(page => pageRoutes[page.id])
+          .map((page) => {
           const route = pageRoutes[page.id];
           return (
             <NavLink
               key={page.id}
               to={route}
-              onClick={onClose} // Ferme le menu après la sélection
+              onClick={onClose} 
               className={({ isActive }) =>
                 `flex items-center p-3 border-b border-border-ide cursor-pointer ${
                   isActive ? "bg-slate-800" : ""
