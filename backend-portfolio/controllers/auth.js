@@ -14,3 +14,10 @@ exports.login = (req, res) => {
   );
   res.status(200).json({ token });
 };
+
+exports.verify = (req, res) => {
+  res.status(200).json({ 
+    valid: true, 
+    message: "Token valide" 
+  });
+};

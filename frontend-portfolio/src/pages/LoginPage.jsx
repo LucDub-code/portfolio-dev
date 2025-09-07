@@ -3,7 +3,7 @@ import loginIcon from "../assets/icons/navigation/login.svg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Schema de validation Zod
 const loginSchema = z.object({
@@ -19,6 +19,9 @@ const loginSchema = z.object({
 export default function LoginPage() {
 
   const navigate = useNavigate();
+
+  const location = useLocation();
+  const authError = location.state?.error;
 
   // Configuration React Hook Form avec Zod
   const {
@@ -69,13 +72,23 @@ export default function LoginPage() {
       <div className="flex flex-1 justify-center items-start pt-8">
         <form className="p-6 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
           
-          {/* Message d'erreur général */}
           <div className="mb-4 min-h-14">
-            {errors.root && (
-              <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
-                {errors.root.message}
-              </div>
-            )}
+            {/* Message d'erreur général */}
+            <div>
+              {errors.root && (
+                <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
+                  {errors.root.message}
+                </div>
+              )}
+            </div>
+            {/* Message d'erreur authentification */}
+            <div>
+              {authError && (
+                <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
+                  {authError}
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Champ Email */}
