@@ -1,7 +1,9 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import { AboutProvider } from "./contexts/AboutContext";
 import { ProjectsProvider } from "./contexts/ProjectsContext";
+import useAuth from "./hooks/useAuth";
+import { useEffect } from "react";
 
 // Import des pages
 import HomePage from "./pages/HomePage";
@@ -12,6 +14,18 @@ import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
 
 function App() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { isAuthenticated, authLoading, authError } = useAuth();
+
+  useEffect(() => {
+    if (!isAuthenticated && !authLoading && location.pathname === '/admin') {
+      navigate('/login', {
+        state: { error: authError || 'Veuillez vous connecter' }
+      });
+    }
+  }, [isAuthenticated, authLoading, authError, navigate, location.pathname]);
+
   return (
     <ProjectsProvider>
       <AboutProvider>
