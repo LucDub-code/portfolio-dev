@@ -4,6 +4,7 @@ import jsonIcon from "../assets/icons/technos/json.svg";
 import htmlIcon from "../assets/icons/technos/html.svg";
 import loginIcon from "../assets/icons/navigation/login.svg";
 import adminIcon from "../assets/icons/navigation/admin.svg";
+import banIcon from "../assets/icons/navigation/ban.svg";
 
 export const pagesData = {
   "hello-world": {
@@ -35,5 +36,10 @@ export const pagesData = {
     id: "admin",
     icon: adminIcon,
     title: "_admin.html",
+  },
+  notFound: {
+    id: "not-found",
+    icon: banIcon,
+    title: "_not-found.html",
   },
 };

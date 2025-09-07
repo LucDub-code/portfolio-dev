@@ -38,6 +38,7 @@ export default function TabNavigation() {
             <NavLink
               key={page.id}
               to={route}
+              end
               className={({ isActive }) =>
                 `flex items-center px-4 h-12 cursor-pointer border-r border-border-ide ${
                   isActive
@@ -76,6 +77,7 @@ export default function TabNavigation() {
             <NavLink
               key={page.id}
               to={route}
+              end
               className={({ isActive }) =>
                 `flex items-center px-4 h-12 cursor-pointer ${
                   windowWidth > 1060 ? "border-l border-border-ide" : ""
