@@ -13,6 +13,7 @@ export default function Layout({ children }) {
   const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
   // État pour le menu mobile (centralisé ici)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
   // Récupérer l'URL actuelle pour savoir sur quelle page on est
   const location = useLocation();
   const isHomePage = location.pathname === "/";

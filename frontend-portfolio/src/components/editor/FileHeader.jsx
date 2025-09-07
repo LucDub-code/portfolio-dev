@@ -14,7 +14,7 @@ export default function FileHeader() {
     "/admin": "admin",
   };
 
-  const currentPageKey = routeToPageKey[location.pathname] || "hello-world";
+  const currentPageKey = routeToPageKey[location.pathname] || "notFound";
   const currentPage = pagesData[currentPageKey];
 
   return (

@@ -134,7 +134,7 @@ export default function ContactPage() {
           <div className="flex">
             <button
               type="submit"
-              className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide"
+              className="px-8 py-2 text-text-selected rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide"
               disabled={formspreeSubmitting}
             >
               {formspreeSubmitting ? "Envoi en cours..." : "Envoyer"}
