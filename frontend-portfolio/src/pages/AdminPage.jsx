@@ -1,7 +1,12 @@
 import chevronDown from "../assets/icons/navigation/nav-full-down.svg";
 import adminIcon from "../assets/icons/navigation/admin.svg";
+import AdminNavigation from "../components/admin/AdminNavigation";
+import ProjectsTable from "../components/admin/ProjectsTable";
+import ProjectForm from "../components/admin/ProjectForm";
+
 
 export default function AdminPage() {
+  
   return (
     <div>
       {/* En-tête mobile */}
@@ -10,6 +15,9 @@ export default function AdminPage() {
         <img src={adminIcon} alt="Dossier" className="mr-2 w-5 h-5" />
         <span className="text-base text-text-default">_admin.html</span>
       </div>
+
+      {/* Navigation par onglets - uniquement visible sur mobile */}
+      <AdminNavigation />
 
       AdminPage
       

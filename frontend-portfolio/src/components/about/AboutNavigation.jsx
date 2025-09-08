@@ -1,9 +1,9 @@
 import navIcon from "../../assets/icons/navigation/nav-light.svg";
 import mdIcon from "../../assets/icons/technos/md.svg";
-import { useAboutContext } from "../../contexts/AboutContext";
+import { useNavigationContext } from "../../contexts/NavigationContext";
 
 export default function AboutNavigation({ isSideMenu = false }) {
-  const { activeTab, setActiveTab } = useAboutContext();
+  const { aboutActiveTab, setAboutActiveTab } = useNavigationContext();
 
   // Styles différents selon l'emplacement (SideMenu ou mobile)
   const containerClass = isSideMenu
@@ -20,21 +20,22 @@ export default function AboutNavigation({ isSideMenu = false }) {
 
   return (
     <div className={containerClass}>
+      {/* Onglets de navigation */}
       {["bio", "interets", "education"].map((tab) => (
-        <div key={tab} className={itemClass} onClick={() => setActiveTab(tab)}>
+        <div key={tab} className={itemClass} onClick={() => setAboutActiveTab(tab)}>
           <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
           <div className="relative">
             <div className="flex items-center">
               <img src={mdIcon} alt="Markdown" className="mr-1 w-4 h-4" />
               <span
                 className={`${
-                  activeTab === tab ? "text-text-selected" : "text-text-default"
+                  aboutActiveTab === tab ? "text-text-selected" : "text-text-default"
                 } text-sm`}
               >
                 {tab}.md
               </span>
             </div>
-            {activeTab === tab && <div className={indicatorClass}></div>}
+            {aboutActiveTab === tab && <div className={indicatorClass}></div>}
           </div>
         </div>
       ))}

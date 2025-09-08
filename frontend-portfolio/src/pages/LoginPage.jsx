@@ -3,7 +3,8 @@ import loginIcon from "../assets/icons/navigation/login.svg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+import { useLocation } from "react-router-dom";
 
 // Schema de validation Zod
 const loginSchema = z.object({
@@ -17,47 +18,25 @@ const loginSchema = z.object({
 });
 
 export default function LoginPage() {
-
-  const navigate = useNavigate();
+  const { login, loginError } = useAuth();
 
   const location = useLocation();
+
   const authError = location.state?.error;
 
-  // Configuration React Hook Form avec Zod
   const {
     register,
     handleSubmit,
     formState: { errors, touchedFields, isSubmitting },
-    setError,
     watch,
   } = useForm({
     resolver: zodResolver(loginSchema),
     mode: "onBlur",
   });
 
-  // Fonction de soumission du formulaire
   const onSubmit = (data) => {
-    fetch('http://localhost:3000/api/auth/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Identifiants incorrects');
-      }
-    })
-    .then(result => {
-      localStorage.setItem('token', result.token);
-      navigate('/admin');
-    })
-    .catch(error => {
-      setError('root', { message: error.message || 'Erreur de connexion' });
-    });
+    login(data.email, data.password);
   };
-   
 
   return (
     <div className="flex flex-col h-full">
@@ -75,9 +54,9 @@ export default function LoginPage() {
           <div className="mb-4 min-h-14">
             {/* Message d'erreur général */}
             <div>
-              {errors.root && (
+              {loginError && (
                 <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
-                  {errors.root.message}
+                  {loginError}
                 </div>
               )}
             </div>

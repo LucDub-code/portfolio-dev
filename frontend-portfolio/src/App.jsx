@@ -1,9 +1,8 @@
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import { AboutProvider } from "./contexts/AboutContext";
+import { NavigationProvider } from "./contexts/NavigationContext";
 import { ProjectsProvider } from "./contexts/ProjectsContext";
-import useAuth from "./hooks/useAuth";
-import { useEffect } from "react";
+import { AuthProvider, useAuth } from "./contexts/AuthContext";
 
 // Import des pages
 import HomePage from "./pages/HomePage";
@@ -14,35 +13,38 @@ import LoginPage from "./pages/LoginPage";
 import AdminPage from "./pages/AdminPage";
 import NotFoundPage from "./pages/NotFoundPage";
 
+// Routes protégées par l'authentification
+const ProtectedRoute = ({ children }) => {
+  const { isAuthenticated } = useAuth();
+  if (!isAuthenticated && location.pathname !== '/login') {
+    return <Navigate to="/login" state={{ error: 'Veuillez vous connecter' }} />;
+  }
+  return children;
+};
+
 function App() {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { isAuthenticated, authLoading, authError } = useAuth();
-
-  useEffect(() => {
-    if (!isAuthenticated && !authLoading && location.pathname === '/admin') {
-      navigate('/login', {
-        state: { error: authError || 'Veuillez vous connecter' }
-      });
-    }
-  }, [isAuthenticated, authLoading, authError, navigate, location.pathname]);
-
   return (
-    <ProjectsProvider>
-      <AboutProvider>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/admin" element={<AdminPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Routes>
-        </Layout>
-      </AboutProvider>
-    </ProjectsProvider>
+    <AuthProvider>
+      <NavigationProvider>
+        <ProjectsProvider>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/projects" element={<ProjectsPage />} />
+              <Route path="/contact" element={<ContactPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+              <Route path="/admin" element={
+                <ProtectedRoute>
+                  <AdminPage />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </Layout>
+        </ProjectsProvider>
+      </NavigationProvider>
+    </AuthProvider>
   );
 }
 

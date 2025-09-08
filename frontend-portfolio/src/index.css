@@ -18,6 +18,15 @@ html, body, #root {
   overflow: hidden;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px var(--color-bg-terminal) inset;
+  -webkit-text-fill-color: var(--color-text-default);
+  background-color: var(--color-bg-terminal);
+}
+
 /* Force le maintien des espaces dans les spans de l'éditeur de code */
 span[class^="text-"] {
   white-space: pre !important;
