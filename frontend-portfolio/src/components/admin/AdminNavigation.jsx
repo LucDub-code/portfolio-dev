@@ -1,0 +1,72 @@
+import navIcon from "../../assets/icons/navigation/nav-light.svg";
+import newIcon from "../../assets/icons/navigation/new.svg";
+import projectsIcon from "../../assets/icons/navigation/projects.svg";
+import { useNavigationContext } from "../../contexts/NavigationContext";
+import { useAuth } from "../../contexts/AuthContext";
+
+export default function AdminNavigation({ isSideMenu = false }) {
+  const { adminActiveTab, setAdminActiveTab } = useNavigationContext();
+
+  const { logout } = useAuth();
+
+
+  // Styles différents selon l'emplacement (SideMenu ou mobile)
+  const containerClass = isSideMenu
+    ? "min-[1060px]:block hidden pt-4 pb-3"
+    : "hidden max-[1059px]:block bg-bg-terminal border-b border-border-ide pb-2";
+
+  const itemClass = isSideMenu
+    ? "flex items-center px-2 py-1.5 cursor-pointer hover:bg-bg-selected rounded"
+    : "flex items-center px-8 py-2 cursor-pointer";
+
+  const indicatorClass = isSideMenu
+    ? "absolute bottom-[-3px] left-0 right-0 h-[2px] bg-orange-string"
+    : "absolute bottom-[-5px] left-0 right-0 h-[3px] bg-orange-string";
+
+  const buttonContainerClass = isSideMenu
+    ? "px-2 py-1"
+    : "px-8 pt-1 pb-2";
+
+  return (
+    <div className={containerClass}>
+      {/* Onglets de navigation */}
+      {["Projets", "Nouveau"].map((tab) => (
+        <div
+          key={tab}
+          className={itemClass}
+          onClick={() => setAdminActiveTab(tab)}
+        >
+          <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
+          <div className="relative">
+            <div className="flex items-center">
+              <img
+                src={tab === "Projets" ? projectsIcon : newIcon}
+                alt={tab === "Projets" ? "Projets" : "Nouveau"}
+                className="mr-1 w-4 h-4"
+              />
+              <span
+                className={`${
+                  adminActiveTab === tab
+                    ? "text-text-selected"
+                    : "text-text-default"
+                } text-sm`}
+              >
+                {tab}
+              </span>
+            </div>
+            {adminActiveTab === tab && <div className={indicatorClass}></div>}
+          </div>
+        </div>
+      ))}
+
+      {/* Bouton Connexion */}
+      <div className={buttonContainerClass}>
+        <button type="button" className="flex items-center px-2 py-1 cursor-pointer bg-red-500 hover:bg-red-600 rounded text-text-selected text-sm" onClick={() => {
+          logout();
+        }}>
+          Déconnexion
+        </button>
+      </div>
+    </div>
+  );
+}

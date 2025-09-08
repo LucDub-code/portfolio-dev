@@ -4,10 +4,10 @@ import BioContent from "../components/about/BioContent";
 import InteretsContent from "../components/about/InteretsContent";
 import EducationContent from "../components/about/EducationContent";
 import AboutNavigation from "../components/about/AboutNavigation";
-import { useAboutContext } from "../contexts/AboutContext";
+import { useNavigationContext } from "../contexts/NavigationContext";
 
 export default function AboutPage() {
-  const { activeTab } = useAboutContext();
+  const { aboutActiveTab } = useNavigationContext();
 
   return (
     <div className="flex flex-col h-full">
@@ -24,14 +24,14 @@ export default function AboutPage() {
       {/* Zone de contenu*/}
       <div className="flex-1 overflow-auto p-4">
         {/* Nous rendons tous les composants mais avec isActive pour contrôler l'animation */}
-        <div style={{ display: activeTab === "bio" ? "block" : "none" }}>
-          <BioContent isActive={activeTab === "bio"} />
+        <div style={{ display: aboutActiveTab === "bio" ? "block" : "none" }}>
+          <BioContent isActive={aboutActiveTab === "bio"} />
         </div>
-        <div style={{ display: activeTab === "interets" ? "block" : "none" }}>
-          <InteretsContent isActive={activeTab === "interets"} />
+        <div style={{ display: aboutActiveTab === "interets" ? "block" : "none" }}>
+          <InteretsContent isActive={aboutActiveTab === "interets"} />
         </div>
-        <div style={{ display: activeTab === "education" ? "block" : "none" }}>
-          <EducationContent isActive={activeTab === "education"} />
+        <div style={{ display: aboutActiveTab === "education" ? "block" : "none" }}>
+          <EducationContent isActive={aboutActiveTab === "education"} />
         </div>
       </div>
     </div>

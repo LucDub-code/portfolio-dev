@@ -42,7 +42,7 @@ export default function Layout({ children }) {
         <div className="flex flex-col flex-1 overflow-hidden">
           {/* FileHeader visible : desktop partout OU mobile page d'accueil uniquement */}
           {(!isMobile || location.pathname === "/") && <FileHeader />}
-          {/* Contenu des pages (HomePage, AboutPage, ProjectsPage, ContactPage) */}
+          {/* Contenu des pages (HomePage, AboutPage, ProjectsPage, ContactPage, LoginPage, AdminPage) */}
           <div className="flex-1 overflow-auto">{children}</div>
           {/* StatusBar avec messages contextuels */}
           <StatusBar isMobileMenuOpen={isMobileMenuOpen} />

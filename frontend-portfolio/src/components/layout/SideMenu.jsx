@@ -1,5 +1,6 @@
 import AboutNavigation from '../about/AboutNavigation';
 import ProjectsFilters from '../projects/ProjectsFilters';
+import AdminNavigation from '../admin/AdminNavigation';
 import { useLocation } from 'react-router-dom';
 
 export default function SideMenu() {
@@ -14,6 +15,10 @@ export default function SideMenu() {
       {/* Filtres pour les projets - uniquement visible quand on est sur /projects */}
       {location.pathname === '/projects' && (
         <ProjectsFilters isSideMenu={true} />
+      )}
+      {/* Navigation du mode admin - uniquement visible quand on est sur /admin */}
+      {location.pathname === '/admin' && (
+        <AdminNavigation isSideMenu={true} />
       )}
     </div>
   )
