@@ -9,23 +9,22 @@ export default function AdminNavigation({ isSideMenu = false }) {
 
   const { logout } = useAuth();
 
-
   // Styles différents selon l'emplacement (SideMenu ou mobile)
   const containerClass = isSideMenu
     ? "min-[1060px]:block hidden pt-4 pb-3"
-    : "hidden max-[1059px]:block bg-bg-terminal border-b border-border-ide pb-2";
+    : "hidden max-[1059px]:block bg-bg-terminal border-b border-border-ide pb-3";
 
   const itemClass = isSideMenu
-    ? "flex items-center px-2 py-1.5 cursor-pointer hover:bg-bg-selected rounded"
-    : "flex items-center px-8 py-2 cursor-pointer";
+    ? "flex items-center px-2 py-1.5 cursor-pointer"
+    : "flex items-center px-8 py-1.5 cursor-pointer";
 
   const indicatorClass = isSideMenu
     ? "absolute bottom-[-3px] left-0 right-0 h-[2px] bg-orange-string"
     : "absolute bottom-[-5px] left-0 right-0 h-[3px] bg-orange-string";
 
   const buttonContainerClass = isSideMenu
-    ? "px-2 py-1"
-    : "px-8 pt-1 pb-2";
+    ? "px-2 pt-3"
+    : "px-8 pt-3";
 
   return (
     <div className={containerClass}>

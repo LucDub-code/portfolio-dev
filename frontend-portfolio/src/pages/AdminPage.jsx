@@ -3,9 +3,12 @@ import adminIcon from "../assets/icons/navigation/admin.svg";
 import AdminNavigation from "../components/admin/AdminNavigation";
 import ProjectsTable from "../components/admin/ProjectsTable";
 import ProjectForm from "../components/admin/ProjectForm";
+import { useNavigationContext } from "../contexts/NavigationContext";
 
 
 export default function AdminPage() {
+
+  const { adminActiveTab } = useNavigationContext();
   
   return (
     <div>
@@ -19,8 +22,10 @@ export default function AdminPage() {
       {/* Navigation par onglets - uniquement visible sur mobile */}
       <AdminNavigation />
 
-      AdminPage
-      
+      {/* Contenu dynamique selon l'onglet sélectionné */}
+      {adminActiveTab === "Projets" && <ProjectsTable />}
+      {adminActiveTab === "Nouveau" && <ProjectForm />}
+
     </div>
   )
 }
