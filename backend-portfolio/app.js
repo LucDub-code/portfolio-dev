@@ -1,13 +1,14 @@
+require('dotenv').config();
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
 const authRoutes = require('./routes/auth');
 const projectsRoutes = require('./routes/projects');
+const contactRoutes = require('./routes/contact');
 
 const app = express();
-
-require('dotenv').config();
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(() => console.log('Connexion à MongoDB réussie'))
@@ -24,5 +25,6 @@ app.use(cors({
 
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectsRoutes);
+app.use('/api/contact', contactRoutes);
 
 module.exports = app;

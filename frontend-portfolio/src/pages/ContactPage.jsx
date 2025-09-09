@@ -3,7 +3,7 @@ import htmlIcon from "../assets/icons/technos/html.svg";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useForm as useFormspree, ValidationError } from "@formspree/react";
+import { useState } from "react";
 
 // Schema de validation Zod
 const contactSchema = z.object({
@@ -20,6 +20,10 @@ const contactSchema = z.object({
 
 export default function ContactPage() {
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
   // Configuration React Hook Form avec Zod
   const {
     register,
@@ -31,18 +35,25 @@ export default function ContactPage() {
     mode: "onBlur",
   });
 
-  // Configuration Formspree
-  const [state, handleFormspreeSubmit] = useFormspree("xpwppjvg");
-
-  const { 
-  errors: formspreeErrors, 
-  submitting: formspreeSubmitting, 
-  succeeded: formspreeSucceeded 
-} = state;
-
   // Fonction de soumission du formulaire
   const onSubmit = (data) => {
-    handleFormspreeSubmit(data);
+    setIsSubmitting(true);
+    setSubmitError(null);
+    
+    fetch('http://localhost:3000/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(() => {
+      setSubmitSuccess(true);
+      setIsSubmitting(false);
+    })
+    .catch(() => {
+      setSubmitError('Erreur lors de l\'envoi');
+      setIsSubmitting(false);
+    });
   };
 
   return (
@@ -135,21 +146,21 @@ export default function ContactPage() {
             <button
               type="submit"
               className="px-8 py-2 text-text-selected rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide"
-              disabled={formspreeSubmitting}
+              disabled={isSubmitting}
             >
-              {formspreeSubmitting ? "Envoi en cours..." : "Envoyer"}
+              {isSubmitting ? "Envoi en cours..." : "Envoyer"}
             </button>
           </div>
 
-          {/* Message de succès Formspree*/}
-          {formspreeSucceeded && (
+          {/* Message de succès*/}
+          {submitSuccess && (
             <div className="mt-8 p-3 bg-success-foreground/10 border border-success-foreground rounded text-success-foreground">
               Message envoyé avec succès
             </div>
           )}
 
-          {/* Message d'erreur Formspree*/}
-          {formspreeErrors && formspreeErrors.length > 0 && (
+          {/* Message d'erreur*/}
+          {submitError && (
             <div className="mt-8 p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
               Erreur lors de l'envoi du message
             </div>
