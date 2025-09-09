@@ -5,20 +5,18 @@ import StatusBar from "../statusBar/StatusBar";
 import FileHeader from "../editor/FileHeader";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 export default function Layout({ children }) {
-  // État pour détecter si on est en mode mobile
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1060);
-  // État pour détecter si l'écran est assez grand en hauteur
   const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
-  // État pour le menu mobile (centralisé ici)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
-  // Récupérer l'URL actuelle pour savoir sur quelle page on est
+
   const location = useLocation();
   const isHomePage = location.pathname === "/";
 
-  // Effet pour mettre à jour isMobile et isLargeHeight lors du redimensionnement
+  const { authLoading } = useAuth();
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1060);
@@ -36,19 +34,17 @@ export default function Layout({ children }) {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
       />
       <div className="flex flex-1 overflow-hidden">
-        {/* SideMenu uniquement en desktop */}
         {!isMobile && <SideMenu />}
-        {/* Zone principale : FileHeader + contenu React Router + StatusBar */}
+
         <div className="flex flex-col flex-1 overflow-hidden">
-          {/* FileHeader visible : desktop partout OU mobile page d'accueil uniquement */}
-          {(!isMobile || location.pathname === "/") && <FileHeader />}
-          {/* Contenu des pages (HomePage, AboutPage, ProjectsPage, ContactPage, LoginPage, AdminPage) */}
+          {(!isMobile || location.pathname === "/") &&
+            !(location.pathname === "/admin" && authLoading) && <FileHeader />}
+
           <div className="flex-1 overflow-auto">{children}</div>
-          {/* StatusBar avec messages contextuels */}
+
           <StatusBar isMobileMenuOpen={isMobileMenuOpen} />
         </div>
       </div>
-      {/* Footer visible en desktop sauf sur page d'accueil avec petit écran */}
       {!isMobile && (!isHomePage || isLargeHeight) && <Footer />}
     </div>
   );

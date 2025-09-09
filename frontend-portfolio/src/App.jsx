@@ -3,6 +3,7 @@ import Layout from "./components/layout/Layout";
 import { NavigationProvider } from "./contexts/NavigationContext";
 import { ProjectsProvider } from "./contexts/ProjectsContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
+import Loader from "./components/ui/Loader";
 
 // Import des pages
 import HomePage from "./pages/HomePage";
@@ -17,7 +18,11 @@ import NotFoundPage from "./pages/NotFoundPage";
 const ProtectedRoute = ({ children }) => {
   const { isAuthenticated, authLoading } = useAuth();
   if (authLoading) {
-    return <div>Chargement...</div>;
+    return (
+      <div className="h-full">
+        <Loader />
+      </div>
+    );
   }
   if (!isAuthenticated && location.pathname !== '/login') {
     return <Navigate to="/login" state={{ error: 'Veuillez vous connecter' }} />;
