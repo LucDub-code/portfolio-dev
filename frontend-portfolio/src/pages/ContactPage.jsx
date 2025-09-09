@@ -30,6 +30,7 @@ export default function ContactPage() {
     handleSubmit,
     formState: { errors: reactHookFormErrors, touchedFields },
     watch,
+    reset,
   } = useForm({
     resolver: zodResolver(contactSchema),
     mode: "onBlur",
@@ -49,6 +50,7 @@ export default function ContactPage() {
     .then(() => {
       setSubmitSuccess(true);
       setIsSubmitting(false);
+      reset();
     })
     .catch(() => {
       setSubmitError('Erreur lors de l\'envoi');
