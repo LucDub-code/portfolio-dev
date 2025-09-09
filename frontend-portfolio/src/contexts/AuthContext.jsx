@@ -44,6 +44,7 @@ export function AuthProvider({ children }) {
     navigate('/login');
   };
 
+  // Fonction pour vérifier l'authentification
   const checkAuth = () => {
     const token = localStorage.getItem('token');
     

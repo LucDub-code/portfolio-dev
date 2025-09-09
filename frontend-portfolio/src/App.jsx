@@ -15,7 +15,10 @@ import NotFoundPage from "./pages/NotFoundPage";
 
 // Routes protégées par l'authentification
 const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, authLoading } = useAuth();
+  if (authLoading) {
+    return <div>Chargement...</div>;
+  }
   if (!isAuthenticated && location.pathname !== '/login') {
     return <Navigate to="/login" state={{ error: 'Veuillez vous connecter' }} />;
   }
