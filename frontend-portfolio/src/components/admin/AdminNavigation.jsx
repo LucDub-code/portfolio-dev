@@ -23,7 +23,7 @@ export default function AdminNavigation({ isSideMenu = false }) {
     : "absolute bottom-[-5px] left-0 right-0 h-[3px] bg-orange-string";
 
   const buttonContainerClass = isSideMenu
-    ? "px-2 pt-3"
+    ? "px-2 pt-2"
     : "px-8 pt-3";
 
   return (
