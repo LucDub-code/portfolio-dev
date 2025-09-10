@@ -16,6 +16,9 @@ const contactSchema = z.object({
   message: z
     .string()
     .min(1, { message: "Le message est requis" }),
+  website: z
+    .string()
+    .optional(),
 });
 
 export default function ContactPage() {
@@ -46,15 +49,23 @@ export default function ContactPage() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     })
-    .then(response => response.json())
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json()
+        .then(error => {throw new Error(error.message);});
+      }
+    })
     .then(() => {
       setSubmitSuccess(true);
       setIsSubmitting(false);
       reset();
     })
-    .catch(() => {
-      setSubmitError('Erreur lors de l\'envoi');
+    .catch((error) => {
+      setSubmitError(error.message || 'Erreur lors de l\'envoi');
       setIsSubmitting(false);
+      reset();
     });
   };
 
@@ -118,6 +129,19 @@ export default function ContactPage() {
             )}
           </div>
 
+          {/* Champ website */}
+          <div className="hidden">
+            <label htmlFor="website">Site web</label>
+            <input
+              type="text"
+              id="website"
+              name="website"
+              tabIndex="-1"
+              autoComplete="off"
+              {...register("website")}
+            />
+          </div>
+
           {/* Champ Message */}
           <div className="mb-6">
             <label htmlFor="message" className="block mb-2 text-text-default">
@@ -155,7 +179,7 @@ export default function ContactPage() {
           </div>
 
           {/* Message de succès*/}
-          {submitSuccess && (
+          {submitSuccess && !submitError && (
             <div className="mt-8 p-3 bg-success-foreground/10 border border-success-foreground rounded text-success-foreground">
               Message envoyé avec succès
             </div>
@@ -164,7 +188,7 @@ export default function ContactPage() {
           {/* Message d'erreur*/}
           {submitError && (
             <div className="mt-8 p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
-              Erreur lors de l'envoi du message
+              {submitError}
             </div>
           )}
 
