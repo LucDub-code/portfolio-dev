@@ -14,7 +14,11 @@ const transporter = nodemailer.createTransport({
 // Fonction d'envoi de mail
 
 const sendEmail = (req, res) => {
-  const { name, email, message } = req.body;
+  const { name, email, message, website } = req.body;
+
+  if (website && website.trim() !== '') {
+    return res.status(400).json({ message: 'Erreur de validation' });
+  }
   
   const mailOptions = {
     from: process.env.EMAIL_USER,
