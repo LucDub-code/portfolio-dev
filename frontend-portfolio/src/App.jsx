@@ -4,6 +4,7 @@ import { NavigationProvider } from "./contexts/NavigationContext";
 import { ProjectsProvider } from "./contexts/ProjectsContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Loader from "./components/ui/Loader";
+import { useSecretNavigation } from "./hooks/useSecretNavigation";
 
 // Import des pages
 import HomePage from "./pages/HomePage";
@@ -31,6 +32,9 @@ const ProtectedRoute = ({ children }) => {
 };
 
 function App() {
+
+  useSecretNavigation();
+
   return (
     <AuthProvider>
       <NavigationProvider>
