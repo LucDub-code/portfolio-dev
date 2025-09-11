@@ -3,12 +3,10 @@ import adminIcon from "../assets/icons/navigation/admin.svg";
 import AdminNavigation from "../components/admin/AdminNavigation";
 import ProjectsTable from "../components/admin/ProjectsTable";
 import ProjectForm from "../components/admin/ProjectForm";
-import { useNavigationContext } from "../contexts/NavigationContext";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 
 export default function AdminPage() {
-
-  const { adminActiveTab } = useNavigationContext();
   
   return (
     <div>
@@ -22,9 +20,13 @@ export default function AdminPage() {
       {/* Navigation par onglets - uniquement visible sur mobile */}
       <AdminNavigation />
 
-      {/* Contenu dynamique selon l'onglet sélectionné */}
-      {adminActiveTab === "Projets" && <ProjectsTable />}
-      {adminActiveTab === "Nouveau" && <ProjectForm />}
+      {/* Contenu dynamique avec React Router selon l'onglet sélectionné */}
+      <Routes>
+        <Route index element={<Navigate to="projets" replace />} />
+        <Route path="projets" element={<ProjectsTable />} />
+        <Route path="projets/:id" element={<ProjectForm />} />
+        <Route path="nouveau" element={<ProjectForm />} />
+      </Routes>
 
     </div>
   )

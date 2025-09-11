@@ -4,10 +4,9 @@ import BioContent from "../components/about/BioContent";
 import InteretsContent from "../components/about/InteretsContent";
 import EducationContent from "../components/about/EducationContent";
 import AboutNavigation from "../components/about/AboutNavigation";
-import { useNavigationContext } from "../contexts/NavigationContext";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 export default function AboutPage() {
-  const { aboutActiveTab } = useNavigationContext();
 
   return (
     <div className="flex flex-col h-full">
@@ -23,16 +22,13 @@ export default function AboutPage() {
 
       {/* Zone de contenu*/}
       <div className="flex-1 overflow-auto p-4">
-        {/* Nous rendons tous les composants mais avec isActive pour contrôler l'animation */}
-        <div style={{ display: aboutActiveTab === "bio" ? "block" : "none" }}>
-          <BioContent isActive={aboutActiveTab === "bio"} />
-        </div>
-        <div style={{ display: aboutActiveTab === "interets" ? "block" : "none" }}>
-          <InteretsContent isActive={aboutActiveTab === "interets"} />
-        </div>
-        <div style={{ display: aboutActiveTab === "education" ? "block" : "none" }}>
-          <EducationContent isActive={aboutActiveTab === "education"} />
-        </div>
+        {/* Contenu dynamique avec React Router selon l'onglet sélectionné */}
+      <Routes>
+        <Route index element={<Navigate to="bio" replace />} />
+        <Route path="bio" element={<BioContent isActive={true} />} />
+        <Route path="interets" element={<InteretsContent isActive={true} />} />
+        <Route path="education" element={<EducationContent isActive={true} />} />
+      </Routes>
       </div>
     </div>
   );

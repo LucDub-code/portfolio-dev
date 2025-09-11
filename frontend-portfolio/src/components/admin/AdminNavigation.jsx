@@ -1,13 +1,12 @@
 import navIcon from "../../assets/icons/navigation/nav-light.svg";
 import newIcon from "../../assets/icons/navigation/new.svg";
 import projectsIcon from "../../assets/icons/navigation/projects.svg";
-import { useNavigationContext } from "../../contexts/NavigationContext";
 import { useAuth } from "../../contexts/AuthContext";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function AdminNavigation({ isSideMenu = false }) {
-  const { adminActiveTab, setAdminActiveTab } = useNavigationContext();
-
   const { logout } = useAuth();
+  const location = useLocation();
 
   // Styles différents selon l'emplacement (SideMenu ou mobile)
   const containerClass = isSideMenu
@@ -24,38 +23,41 @@ export default function AdminNavigation({ isSideMenu = false }) {
 
   const buttonContainerClass = isSideMenu
     ? "px-2 pt-2"
-    : "px-8 pt-3";
+    : "px-8 pt-2";
 
   return (
     <div className={containerClass}>
       {/* Onglets de navigation */}
-      {["Projets", "Nouveau"].map((tab) => (
-        <div
-          key={tab}
+      {[
+        { name: "Projets", path: "/admin/projets", icon: projectsIcon },
+        { name: "Nouveau", path: "/admin/nouveau", icon: newIcon }
+      ].map((tab) => (
+        <NavLink
+          key={tab.name}
+          to={tab.path}
           className={itemClass}
-          onClick={() => setAdminActiveTab(tab)}
         >
           <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
           <div className="relative">
             <div className="flex items-center">
               <img
-                src={tab === "Projets" ? projectsIcon : newIcon}
-                alt={tab === "Projets" ? "Projets" : "Nouveau"}
+                src={tab.icon}
+                alt={tab.name}
                 className="mr-1 w-4 h-4"
               />
               <span
                 className={`${
-                  adminActiveTab === tab
+                  location.pathname.startsWith(tab.path)
                     ? "text-text-selected"
                     : "text-text-default"
                 } text-sm`}
               >
-                {tab}
+                {tab.name}
               </span>
             </div>
-            {adminActiveTab === tab && <div className={indicatorClass}></div>}
+            {location.pathname === tab.path && <div className={indicatorClass}></div>}
           </div>
-        </div>
+        </NavLink>
       ))}
 
       {/* Bouton Connexion */}
