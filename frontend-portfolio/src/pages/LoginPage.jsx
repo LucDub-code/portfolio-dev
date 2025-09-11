@@ -24,6 +24,7 @@ export default function LoginPage() {
 
   const authError = location.state?.error;
 
+  // Configuration React Hook Form avec Zod
   const {
     register,
     handleSubmit,

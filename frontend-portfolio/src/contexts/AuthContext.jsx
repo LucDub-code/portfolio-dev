@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
       localStorage.setItem('token', result.token);
       setIsAuthenticated(true);
       setLoginError(null);
-      navigate('/admin');
+      navigate('/admin/projets');
     })
     .catch(error => {
       setLoginError(error.message || 'Erreur de connexion');

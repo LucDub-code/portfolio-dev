@@ -1,9 +1,9 @@
 import navIcon from "../../assets/icons/navigation/nav-light.svg";
 import mdIcon from "../../assets/icons/technos/md.svg";
-import { useNavigationContext } from "../../contexts/NavigationContext";
+import { NavLink, useLocation } from "react-router-dom";
 
 export default function AboutNavigation({ isSideMenu = false }) {
-  const { aboutActiveTab, setAboutActiveTab } = useNavigationContext();
+  const location = useLocation();
 
   // Styles différents selon l'emplacement (SideMenu ou mobile)
   const containerClass = isSideMenu
@@ -21,23 +21,27 @@ export default function AboutNavigation({ isSideMenu = false }) {
   return (
     <div className={containerClass}>
       {/* Onglets de navigation */}
-      {["bio", "interets", "education"].map((tab) => (
-        <div key={tab} className={itemClass} onClick={() => setAboutActiveTab(tab)}>
+      {[
+        { name: "bio", path: "/about/bio" },
+        { name: "interets", path: "/about/interets" },
+        { name: "education", path: "/about/education" }
+      ].map((tab) => (
+        <NavLink key={tab.name} to={tab.path} className={itemClass}>
           <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
           <div className="relative">
             <div className="flex items-center">
               <img src={mdIcon} alt="Markdown" className="mr-1 w-4 h-4" />
               <span
                 className={`${
-                  aboutActiveTab === tab ? "text-text-selected" : "text-text-default"
+                  location.pathname.startsWith(tab.path) ? "text-text-selected" : "text-text-default"
                 } text-sm`}
               >
-                {tab}.md
+                {tab.name}.md
               </span>
             </div>
-            {aboutActiveTab === tab && <div className={indicatorClass}></div>}
+            {location.pathname.startsWith(tab.path) && <div className={indicatorClass}></div>}
           </div>
-        </div>
+        </NavLink>
       ))}
     </div>
   );

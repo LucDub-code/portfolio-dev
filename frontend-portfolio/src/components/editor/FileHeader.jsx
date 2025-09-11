@@ -8,10 +8,16 @@ export default function FileHeader() {
   const routeToPageKey = {
     "/": "hello-world",
     "/about": "a-propos",
+    "/about/bio": "a-propos",
+    "/about/interets": "a-propos",
+    "/about/education": "a-propos",
     "/projects": "projets",
     "/contact": "contact",
     "/login": "login",
     "/admin": "admin",
+    "/admin/nouveau": "admin",
+    "/admin/projets": "admin",
+    "/admin/projets/:id": "admin",
   };
 
   const currentPageKey = routeToPageKey[location.pathname] || "notFound";

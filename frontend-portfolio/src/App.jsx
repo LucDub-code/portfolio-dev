@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import { NavigationProvider } from "./contexts/NavigationContext";
 import { ProjectsProvider } from "./contexts/ProjectsContext";
 import { AuthProvider, useAuth } from "./contexts/AuthContext";
 import Loader from "./components/ui/Loader";
@@ -37,25 +36,23 @@ function App() {
 
   return (
     <AuthProvider>
-      <NavigationProvider>
-        <ProjectsProvider>
-          <Layout>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/projects" element={<ProjectsPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-              <Route path="/admin" element={
-                <ProtectedRoute>
-                  <AdminPage />
-                </ProtectedRoute>
-              } />
-            </Routes>
-          </Layout>
-        </ProjectsProvider>
-      </NavigationProvider>
+      <ProjectsProvider>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about/*" element={<AboutPage />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/admin/*" element={
+              <ProtectedRoute>
+                <AdminPage />
+              </ProtectedRoute>
+            } />
+          </Routes>
+        </Layout>
+      </ProjectsProvider>
     </AuthProvider>
   );
 }
