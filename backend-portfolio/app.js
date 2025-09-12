@@ -7,6 +7,7 @@ const mongoose = require("mongoose");
 const authRoutes = require('./routes/auth');
 const projectsRoutes = require('./routes/projects');
 const contactRoutes = require('./routes/contact');
+const cloudinaryRoutes = require('./routes/cloudinary');
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/contact', contactRoutes);
+app.use('/api/cloudinary', cloudinaryRoutes);
 
 module.exports = app;
