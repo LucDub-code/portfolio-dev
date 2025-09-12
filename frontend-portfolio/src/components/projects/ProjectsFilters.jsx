@@ -23,7 +23,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
       {filtersData.platforms.map((platform) => (
         <div key={platform.id} className="flex items-center pt-2">
           <input
-            className="w-5 h-5 rounded bg-bg-terminal border border-text-default appearance-none checked:bg-btn-hover checked:border-text-selected checked:after:content-['✓'] checked:after:text-text-selected checked:after:text-xl checked:after:absolute checked:after:inset-0 checked:after:flex checked:after:items-center checked:after:justify-center relative"
+            className="w-5 h-5 rounded bg-bg-terminal border border-text-default appearance-none checked:bg-btn-hover checked:border-text-selected checked:after:content-['✓'] checked:after:text-text-selected checked:after:text-xl checked:after:absolute checked:after:inset-0 checked:after:flex checked:after:items-center checked:after:justify-center relative cursor-pointer"
             type="checkbox"
             onChange={(e) => {
               if (e.target.checked) {
@@ -51,7 +51,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
       {filtersData.technologies.map((technology) => (
         <div key={technology.id} className="flex items-center pt-2">
           <input
-            className="w-5 h-5 rounded bg-bg-terminal border border-text-default appearance-none checked:bg-btn-hover checked:border-text-selected checked:after:content-['✓'] checked:after:text-text-selected checked:after:text-xl checked:after:absolute checked:after:inset-0 checked:after:flex checked:after:items-center checked:after:justify-center relative"
+            className="w-5 h-5 rounded bg-bg-terminal border border-text-default appearance-none checked:bg-btn-hover checked:border-text-selected checked:after:content-['✓'] checked:after:text-text-selected checked:after:text-xl checked:after:absolute checked:after:inset-0 checked:after:flex checked:after:items-center checked:after:justify-center relative cursor-pointer"
             type="checkbox"
             onChange={(e) => {
               if (e.target.checked) {
