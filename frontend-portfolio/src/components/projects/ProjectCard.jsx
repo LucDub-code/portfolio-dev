@@ -15,7 +15,7 @@ export default function ProjectCard({ project }) {
         />
         {/* Badges plateformes - haut gauche */}
         <div className="absolute top-2 left-2 flex gap-1">
-          {project.platform.map((platform) => (
+          {project.platforms.map((platform) => (
             <PlatformBadge key={platform} platform={platform} />
           ))}
         </div>

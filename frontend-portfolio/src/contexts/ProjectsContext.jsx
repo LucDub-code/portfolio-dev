@@ -29,7 +29,7 @@ export const ProjectsProvider = ({ children }) => {
 
     if (platformFilters.length > 0) {
       platformFilters.forEach((platform) => {
-        params.push(`platform=${platform}`);
+        params.push(`platforms=${platform}`);
       });
     }
 

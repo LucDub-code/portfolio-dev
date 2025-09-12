@@ -4,7 +4,7 @@ const Project = require("../models/projects");
 
 exports.getAllProjects = (req, res) => {
   const tech = req.query.tech;
-  const platform = req.query.platform;
+  const platformsParam = req.query.platforms;
   
   // Objet pour construire les critères de filtrage MongoDB
   let query = {};
@@ -16,9 +16,9 @@ exports.getAllProjects = (req, res) => {
   }
   
   // Filtrage par plateformes
-  if (platform) {
-    const platforms = Array.isArray(platform) ? platform : [platform];
-    query.platform = { $all: platforms };
+  if (platformsParam) {
+    const platforms = Array.isArray(platformsParam) ? platformsParam : [platformsParam];
+    query.platforms = { $all: platforms };
   }
   
   Project.find(query).sort({ order: -1, _id: -1 })
