@@ -1,6 +1,11 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import { filtersData } from "../../data/filtersData";
+import starEmpty from "../../assets/icons/star-empty.svg";
+import starFull from "../../assets/icons/star-full.svg";
+import { useNavigate } from "react-router-dom";
+import { useDropzone } from 'react-dropzone';
 import { useState } from "react";
 
 // Schema de validation Zod
@@ -8,6 +13,32 @@ const projectSchema = z.object({
   title: z
   .string()
   .min(1, { message: "Le titre est requis" }),
+  description: z
+  .string()
+  .min(1, { message: "La description est requise" }),
+  projectUrl: z
+  .string()
+  .min(1, { message: "L'URL du projet est requise" }),
+  githubUrl: z
+  .string()
+  .min(1, { message: "L'URL du GitHub est requise" }),
+  platforms: z
+  .array(z.string())
+  .min(1, { message: "Les plateformes sont requises" }),
+  technologies: z
+  .array(z.string())
+  .min(1, { message: "Les technologies sont requises" }),
+  mainTechnologies: z
+  .array(z.string())
+  .min(1, { message: "Les technologies principales sont requises" }),
+  imageUrl: z
+  .string()
+  .min(1, { message: "L'URL de l'image est requise" }),
+  order: z
+  .number()
+  .min(0, { message: "L'ordre doit être positif" })
+  .max(100, { message: "L'ordre doit être inférieur à 100" })
+  .optional(),
 });
 
 export default function ProjectForm() {
@@ -16,20 +47,127 @@ export default function ProjectForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors: reactHookFormErrors, touchedFields },
+    formState: { 
+      errors,
+      touchedFields, 
+      isSubmitting,
+    },
     watch,
+    setValue,
+    setError,
+    clearErrors,
   } = useForm({
     resolver: zodResolver(projectSchema),
     mode: "onBlur",
+    defaultValues: {
+      platforms: [],
+      technologies: [],
+      mainTechnologies: [],
+    },
   });
+
+  // Configuration React Dropzone
+
+  const [fileStatus, setFileStatus] = useState(null);
+
+  const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
+    accept: { 'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp'] },
+    maxFiles: 1,
+    maxSize: 5 * 1024 * 1024, // 5MB
+    onDrop: (acceptedFiles) => {
+      const file = acceptedFiles[0];
+      if (file) {
+        setFileStatus('uploading');
+        
+        // TODO: Upload vers Cloudinary
+        // TODO: Remplacer par votre endpoint Cloudinary
+
+        fetch('votre-endpoint-cloudinary', {
+          method: 'POST',
+          body: formData // FormData avec le fichier
+        })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error('Erreur upload Cloudinary');
+          }
+        })
+        .then(data => {
+          // TODO: Récupérer l'URL de Cloudinary
+          setValue("imageUrl", data.secure_url);
+          setFileStatus('success');
+        })
+        .catch(error => {
+          setFileStatus('error');
+          setError('imageUrl', { message: 'Erreur upload' });
+        });
+      }
+    },
+    onDropRejected: () => {
+      setFileStatus('error');
+    }
+  });
+
+  // Fonction de création des projets
+
+  const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    clearErrors(); 
+    
+    fetch('http://localhost:3000/api/projects', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json()
+        .then(error => {throw new Error(error.message);});
+      }
+    })
+    .then(() => {
+      navigate('/projets');
+    })
+    .catch((error) => {
+      setError('root', { type: 'server', message: error.message || 'Erreur lors de la création du projet' });
+    });
+  };
+
+  // Fonction de modification des projets
+  const onUpdate = (data) => {
+    clearErrors();
+    fetch(`http://localhost:3000/api/projects/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    })
+    .then(response => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        return response.json()
+        .then(error => {throw new Error(error.message);});
+      }
+    })
+    .then(() => {
+      navigate('/projets');
+    })
+    .catch((error) => {
+      setError('root', { type: 'server', message: error.message || 'Erreur lors de la modification du projet' });
+    });
+  };
 
   return (
 
     // Formulaire de création/modification des projets
     <div className="flex flex-1 justify-center items-start p-4">
-      <form className="p-6 w-full max-w-md">
+      <form className="p-6 w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
 
-        {/* Champ Titre */}
+        {/* Titre du projet */}
         <div className="mb-4">
             <label htmlFor="title" className="block mb-2 text-text-default">
               _titre<span className="text-error-foreground">*</span>
@@ -37,41 +175,41 @@ export default function ProjectForm() {
             <input
               type="text"
               id="title"
-              className={`w-full border bg-bg-terminal ${reactHookFormErrors.title
+              className={`w-full border bg-bg-terminal ${errors.title
                 ? 'border-error-foreground' 
-                : touchedFields.title && !reactHookFormErrors.title && watch('title')?.trim() !== ""
+                : touchedFields.title && !errors.title && watch('title')?.trim() !== ""
                 ? 'border-success-foreground' 
                 : 'border-border-ide'         
               } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Titre du projet, max 25 caractères */"
               {...register("title")}
             />
-            {reactHookFormErrors.title && (
+            {errors.title && (
               <p className="mt-1 text-sm text-error-foreground">
-                {reactHookFormErrors.title.message}</p>
+                {errors.title.message}</p>
             )}
           </div>
 
-        {/* Champ Description */}
-        <div className="mb-4">
+        {/* Description du projet */}
+        <div className="mb-2">
             <label htmlFor="description" className="block mb-2 text-text-default">
               _description<span className="text-error-foreground">*</span>
             </label>
             <textarea
               rows="3"
               id="description"
-              className={`w-full border bg-bg-terminal ${reactHookFormErrors.description
+              className={`w-full border bg-bg-terminal ${errors.description
                 ? 'border-error-foreground' 
-                : touchedFields.description && !reactHookFormErrors.description && watch('description')?.trim() !== ""
+                : touchedFields.description && !errors.description && watch('description')?.trim() !== ""
                 ? 'border-success-foreground' 
                 : 'border-border-ide'         
               } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Description du projet, max 85 caractères */"
               {...register("description")}
             />
-            {reactHookFormErrors.description && (
+            {errors.description && (
               <p className="mt-1 text-sm text-error-foreground">
-                {reactHookFormErrors.description.message}</p>
+                {errors.description.message}</p>
             )}
           </div>
 
@@ -83,18 +221,18 @@ export default function ProjectForm() {
             <input
               type="text"
               id="projectUrl"
-              className={`w-full border bg-bg-terminal ${reactHookFormErrors.projectUrl
+              className={`w-full border bg-bg-terminal ${errors.projectUrl
                 ? 'border-error-foreground' 
-                : touchedFields.projectUrl && !reactHookFormErrors.projectUrl && watch('projectUrl')?.trim() !== ""
+                : touchedFields.projectUrl && !errors.projectUrl && watch('projectUrl')?.trim() !== ""
                 ? 'border-success-foreground' 
                 : 'border-border-ide'         
               } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* URL du projet */"
               {...register("projectUrl")}
             />
-            {reactHookFormErrors.projectUrl && (
+            {errors.projectUrl && (
               <p className="mt-1 text-sm text-error-foreground">
-                {reactHookFormErrors.projectUrl.message}</p>
+                {errors.projectUrl.message}</p>
             )}
           </div>
 
@@ -106,22 +244,187 @@ export default function ProjectForm() {
             <input
               type="text"
               id="githubUrl"
-              className={`w-full border bg-bg-terminal ${reactHookFormErrors.githubUrl
+              className={`w-full border bg-bg-terminal ${errors.githubUrl
                 ? 'border-error-foreground' 
-                : touchedFields.githubUrl && !reactHookFormErrors.githubUrl && watch('githubUrl')?.trim() !== ""
+                : touchedFields.githubUrl && !errors.githubUrl && watch('githubUrl')?.trim() !== ""
                 ? 'border-success-foreground' 
                 : 'border-border-ide'         
               } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* URL du GitHub */"
               {...register("githubUrl")}
             />
-            {reactHookFormErrors.githubUrl && (
+            {errors.githubUrl && (
               <p className="mt-1 text-sm text-error-foreground">
-                {reactHookFormErrors.githubUrl.message}</p>
+                {errors.githubUrl.message}</p>
             )}
           </div>
 
+          {/* Plateformes */}
+          <div className="mb-6">
+            <label className="block mb-2 text-text-default">
+              _plateformes<span className="text-error-foreground">*</span>
+            </label>
+            <div className="flex gap-20 pl-8">
+            {filtersData.platforms.map((platform) => (
+              <div key={platform.id} className="flex items-center pt-2">
+                <input
+                  className="w-5 h-5 rounded bg-bg-terminal border border-text-default appearance-none checked:bg-btn-hover checked:border-text-selected checked:after:content-['✓'] checked:after:text-text-selected checked:after:text-xl checked:after:absolute checked:after:inset-0 checked:after:flex checked:after:items-center checked:after:justify-center relative cursor-pointer"
+                  type="checkbox"
+                  id={platform.id}
+                  checked={watch("platforms") && watch("platforms").includes(platform.id) ? true : false}
+                  onChange={(e) => {
+                    const currentPlatforms = watch("platforms") || [];
+                    if (e.target.checked) {
+                      setValue("platforms", [...currentPlatforms, platform.id]);
+                    } else {
+                      setValue("platforms", currentPlatforms.filter((p) => p !== platform.id));
+                    }
+                  }}
+                />
+                <div className="flex gap-2 items-center pl-6">
+                  <img src={platform.icon} alt={platform.name} className="w-6 h-6" />
+                  <span className="text-text-default">{platform.name}</span>
+                </div>
+              </div>
+            ))}
+            </div>
+          </div>
 
+          {/* Technologies */}
+          <div className="mb-6">
+            <label className="block mb-4 text-text-default">
+              _technologies<span className="text-error-foreground">*</span>
+            </label>
+            <div className="grid grid-cols-2 gap-4 pl-8">
+              {filtersData.technologies.map((technology) => (
+                <div key={technology.id} className="flex items-center pt-2">
+                  <input
+                    className="w-5 h-5 rounded bg-bg-terminal border border-text-default appearance-none checked:bg-btn-hover checked:border-text-selected checked:after:content-['✓'] checked:after:text-text-selected checked:after:text-xl checked:after:absolute checked:after:inset-0 checked:after:flex checked:after:items-center checked:after:justify-center relative cursor-pointer"
+                    type="checkbox"
+                    id={technology.id}
+                    checked={watch("technologies") && watch("technologies").includes(technology.id) ? true : false}
+                    onChange={(e) => {
+                      const currentTechnologies = watch("technologies") || [];
+                      if (e.target.checked) {
+                        setValue("technologies", [...currentTechnologies, technology.id]);
+                      } else {
+                        setValue("technologies", currentTechnologies.filter((t) => t !== technology.id));
+                      }
+                    }}
+                  />
+                  <div className="flex gap-2 items-center pl-6">
+                    <img src={technology.icon} alt={technology.name} className="w-6 h-6" />
+                    <span className="text-text-default">{technology.name}</span>
+                  </div>
+                  {/* mainTechnologies */}
+                  <div className="flex items-center pl-4">
+                    <img 
+                      src={watch("mainTechnologies") && watch("mainTechnologies").includes(technology.id) ? starFull : starEmpty} 
+                      alt={watch("mainTechnologies") && watch("mainTechnologies").includes(technology.id) ? "Star Full" : "Star Empty"} 
+                      className={`w-6 h-6 ${
+                        watch("mainTechnologies") && watch("mainTechnologies").includes(technology.id) 
+                          ? 'cursor-pointer' 
+                          : (watch("mainTechnologies") && watch("mainTechnologies").length >= 3) 
+                            ? 'opacity-30 cursor-not-allowed' 
+                            : 'cursor-pointer'
+                      }`}
+                      onClick={() => {
+                        const currentMainTechnologies = watch("mainTechnologies") || [];
+                        if (currentMainTechnologies.includes(technology.id)) {
+                          setValue("mainTechnologies", currentMainTechnologies.filter(t => t !== technology.id));
+                        } else if (currentMainTechnologies.length < 3) { // Limite de 3
+                          setValue("mainTechnologies", [...currentMainTechnologies, technology.id]);
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Image du projet */}
+          <div className="mb-4">
+            <label className="block mb-4 text-text-default">
+              _image-du-projet<span className="text-error-foreground">*</span>
+            </label>
+            
+            {/* Zone de drop */}
+            <div 
+              {...getRootProps()} 
+              className={`w-full p-6 h-32 border-2 border-dashed rounded cursor-pointer transition-colors ${
+                fileStatus === 'uploading'
+                  ? 'border-blue-accent bg-blue-accent/10'
+                  : fileStatus === 'success'
+                    ? 'border-success-foreground bg-success-foreground/10'
+                    : fileStatus === 'error'
+                      ? 'border-error-foreground bg-error-foreground/10'
+                      : isDragReject
+                        ? 'border-error-foreground bg-error-foreground/10'
+                        : isDragActive 
+                          ? 'border-blue-accent bg-blue-accent/10' 
+                          : 'border-border-ide hover:border-blue-accent'
+              }`}
+            >
+              <input {...getInputProps()} />
+              <div className="text-center flex items-center justify-center h-full">
+                {fileStatus === 'uploading' ? (
+                  <p className="text-blue-accent">Upload en cours...</p>
+                ) : fileStatus === 'success' ? (
+                  <p className="text-success-foreground">Fichier validé ✓</p>
+                ) : fileStatus === 'error' ? (
+                  <p className="text-error-foreground">Erreur upload</p>
+                ) : isDragReject ? (
+                  <p className="text-error-foreground">Fichier non supporté</p>
+                ) : isDragActive ? (
+                  <p className="text-blue-accent">Déposez l'image ici...</p>
+                ) : (
+                  <div>
+                    <p className="text-text-default mb-2">
+                      Glisser-déposer l'image <br /> ou cliquer pour sélectionner
+                    </p>
+                    <p className="text-sm text-gray-inactive">
+                      PNG, JPG, GIF, WebP (max 5MB)
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Ordre du projet (optionnel / de 100 à 0 par ordre décroissant) */}
+          <div className="mb-4">
+            <label htmlFor="order" className="block mb-4 text-text-default">
+                _ordre<span className="text-error-foreground">* </span><span className="text-gray-inactive">(optionnel)</span>
+            </label>
+            <input
+              type="number"
+              id="order"
+              className={`w-full border bg-bg-terminal ${errors.order
+                ? 'border-error-foreground' 
+                : touchedFields.order && !errors.order && watch('order') !== undefined
+                ? 'border-success-foreground' 
+                : 'border-border-ide'         
+              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+              placeholder="/* Ordre du projet, de 100 à 0 */"
+              {...register("order")}
+            />
+            {errors.order && (
+              <p className="mt-1 text-sm text-error-foreground">
+                {errors.order.message}</p>
+            )}
+          </div>
+
+          {/* Bouton de création/modification */}
+          <div className="flex justify-center pt-8">
+            <button
+              type="submit"
+              className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide disabled:opacity-50"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Création/modification en cours..." : "Créer/Modifier"}
+            </button>
+          </div>
       </form>
     </div>
   )
