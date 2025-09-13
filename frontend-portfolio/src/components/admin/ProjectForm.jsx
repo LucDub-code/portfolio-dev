@@ -7,6 +7,7 @@ import starFull from "../../assets/icons/star-full.svg";
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from 'react-dropzone';
 import { useState } from "react";
+import { useProjectsContext } from "../../contexts/ProjectsContext";
 
 // Schema de validation Zod
 const projectSchema = z.object({
@@ -75,6 +76,12 @@ export default function ProjectForm() {
 
   const [fileStatus, setFileStatus] = useState(null);
 
+  // Fonction d'optimisation des images Cloudinary via URL
+  const urlOptimizer = (url) =>
+          url
+            .replace('/upload/', '/upload/f_webp,q_80,c_fill,g_auto/')
+            .replace(/\.[a-z0-9]+$/i, '');
+
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     accept: { 'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp'] },
     maxFiles: 1,
@@ -113,7 +120,7 @@ export default function ProjectForm() {
             });
         })
         .then((uploadData) => {
-          setValue('imageUrl', uploadData.secure_url);
+          setValue('imageUrl', urlOptimizer(uploadData.secure_url));
           setFileStatus('success');
           clearErrors('imageUrl');
         })
@@ -130,7 +137,8 @@ export default function ProjectForm() {
 
   // Fonction de création des projets
 
-  const navigate = useNavigate();
+  const { fetchProjects } = useProjectsContext();
+  const navigate = useNavigate(); 
 
   const onSubmit = (data) => {
     clearErrors();
@@ -152,6 +160,7 @@ export default function ProjectForm() {
         }
       })
       .then(() => {
+        fetchProjects();
         navigate('/projects');
       })
       .catch((error) => {
