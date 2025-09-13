@@ -17,10 +17,11 @@ export default function FileHeader() {
     "/admin": "admin",
     "/admin/nouveau": "admin",
     "/admin/projets": "admin",
-    "/admin/projets/:id": "admin",
   };
 
-  const currentPageKey = routeToPageKey[location.pathname] || "notFound";
+  const currentPageKey = routeToPageKey[location.pathname] ||
+    (location.pathname.startsWith('/admin/projets/') ? 'admin' : 'notFound');
+
   const currentPage = pagesData[currentPageKey];
 
   return (
