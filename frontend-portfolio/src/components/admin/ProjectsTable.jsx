@@ -1,10 +1,13 @@
 import { useProjectsContext } from "../../contexts/ProjectsContext";
 import modifyIcon from "../../assets/icons/navigation/modify.svg";
 import deleteIcon from "../../assets/icons/navigation/delete.svg";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectsTable() {
 
   const { projects } = useProjectsContext();
+  
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center pt-16 pb-8">
@@ -13,9 +16,9 @@ export default function ProjectsTable() {
           <tbody>
             {projects.map((project) => (
               <tr key={project._id} className="border-b border-border-ide last:border-b-0">
-                <td className="px-4 py-2 max-[425px]:px-3">{project.title}</td>
+                <td className="px-4 py-2 min-w-2xs max-[425px]:px-3">{project.title}</td>
                 <td className="px-4 py-2 max-[425px]:px-3 border-l border-border-ide">
-                  <button type="button" className="flex items-center justify-center cursor-pointer">
+                  <button type="button" className="flex items-center justify-center cursor-pointer" onClick={() => navigate(`/admin/projets/${project._id}`)}>
                     <img src={modifyIcon} alt="Modifier" className="w-6 h-6 hover:brightness-125 max-[425px]:w-5 max-[425px]:h-5" />
                   </button>
                 </td>

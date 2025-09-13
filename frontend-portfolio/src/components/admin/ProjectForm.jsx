@@ -4,9 +4,10 @@ import { z } from "zod";
 import { filtersData } from "../../data/filtersData";
 import starEmpty from "../../assets/icons/star-empty.svg";
 import starFull from "../../assets/icons/star-full.svg";
-import { useNavigate } from "react-router-dom";
 import { useDropzone } from 'react-dropzone';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useProjectFormHandlers } from "../../hooks/useProjectForm";
+import { useParams } from "react-router-dom";
 import { useProjectsContext } from "../../contexts/ProjectsContext";
 
 // Schema de validation Zod
@@ -48,6 +49,12 @@ const projectSchema = z.object({
 
 export default function ProjectForm() {
 
+  // Adaptation du formulaire selon le mode (création ou modification)
+  const { id } = useParams();
+  const mode = id ? "edit" : "create";
+  const { projects } = useProjectsContext();
+  const projectToEdit = mode === "edit" ? projects.find(project => project._id === id) : null;
+
   // Configuration React Hook Form avec Zod
   const {
     register,
@@ -72,11 +79,26 @@ export default function ProjectForm() {
     },
   });
 
+  // Pré-remplissage du formulaire en mode modification
+
+  useEffect(() => {
+    if (mode === "edit" && projectToEdit) {
+      setValue("title", projectToEdit.title);
+      setValue("description", projectToEdit.description);
+      setValue("projectUrl", projectToEdit.projectUrl);
+      setValue("githubUrl", projectToEdit.githubUrl);
+      setValue("platforms", projectToEdit.platforms);
+      setValue("technologies", projectToEdit.technologies);
+      setValue("mainTechnologies", projectToEdit.mainTechnologies);
+      setValue("imageUrl", projectToEdit.imageUrl);
+      setValue("order", projectToEdit.order);
+    }
+  }, [mode, projectToEdit, setValue]);
+
   // Configuration React Dropzone avec Cloudinary
 
   const [fileStatus, setFileStatus] = useState(null);
 
-  // Fonction d'optimisation des images Cloudinary via URL
   const urlOptimizer = (url) =>
           url
             .replace('/upload/', '/upload/f_webp,q_80,c_fill,g_auto/')
@@ -135,73 +157,13 @@ export default function ProjectForm() {
     }
   });
 
-  // Fonction de création des projets
-
-  const { fetchProjects } = useProjectsContext();
-  const navigate = useNavigate(); 
-
-  const onSubmit = (data) => {
-    clearErrors();
-
-    fetch('http://localhost:3000/api/projects', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          return response.json()
-            .then(error => { throw new Error(error.message); });
-        }
-      })
-      .then(() => {
-        fetchProjects();
-        navigate('/projects');
-      })
-      .catch((error) => {
-        setError('root', { type: 'server', message: error.message || 'Erreur lors de la création du projet' });
-      });
-  };
-
-  // Fonction de modification des projets
-
-  // const onUpdate = (data) => {
-  //   clearErrors();
-
-  //   fetch(`http://localhost:3000/api/projects/${id}`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  //     },
-  //     body: JSON.stringify(data),
-  //   })
-  //     .then(response => {
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         return response.json()
-  //           .then(error => { throw new Error(error.message); });
-  //       }
-  //     })
-  //     .then(() => {
-  //       navigate('/projets');
-  //     })
-  //     .catch((error) => {
-  //       setError('root', { type: 'server', message: error.message || 'Erreur lors de la modification du projet' });
-  //     });
-  // };
+  const { submitForm } = useProjectFormHandlers({ clearErrors, setError, id, mode });
 
   return (
 
     // Formulaire de création/modification des projets
     <div className="flex flex-1 justify-center items-start p-4">
-      <form className="p-6 w-full max-w-lg" onSubmit={handleSubmit(onSubmit)}>
+      <form className="p-6 w-full max-w-lg" onSubmit={handleSubmit(submitForm)}>
 
         {/* Titre du projet */}
         <div className="mb-4">
@@ -459,7 +421,10 @@ export default function ProjectForm() {
             className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide disabled:opacity-50"
             disabled={isSubmitting}
           >
-            {isSubmitting ? "Création/modification en cours..." : "Créer/Modifier"}
+            {isSubmitting
+              ? (mode === 'edit' ? "Modification..." : "Création...")
+              : (mode === 'edit' ? "Modifier" : "Créer")
+            }
           </button>
         </div>
       </form>
