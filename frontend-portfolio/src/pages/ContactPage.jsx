@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useState } from "react";
+import { API_ENDPOINTS } from "../config/api";
 
 // Schema de validation Zod
 const contactSchema = z.object({
@@ -44,7 +45,7 @@ export default function ContactPage() {
     setIsSubmitting(true);
     setSubmitError(null);
     
-    fetch('http://localhost:3000/api/contact', {
+    fetch(API_ENDPOINTS.CONTACT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)

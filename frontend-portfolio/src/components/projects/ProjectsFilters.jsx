@@ -10,7 +10,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
     setTechnologyFilters,
   } = useProjectsContext();
 
-  const containerClass = isSideMenu ? "flex flex-col gap-4 pt-8" : "hidden";
+  const containerClass = isSideMenu ? "flex flex-col gap-4 pt-4" : "hidden";
 
   return (
     <div className={containerClass}>

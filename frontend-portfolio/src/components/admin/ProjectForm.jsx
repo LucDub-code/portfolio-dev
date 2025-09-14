@@ -9,17 +9,20 @@ import { useState, useEffect } from "react";
 import { useProjectFormHandlers } from "../../hooks/useProjectForm";
 import { useParams } from "react-router-dom";
 import { useProjectsContext } from "../../contexts/ProjectsContext";
+import { API_ENDPOINTS } from "../../config/api";
 
 // Schema de validation Zod
 const projectSchema = z.object({
   title: z
     .string()
     .trim()
-    .min(1, { message: "Le titre est requis" }),
+    .min(1, { message: "Le titre est requis" })
+    .max(25, { message: "Le titre ne peut dépasser 25 caractères" }),
   description: z
     .string()
     .trim()
-    .min(1, { message: "La description est requise" }),
+    .min(1, { message: "La description est requise" })
+    .max(85, { message: "La description ne peut dépasser 85 caractères" }),
   projectUrl: z
     .string()
     .trim()
@@ -114,7 +117,7 @@ export default function ProjectForm() {
 
       setFileStatus('uploading');
 
-      fetch('http://localhost:3000/api/cloudinary/sign', {
+      fetch(API_ENDPOINTS.CLOUDINARY_SIGN, {
         method: 'POST',
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       })
