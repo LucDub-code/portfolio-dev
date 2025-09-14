@@ -5,7 +5,7 @@ const server = http.createServer(app);
 
 const port = app.get('port');
 
-server.listen(port, 'localhost', () => {
+server.listen(port, () => {
     console.log(`Serveur démarré sur le port ${port}`);
 });
 

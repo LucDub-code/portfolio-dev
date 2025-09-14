@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { API_ENDPOINTS } from "../config/api";
 
 const ProjectsContext = createContext();
 
@@ -22,7 +23,7 @@ export const ProjectsProvider = ({ children }) => {
 
   // Fonction pour récupérer les projets depuis l'API
   const fetchProjects = () => {
-    let url = "http://localhost:3000/api/projects";
+    let url = API_ENDPOINTS.PROJECTS;
 
     // Construction de l'url de la requête
     const params = [];

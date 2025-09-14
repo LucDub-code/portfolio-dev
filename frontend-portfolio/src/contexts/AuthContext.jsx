@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { API_ENDPOINTS } from '../config/api';
 
 const AuthContext = createContext();
 
@@ -14,7 +15,7 @@ export function AuthProvider({ children }) {
   const login = (email, password) => {
     setLoginError(null);
     
-    fetch('http://localhost:3000/api/auth/login', {
+    fetch(API_ENDPOINTS.AUTH_LOGIN, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
@@ -54,7 +55,7 @@ export function AuthProvider({ children }) {
       return;
     }
 
-    fetch('http://localhost:3000/api/auth/verify', {
+    fetch(API_ENDPOINTS.AUTH_VERIFY, {
       headers: {
         'Authorization': `Bearer ${token}`
       }

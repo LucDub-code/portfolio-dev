@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useProjectsContext } from "../contexts/ProjectsContext";
+import { API_ENDPOINTS } from "../config/api";
 
 export const useProjectFormHandlers = ({ clearErrors, setError, id, mode }) => {
 
@@ -11,7 +12,7 @@ export const useProjectFormHandlers = ({ clearErrors, setError, id, mode }) => {
   const onSubmit = (data) => {
     clearErrors();
 
-    fetch('http://localhost:3000/api/projects', {
+    fetch(API_ENDPOINTS.PROJECTS, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +42,7 @@ export const useProjectFormHandlers = ({ clearErrors, setError, id, mode }) => {
   const onUpdate = (data) => {
     clearErrors();
 
-    fetch(`http://localhost:3000/api/projects/${id}`, {
+    fetch(`${API_ENDPOINTS.PROJECTS}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
