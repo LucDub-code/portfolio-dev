@@ -21,7 +21,7 @@ export default function AboutPage() {
       <AboutNavigation />
 
       {/* Zone de contenu*/}
-      <div className="flex-1 overflow-auto p-4">
+      <div className="flex-1 overflow-auto px-4 pt-4 pb-4 max-[770px]:pb-8">
         {/* Contenu dynamique avec React Router selon l'onglet sélectionné */}
       <Routes>
         <Route index element={<Navigate to="bio" replace />} />
