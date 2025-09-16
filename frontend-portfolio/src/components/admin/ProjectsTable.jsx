@@ -50,7 +50,7 @@ export default function ProjectsTable() {
           <tbody>
             {projects.map((project) => (
               <tr key={project._id} className="border-b border-border-ide last:border-b-0">
-                <td className="px-4 py-2 min-w-2xs max-[425px]:px-3">{project.title}</td>
+                <td className="px-4 py-2 max-[425px]:px-3">{project.title}</td>
                 <td className="px-4 py-2 max-[425px]:px-3 border-l border-border-ide">
                   <button type="button" className="flex items-center justify-center cursor-pointer" onClick={() => navigate(`/admin/projets/${project._id}`)}>
                     <img src={modifyIcon} alt="Modifier" className="w-6 h-6 hover:brightness-125 max-[425px]:w-5 max-[425px]:h-5" />
