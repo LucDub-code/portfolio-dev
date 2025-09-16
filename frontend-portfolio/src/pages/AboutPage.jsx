@@ -23,12 +23,12 @@ export default function AboutPage() {
       {/* Zone de contenu*/}
       <div className="flex-1 overflow-auto px-4 pt-4 pb-4 max-[770px]:pb-16">
         {/* Contenu dynamique avec React Router selon l'onglet sélectionné */}
-      <Routes>
-        <Route index element={<Navigate to="bio" replace />} />
-        <Route path="bio" element={<BioContent isActive={true} />} />
-        <Route path="interets" element={<InteretsContent isActive={true} />} />
-        <Route path="education" element={<EducationContent isActive={true} />} />
-      </Routes>
+        <Routes>
+          <Route index element={<Navigate to="bio" replace />} />
+          <Route path="bio" element={<BioContent isActive={true} />} />
+          <Route path="interets" element={<InteretsContent isActive={true} />} />
+          <Route path="education" element={<EducationContent isActive={true} />} />
+        </Routes>
       </div>
     </div>
   );
