@@ -23,7 +23,7 @@ export default function ProjectsPage() {
       </div>
 
       {/* Conteneur des projets */}
-      <div className="flex justify-center pt-8 pb-12 relative">
+      <div className="flex justify-center pt-8 pb-8 max-[770px]:pb-24 relative">
         {/* Overlay */}
         {isFiltersOpen && <div className="absolute inset-0 bg-black opacity-50 z-10" onClick={() => setIsFiltersOpen(false)} />}
         {/* Cartes */}
