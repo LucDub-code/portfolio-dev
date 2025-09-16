@@ -14,7 +14,7 @@ export default function ProjectsMobileFilters({isFiltersOpen, setIsFiltersOpen})
   } = useProjectsContext();
 
   return (
-    <div className="hidden max-[1060px]:flex flex-col sticky top-0 z-20">
+    <div className="hidden max-[1060px]:flex flex-col">
       {/* Bandeau bouton filtre */}
       <button
         className="flex gap-2 justify-center items-center p-2 w-full border-b transition-colors cursor-pointer bg-bg-terminal border-border-ide text-text-default hover:text-text-selected group"
