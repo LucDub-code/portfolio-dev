@@ -4,10 +4,10 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 
-const authRoutes = require('./routes/auth');
-const projectsRoutes = require('./routes/projects');
-const contactRoutes = require('./routes/contact');
-const cloudinaryRoutes = require('./routes/cloudinary');
+const authRoutes = require('./routes/auth.routes');
+const projectsRoutes = require('./routes/projects.routes');
+const contactRoutes = require('./routes/contact.routes');
+const cloudinaryRoutes = require('./routes/cloudinary.routes');
 
 const app = express();
 

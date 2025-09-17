@@ -1,4 +1,4 @@
-const Project = require("../models/projects");
+const Project = require("../models/projects.model");
 
 // Récupérer tous les projets avec fonction de filtrage par technologie
 
