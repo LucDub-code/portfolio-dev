@@ -20,3 +20,6 @@ npm-debug.log*
 # Deployment
 .vercel
 .render
+
+# AI
+backend-portfolio/ai/
