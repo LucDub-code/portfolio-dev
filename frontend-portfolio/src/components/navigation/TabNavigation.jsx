@@ -38,7 +38,7 @@ export default function TabNavigation() {
             <NavLink
               key={page.id}
               to={route}
-              end
+              end={tabId !== "a-propos"}
               className={({ isActive }) =>
                 `flex items-center px-4 h-12 cursor-pointer border-r border-border-ide ${
                   isActive
