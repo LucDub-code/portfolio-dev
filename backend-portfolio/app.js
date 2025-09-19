@@ -8,6 +8,7 @@ const authRoutes = require('./routes/auth.routes');
 const projectsRoutes = require('./routes/projects.routes');
 const contactRoutes = require('./routes/contact.routes');
 const cloudinaryRoutes = require('./routes/cloudinary.routes');
+const aiRoutes = require('./routes/ai.routes');
 
 const app = express();
 
@@ -28,5 +29,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/cloudinary', cloudinaryRoutes);
+ app.use('/api/ai', aiRoutes);
 
 module.exports = app;
