@@ -1,4 +1,4 @@
-const { embed } = require('ai');
+const { embed, generateText } = require('ai');
 const { mistral } = require('@ai-sdk/mistral');
 const crypto = require('crypto');
 const AiKnowledge = require('../models/ai-knowledge.model');
@@ -66,7 +66,7 @@ const chat = async (req, res) => {
 
     if (!prompt || typeof prompt !== 'string') {
       return res.status(400).json({
-        error: 'Prompt requise',
+        error: 'Prompt requis',
         message: 'Veuillez fournir un prompt valide'
       });
     }
@@ -109,26 +109,43 @@ const chat = async (req, res) => {
 
     const context = searchResults.map(doc => doc.content).join('\n---\n');
 
-    const systemMessage = `Tu es Vigeo, l'assistant IA du portfolio de Lucas Dubeau. Tu vouvoies TOUJOURS
-    les utilisateurs et adoptes un style formel et professionnel. Tu réponds uniquement aux questions
-    concernant Lucas Dubeau, son profil professionnel et ce portfolio.
+    const systemMessage = `Tu es Vigeo, l'assistant IA du portfolio de Lucas Dubeau. 
+    
+    INSTRUCTION :
+    - Tu vouvoies TOUJOURS les utilisateurs
+    - Style formel et professionnel
+    - Tu réponds UNIQUEMENT aux questions sur Lucas Dubeau et son portfolio
+    - Base-toi EXCLUSIVEMENT sur le contexte fourni
+    - Si l'information n'est pas dans le contexte, réponds à l'utilisateur que tu n'as pas cette information
+    - Ne fais AUCUNE supposition ou invention d'information
+    - Sois concis et précis dans tes réponses
 
-    Voici le contexte des informations pertinentes :
-    ${context}
+    CONTEXTE : ${context}`;
 
-    Question de l'utilisateur : ${prompt}
-
-    Réponds de manière professionnelle et précise en te basant uniquement sur le contexte fourni.`;
+    const { text } = await generateText({
+      model: mistral('mistral-small-latest'),
+      temperature: 0.2,
+      messages: [
+        {
+          role: 'system',
+          content: systemMessage
+        },
+        {
+          role: 'user',
+          content: prompt
+        }
+      ]
+    });
 
     res.json({
       prompt: prompt,
-      systemMessage: systemMessage,
+      response: text,
       relevantDocuments: searchResults.map(doc => ({ source: doc.source, score: doc.score })),
-      message: 'Système de messages préparé - prêt pour génération IA'
+      threshold: threshold
     });
 
   } catch (error) {
-    console.error('Erreur lors de la génération de l\'embedding:', error);
+    console.error('Erreur lors de la génération de la réponse:', error);
     res.status(500).json({
       error: 'Erreur interne du serveur',
       message: 'Impossible de traiter le prompt'
