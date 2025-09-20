@@ -29,6 +29,6 @@ app.use('/api/auth', authRoutes);
 app.use('/api/projects', projectsRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/cloudinary', cloudinaryRoutes);
- app.use('/api/ai', aiRoutes);
+app.use('/api/ai', aiRoutes);
 
 module.exports = app;
