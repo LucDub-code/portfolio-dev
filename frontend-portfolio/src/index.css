@@ -1,23 +1,34 @@
 @import "tailwindcss";
 
 /* Importation des polices */
-@import '@fontsource/jetbrains-mono/400.css'; /* Regular */
-@import '@fontsource/jetbrains-mono/500.css'; /* Medium */
-@import '@fontsource/jetbrains-mono/600.css'; /* Semi-Bold */
-@import '@fontsource/jetbrains-mono/700.css'; /* Bold */
+@import '@fontsource/jetbrains-mono/400.css';
+/* Regular */
+@import '@fontsource/jetbrains-mono/500.css';
+/* Medium */
+@import '@fontsource/jetbrains-mono/600.css';
+/* Semi-Bold */
+@import '@fontsource/jetbrains-mono/700.css';
+/* Bold */
+
+@import "tw-animate-css";
 
 /* Reset CSS */
-*, ::before, ::after {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   font-family: "JetBrains Mono", monospace;
   width: 100%;
   height: 100%;
   overflow: hidden;
 }
 
+/* Inputs */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
@@ -25,6 +36,25 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px var(--color-bg-terminal) inset;
   -webkit-text-fill-color: var(--color-text-default);
   background-color: var(--color-bg-terminal);
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-ide);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gray-inactive);
 }
 
 /* Force le maintien des espaces dans les spans de l'éditeur de code */
@@ -39,6 +69,7 @@ span[class^="text-"] {
   --color-btn-hover: #3E3E42;
   --color-bg-terminal: #1E1E1E;
   --color-bg-ui: #252526;
+  --color-bg-chat: #151515;
 
   /* Couleurs de texte */
   --color-text-default: #D4D4D4;
@@ -91,4 +122,54 @@ span[class^="text-"] {
 
   /* Police */
   --font-mono: "JetBrains Mono", monospace;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: var(--color-bg-terminal);
+  --foreground: var(--color-text-default);
+  --primary: var(--color-blue-accent);
+  --primary-foreground: var(--color-text-selected);
+  --secondary: var(--color-bg-ui);
+  --secondary-foreground: var(--color-text-default);
+  --muted: var(--color-bg-ui);
+  --muted-foreground: var(--color-gray-inactive);
+  --accent: var(--color-btn-hover);
+  --accent-foreground: var(--color-text-default);
+  --destructive: var(--color-error-foreground);
+  --border: var(--color-border-ide);
+  --input: var(--color-border-ide);
+  --ring: var(--color-blue-accent);
+}
+
+
+@layer base {
+  * {
+    @apply outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
 }
