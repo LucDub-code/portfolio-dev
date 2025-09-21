@@ -25,7 +25,7 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
   }
 
   const statusMessages = {
-    "/": "// Cliquez sur les bugs pour les corriger",
+    "/": "// Posez votre question à Vigeo 🤖",
     "/about": "// Utilisez les onglets pour naviguer",
     "/projects": "// Découvrez mes projets et filtrez par technologie",
     "/contact": "// Utilisez ce formulaire pour me contacter",
