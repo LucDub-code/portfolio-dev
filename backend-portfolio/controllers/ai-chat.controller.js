@@ -3,9 +3,10 @@ const { mistral } = require('@ai-sdk/mistral');
 const AiKnowledge = require('../models/ai-knowledge.model');
 
 // Génération d'embeddings du prompt utilisateur
-// Recherche vectorielle dans la base de connaissances
+// Recherche vectorielle dans la base de connaissances 
+// Système d'acceptation ou de rejet des requêtes en input
 // Construction du message système 
-// Envoi au modèle et réponse stream via la ai-sdk
+// Envoi du prompt et du message systeme au modèle et réponse en stream via la ai-sdk
 
 const chat = async (req, res) => {
   try {
@@ -50,37 +51,55 @@ const chat = async (req, res) => {
         }
       }
     ]);
+    
+    const errorSystemMessage = `Tu es Vigeo, l'assistant IA du portfolio de Lucas Dubeau. 
 
+    CONTEXTE: L'utilisateur a posé une question hors sujet (non liée à Lucas Dubeau ou son portfolio).
+    
+    MISSION: Refuse poliment et redirige vers les sujets autorisés.
+
+    INSTRUCTION :
+      - Tu vouvoies TOUJOURS les utilisateurs
+      - Style formel et professionnel
+      - Explique que tu ne réponds qu'aux questions sur Lucas Dubeau et son portfolio
+      - Invite à reformuler avec une question pertinente
+      - Sois concis et précis dans tes réponses`;
+    
     const threshold = 0.895;
-
+    
     if (searchResults.length === 0 || searchResults[0].score < threshold) {
       const errorResult = await streamText({
         model: mistral('mistral-small-latest'),
-        messages: [{
-          role: 'assistant',
-          content: "Désolé, mais je ne réponds qu'aux questions concernant Lucas Dubeau, son profil professionnel et ce portfolio. Pourriez-vous reformuler votre question?"
-        }]
-      });
-      return errorResult.pipeUIMessageStreamToResponse(res);
-    }
-
-    const context = searchResults.map(doc => doc.content).join('\n---\n');
-
-    const systemMessage = `Tu es Vigeo, l'assistant IA du portfolio de Lucas Dubeau.
-
-    INSTRUCTION :
-    - Tu vouvoies TOUJOURS les utilisateurs
-    - Style formel et professionnel
-    - Tu réponds UNIQUEMENT aux questions sur Lucas Dubeau et son portfolio
-    - Base-toi EXCLUSIVEMENT sur le contexte fourni
-    - Si l'information n'est pas dans le contexte, réponds à l'utilisateur que tu n'as pas cette information
-    - Ne fais AUCUNE supposition ou invention d'information
-    - Sois concis et précis dans tes réponses
-
-    CONTEXTE : ${context}`;
-
-    const result = await streamText({
-      model: mistral('mistral-small-latest'),
+        messages: [
+          {
+            role: 'system',
+            content: errorSystemMessage
+          },
+          {
+            role: 'user',
+            content: `Question hors sujet à refuser : "${prompt}"`
+          }]
+        });
+        return errorResult.pipeUIMessageStreamToResponse(res);
+      }
+      
+      const context = searchResults.map(doc => doc.content).join('\n---\n');
+      
+      const systemMessage = `Tu es Vigeo, l'assistant IA du portfolio de Lucas Dubeau.
+      
+      INSTRUCTION :
+      - Tu vouvoies TOUJOURS les utilisateurs
+      - Style formel et professionnel
+      - Tu réponds UNIQUEMENT aux questions sur Lucas Dubeau et son portfolio
+      - Base-toi EXCLUSIVEMENT sur le contexte fourni
+      - Si l'information n'est pas dans le contexte, réponds à l'utilisateur que tu n'as pas cette information
+      - Ne fais AUCUNE supposition ou invention d'information
+      - Sois concis et précis dans tes réponses
+      
+      CONTEXTE : ${context}`;
+      
+      const result = await streamText({
+        model: mistral('mistral-small-latest'),
       temperature: 0.2,
       messages: [
         {
@@ -93,7 +112,6 @@ const chat = async (req, res) => {
         }
       ]
     });
-
     return result.pipeUIMessageStreamToResponse(res);
 
   } catch (error) {
