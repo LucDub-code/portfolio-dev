@@ -34,6 +34,8 @@ const rebuildEmbeddings = async (req, res) => {
         { source: data.source },
         {
           content: data.content,
+          questions: data.questions,
+          keywords: data.keywords,
           source: data.source,
           embedding: embedding,
           content_hash: contentHash
