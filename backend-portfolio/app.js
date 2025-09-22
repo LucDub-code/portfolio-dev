@@ -22,7 +22,7 @@ app.use(express.json());
 
 app.use(cors({
   origin: ['http://localhost:5173', 'https://lucasdubeau.dev'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE']
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 }));
 
 app.use('/api/auth', authRoutes);
