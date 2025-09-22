@@ -58,109 +58,109 @@
 
 /* Animation spécifique pour chaque ligne avec des délais ACCÉLÉRÉS x2 */
 .typing-line-1::before {
-  animation: typewriter-mask 0.15s steps(20) 0.025s forwards;
+  animation: typewriter-mask 0.15s steps(20) 0.05s forwards;
   width: 100%;
 }
 
 .typing-line-3::before {
-  animation: typewriter-mask 0.15s steps(30) 0.175s forwards;
+  animation: typewriter-mask 0.15s steps(30) 0.2s forwards;
   width: 100%;
 }
 
 .typing-line-5::before {
-  animation: typewriter-mask 0.125s steps(20) 0.375s forwards;
+  animation: typewriter-mask 0.15s steps(20) 0.35s forwards;
   width: 100%;
 }
 
 .typing-line-6::before {
-  animation: typewriter-mask 0.125s steps(20) 0.5s forwards;
+  animation: typewriter-mask 0.15s steps(20) 0.5s forwards;
   width: 100%;
 }
 
 .typing-line-7::before {
-  animation: typewriter-mask 0.15s steps(25) 0.6s forwards;
+  animation: typewriter-mask 0.15s steps(25) 0.65s forwards;
   width: 100%;
 }
 
 .typing-line-8::before {
-  animation: typewriter-mask 0.2s steps(40) 0.75s forwards;
+  animation: typewriter-mask 0.2s steps(40) 0.8s forwards;
   width: 100%;
 }
 
 .typing-line-9::before {
-  animation: typewriter-mask 0.125s steps(28) 0.95s forwards;
+  animation: typewriter-mask 0.15s steps(28) 0.95s forwards;
   width: 100%;
 }
 
 .typing-line-10::before {
-  animation: typewriter-mask 0.125s steps(20) 1.075s forwards;
+  animation: typewriter-mask 0.15s steps(20) 1.1s forwards;
   width: 100%;
 }
 
 .typing-line-11::before {
-  animation: typewriter-mask 0.05s steps(3) 1.15s forwards;
+  animation: typewriter-mask 0.1s steps(3) 1.25s forwards;
   width: 100%;
 }
 
 .typing-line-13::before {
-  animation: typewriter-mask 0.175s steps(30) 1.2s forwards;
-  width: 100%;
-}
-
-.typing-line-14::before {
-  animation: typewriter-mask 0.15s steps(25) 1.3s forwards;
+  animation: typewriter-mask 0.175s steps(30) 1.4s forwards;
   width: 100%;
 }
 
 .typing-line-15::before {
-  animation: typewriter-mask 0.2s steps(35) 1.45s forwards;
-  width: 100%;
-}
-
-.typing-line-16::before {
-  animation: typewriter-mask 0.2s steps(30) 1.65s forwards;
+  animation: typewriter-mask 0.2s steps(25) 1.55s forwards;
   width: 100%;
 }
 
 .typing-line-17::before {
-  animation: typewriter-mask 0.2s steps(38) 1.8s forwards;
+  animation: typewriter-mask 0.15s steps(35) 1.7s forwards;
   width: 100%;
 }
 
 .typing-line-18::before {
-  animation: typewriter-mask 0.2s steps(38) 2s forwards;
+  animation: typewriter-mask 0.15s steps(30) 1.85s forwards;
   width: 100%;
 }
 
 .typing-line-19::before {
-  animation: typewriter-mask 0.1s steps(15) 2.15s forwards;
-  width: 100%; 
+  animation: typewriter-mask 0.15s steps(38) 2s forwards;
+  width: 100%;
 }
 
 .typing-line-20::before {
-  animation: typewriter-mask 0.075s steps(15) 2.25s forwards;
+  animation: typewriter-mask 0.2s steps(38) 2.15s forwards;
   width: 100%;
 }
 
 .typing-line-21::before {
-  animation: typewriter-mask 0.05s steps(5) 2.325s forwards;
-  width: 100%;
+  animation: typewriter-mask 0.2s steps(15) 2.3s forwards;
+  width: 100%; 
 }
 
 .typing-line-22::before {
-  animation: typewriter-mask 0.05s steps(3) 2.375s forwards;
+  animation: typewriter-mask 0.2s steps(15) 2.45s forwards;
+  width: 100%;
+}
+
+.typing-line-23::before {
+  animation: typewriter-mask 0.1s steps(5) 2.6s forwards;
+  width: 100%;
+}
+
+.typing-line-24::before {
+  animation: typewriter-mask 0.1s steps(3) 2.75s forwards;
   width: 100%;
 }
 
 /* Animation du curseur pour la dernière ligne après la fin de l'animation */
-.typing-line-22::after {
+.typing-line-24::after {
   visibility: visible; 
   opacity: 0; 
-  animation: blink 0.8s 2.425s infinite; 
+  animation: blink 1s 3s infinite; 
   right: -5px; 
 }
 
 /* Ajoute un espace supplémentaire après le dernier caractère */
-.typing-line-22 {
+.typing-line-24 {
   padding-right: 5px;
 }

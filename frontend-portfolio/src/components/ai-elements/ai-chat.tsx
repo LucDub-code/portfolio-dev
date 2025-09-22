@@ -50,7 +50,7 @@ const AiChat = () => {
           {messages.length === 0 ? (
             <ConversationEmptyState
               icon={<MessageSquare className="size-12" />}
-              title="Démarrer une conversation"
+              title="Démarrez une conversation"
               description="Tapez votre message dans le champ ci-dessous"
             />
           ) : (
