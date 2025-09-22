@@ -17,21 +17,28 @@ import {
   PromptInput,
   PromptInputTextarea,
   PromptInputSubmit,
+  PromptInputMessage,
 } from './prompt-input';
 import { MessageSquare } from 'lucide-react';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useChat } from '@ai-sdk/react';
+import { DefaultChatTransport } from 'ai';
 
 const AiChat = () => {
 
-  const [input, setInput] = useState('');
-  const { messages, sendMessage, status } = useChat();
+  const [inputValue, setInputValue] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (input.trim()) {
-      sendMessage({ text: input });
-      setInput('');
+  const { messages, sendMessage, status } = useChat({
+    transport: new DefaultChatTransport({
+      api: 'http://localhost:3000/api/ai/chat',
+    }),
+  });
+
+  const handleSubmit = (message: PromptInputMessage, event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (message.text?.trim()) {
+      sendMessage({ text: message.text });
+      setInputValue('');
     }
   };
 
@@ -39,12 +46,12 @@ const AiChat = () => {
     <div className="w-full h-full flex flex-col gap-4 p-8 relative rounded-lg border bg-bg-chat
   border-border-ide">
       <Conversation>
-      <ConversationContent>
+        <ConversationContent>
           {messages.length === 0 ? (
             <ConversationEmptyState
               icon={<MessageSquare className="size-12" />}
               title="Démarrer une conversation"
-              description="Tapez votre message pour commencer à discuter"
+              description="Tapez votre message dans le champ ci-dessous"
             />
           ) : (
             messages.map((message) => (
@@ -56,7 +63,7 @@ const AiChat = () => {
                 <MessageContent>
                   {message.parts.map((part: any, i: number) => {
                     switch (part.type) {
-                      case 'text': // we don't use any reasoning or tool calls in this example
+                      case 'text':
                         return (
                           <div key={`${message.id}-${i}`}>
                             {part.text}
@@ -75,10 +82,14 @@ const AiChat = () => {
       </Conversation>
 
       <PromptInput onSubmit={handleSubmit}>
-        <PromptInputTextarea value={input} onChange={(e) => setInput(e.currentTarget.value)} />
+        <PromptInputTextarea
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
         <PromptInputSubmit
           status={status === 'streaming' ? 'streaming' : 'ready'}
-          disabled={!input.trim()} />
+          disabled={!inputValue.trim()}
+        />
       </PromptInput>
     </div>
   );
