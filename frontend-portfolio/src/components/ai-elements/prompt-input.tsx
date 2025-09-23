@@ -31,7 +31,7 @@ export type PromptInputProps = Omit<
 };
 
 export const PromptInput = ({
-  className="mt-4 max-[425px]:mt-2 w-full max-w-2xl mx-auto relative min-h-18 max-[425px]:min-h-auto pb-2",
+  className="mt-4 max-[425px]:mt-2 w-full max-w-2xl mx-auto relative min-h-18 max-[425px]:min-h-auto",
   onSubmit,
   ...props
 }: PromptInputProps) => {
@@ -43,7 +43,7 @@ export const PromptInput = ({
   return (
     <form
       className={cn(
-        "w-full divide-y overflow-hidden rounded-xl border border-border-ide focus-within:border-blue-accent bg-bg-ui shadow-sm pr-12",
+        "w-full divide-y overflow-hidden rounded-xl border border-border-ide focus-within:border-blue-accent bg-bg-ui shadow-sm pr-12 pt-3 pb-1 max-[425px]:pb-0 pl-3",
         className
       )}
       onSubmit={handleSubmit}
@@ -94,7 +94,7 @@ export type PromptInputSubmitProps = ComponentProps<typeof Button> & {
 };
 
 export const PromptInputSubmit = ({
-  className="absolute bottom-1 right-1",
+  className="absolute bottom-1 max-[425px]:bottom-0 max-[425px]:top-1/2 max-[425px]:-translate-y-1/2 right-1",
   status,
   children,
   ...props

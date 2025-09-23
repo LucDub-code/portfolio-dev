@@ -9,6 +9,7 @@ import { useAuth } from "../../contexts/AuthContext";
 
 export default function Layout({ children }) {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1060);
+  const [isSmallMobile, setIsSmallMobile] = useState(window.innerWidth <= 425);
   const [isLargeHeight, setIsLargeHeight] = useState(window.innerHeight > 950);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -20,6 +21,7 @@ export default function Layout({ children }) {
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1060);
+      setIsSmallMobile(window.innerWidth <= 425);
       setIsLargeHeight(window.innerHeight > 950);
     };
 
@@ -37,7 +39,8 @@ export default function Layout({ children }) {
         {!isMobile && <SideMenu />}
 
         <div className="flex flex-col flex-1 overflow-hidden">
-          {(!isMobile || location.pathname === "/") &&
+          {(!isSmallMobile) &&
+            ((!isMobile) || isHomePage) &&
             !(location.pathname === "/admin" && authLoading) && <FileHeader />}
 
           <div className="flex-1 overflow-auto">{children}</div>
