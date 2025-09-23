@@ -43,7 +43,7 @@ const AiChat = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 max-[425px]:gap-2 p-8 max-[425px]:p-4 relative rounded-lg border bg-bg-chat
+    <div className="w-full h-full flex flex-col gap-4 max-[425px]:gap-0 px-8 py-8 max-[425px]:px-4 max-[425px]:py-2 relative rounded-lg border bg-bg-chat
   border-border-ide">
       <Conversation>
         <ConversationContent>
@@ -51,7 +51,7 @@ const AiChat = () => {
             <ConversationEmptyState
               icon={<MessageSquare className="size-12" />}
               title="Démarrez une conversation"
-              description="Tapez votre message dans le champ ci-dessous"
+              description="Posez votre question"
             />
           ) : (
             messages.map((message) => (
