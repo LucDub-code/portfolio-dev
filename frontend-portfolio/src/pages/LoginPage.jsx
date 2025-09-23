@@ -42,7 +42,7 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col h-full">
       {/* En-tête mobile */}
-      <div className="hidden max-[1060px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
+      <div className="hidden max-[1060px]:flex items-center px-3 py-2 h10 bg-bg-terminal border-b border-border-ide">
         <img src={chevronDown} alt="Chevron" className="mr-2 w-4 h-4" />
         <img src={loginIcon} alt="Dossier" className="mr-2 w-5 h-5" />
         <span className="text-base text-text-default">_login.html</span>

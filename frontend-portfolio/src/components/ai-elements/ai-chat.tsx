@@ -43,7 +43,7 @@ const AiChat = () => {
   };
 
   return (
-    <div className="w-full h-full flex flex-col gap-4 p-8 relative rounded-lg border bg-bg-chat
+    <div className="w-full h-full flex flex-col gap-4 max-[425px]:gap-2 p-8 max-[425px]:p-4 relative rounded-lg border bg-bg-chat
   border-border-ide">
       <Conversation>
         <ConversationContent>

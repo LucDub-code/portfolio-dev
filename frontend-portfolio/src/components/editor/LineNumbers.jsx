@@ -1,5 +1,5 @@
 export default function LineNumbers() {
-  const lineCount = 24;
+  const lineCount = 22;
 
   return (
     <div className="w-10 pt-1 pb-1 text-right pr-3 text-line-number select-none text-xs max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] sm:text-sm tracking-wide">

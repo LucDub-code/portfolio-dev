@@ -31,7 +31,7 @@ export type PromptInputProps = Omit<
 };
 
 export const PromptInput = ({
-  className="mt-4 w-full max-w-2xl mx-auto relative min-h-18",
+  className="mt-4 max-[425px]:mt-2 w-full max-w-2xl mx-auto relative min-h-18 max-[425px]:min-h-auto pb-2",
   onSubmit,
   ...props
 }: PromptInputProps) => {
@@ -43,7 +43,7 @@ export const PromptInput = ({
   return (
     <form
       className={cn(
-        "w-full divide-y overflow-hidden rounded-xl border border-border-ide focus-within:border-blue-accent bg-bg-ui shadow-sm",
+        "w-full divide-y overflow-hidden rounded-xl border border-border-ide focus-within:border-blue-accent bg-bg-ui shadow-sm pr-12",
         className
       )}
       onSubmit={handleSubmit}

@@ -13,7 +13,7 @@ export default function MobileMenu({ onClose }) {
   };
 
   return (
-    <div className="flex fixed inset-0 top-12 z-40 flex-col">
+    <div className="flex fixed inset-0 top-12 max-[425px]:top-10 z-40 flex-col">
       <div className="w-full bg-bg-terminal shrink-0">
         {Object.values(pagesData)
           .filter(page => pageRoutes[page.id])
@@ -25,7 +25,7 @@ export default function MobileMenu({ onClose }) {
               to={route}
               onClick={onClose} 
               className={({ isActive }) =>
-                `flex items-center p-3 border-b border-border-ide cursor-pointer ${
+                `flex items-center p-3 h-10 border-b border-border-ide cursor-pointer ${
                   isActive ? "bg-slate-800" : ""
                 }`
               }
