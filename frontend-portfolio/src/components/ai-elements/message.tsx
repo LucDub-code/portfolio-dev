@@ -14,7 +14,7 @@ export type MessageProps = HTMLAttributes<HTMLDivElement> & {
 export const Message = ({ className, from, ...props }: MessageProps) => (
   <div
     className={cn(
-      "group flex w-full items-end justify-end gap-4 py-4",
+      "group flex w-full items-end justify-end gap-4 py-4 max-[425px]:py-2",
       from === "user" ? "is-user" : "is-assistant flex-row-reverse justify-end",
       className
     )}
@@ -31,7 +31,7 @@ export const MessageContent = ({
 }: MessageContentProps) => (
   <div
     className={cn(
-      "flex flex-col gap-2 overflow-hidden rounded-lg text-sm max-[425px]:text-[0.7rem] max-[320px]:text-[0.5rem] max-w-[80%] px-4 py-3",
+      "flex flex-col gap-2 overflow-hidden rounded-lg text-sm max-[425px]:text-[0.7rem] max-[320px]:text-[0.5rem] max-w-[80%] px-4 max-[425px]:px-3 py-3 max-[425px]:py-2",
       "group-[.is-user]:bg-primary group-[.is-user]:text-primary-foreground",
       "group-[.is-assistant]:bg-secondary group-[.is-assistant]:text-foreground",
       className
@@ -53,7 +53,7 @@ export const MessageAvatar = ({
   className,
   ...props
 }: MessageAvatarProps) => (
-  <Avatar className={cn("size-10 ring-1 ring-border", className)} {...props}>
+  <Avatar className={cn("size-10 max-[425px]:size-8 ring-1 ring-border", className)} {...props}>
     <AvatarImage alt="" className="mt-0 mb-0" src={src} />
     <AvatarFallback>{name?.slice(0, 2) || "ME"}</AvatarFallback>
   </Avatar>
