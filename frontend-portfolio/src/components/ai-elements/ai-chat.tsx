@@ -58,7 +58,7 @@ const AiChat = () => {
               <Message from={message.role} key={message.id}>
                 <MessageAvatar
                   src={message.role === 'user' ? userAvatar : aiAvatar}
-                  name={message.role === 'user' ? 'You' : 'AI'}
+                  name={message.role === 'user' ? 'Vous' : 'Vigeo'}
                 />
                 <MessageContent>
                   {message.parts.map((part: any, i: number) => {

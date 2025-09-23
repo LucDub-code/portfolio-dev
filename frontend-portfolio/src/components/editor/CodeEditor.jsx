@@ -24,7 +24,7 @@ export default function CodeEditor() {
 
   // On garantit exactement 22 lignes pour correspondre au LineNumbers
   return (
-    <div className="flex-1 pl-1 max-[425px]:pl-0 pt-1 max-[425px]:pt-1.5 pb-1">
+    <div className="flex-1 pl-1 max-[770px]:pl-0 pt-1 max-[425px]:pt-1.5 pb-1">
       {/* Ligne 1 */}
       <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-1">
         <span className="text-blue-attr">console</span>
@@ -69,27 +69,27 @@ export default function CodeEditor() {
         <span className="text-blue-attr">frontendSkills: </span>
         <span className="text-pink-keyword">{"["}</span>
         <span className="inline-flex items-center">
-          <img src={gitIcon} alt="Git" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={gitIcon} alt="Git" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-text-default mx-0.5">,</span>
-          <img src={figmaIcon} alt="Figma" className="h-4 w-3 sm:h-5 sm:w-4" />
+          <img src={figmaIcon} alt="Figma" className="h-4 w-3 max-[425px]:h-5 max-[425px]:w-4" />
           <span className="text-text-default mx-0.5">,</span>
-          <img src={htmlIcon} alt="HTML" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={htmlIcon} alt="HTML" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-text-default mx-0.5">,</span>
-          <img src={cssIcon} alt="CSS" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={cssIcon} alt="CSS" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-text-default mx-0.5">,</span>
           <img
             src={jsIcon}
             alt="JavaScript"
-            className="h-3 w-3 sm:h-4 sm:w-4"
+            className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4"
           />
           <span className="text-text-default mx-0.5">,</span>
           <img
             src={tailwindIcon}
             alt="Tailwind"
-            className="h-3 w-3 sm:h-4 sm:w-4"
+            className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4"
           />
           <span className="text-text-default mx-0.5">,</span>
-          <img src={reactIcon} alt="React" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={reactIcon} alt="React" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-pink-keyword">{"]"}</span>
           <span className="text-text-default">,</span>
         </span>
@@ -99,11 +99,11 @@ export default function CodeEditor() {
         <span className="text-blue-attr">backendSkills: </span>
         <span className="text-pink-keyword">{"["}</span>
         <span className="inline-flex items-center">
-          <img src={nodeIcon} alt="Node.js" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={nodeIcon} alt="Node.js" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-text-default mx-0.5">,</span>
-          <img src={expressIcon} alt="Express" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={expressIcon} alt="Express" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-text-default mx-0.5">,</span>
-          <img src={mongodbIcon} alt="MongoDB" className="h-3 w-3 sm:h-4 sm:w-4" />
+          <img src={mongodbIcon} alt="MongoDB" className="h-3 w-3 max-[425px]:h-4 max-[425px]:w-4" />
           <span className="text-pink-keyword">{"]"}</span>
           <span className="text-text-default">,</span>
         </span>

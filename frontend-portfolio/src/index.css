@@ -41,21 +41,23 @@ input:-webkit-autofill:active {
 /* Scrollbar */
 
 ::-webkit-scrollbar {
-  width: 6px;
-}
+    width: 12px;
+  }
 
-::-webkit-scrollbar-track {
-  background: transparent;
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-border-ide);
-  border-radius: 3px;
-}
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-ide);
+    border-radius: 6px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-gray-inactive);
-}
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gray-inactive);
+  }
 
 /* Force le maintien des espaces dans les spans de l'éditeur de code */
 span[class^="text-"] {

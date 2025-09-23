@@ -2,7 +2,7 @@ export default function LineNumbers() {
   const lineCount = 20;
 
   return (
-    <div className="w-10 pt-1 pb-1 max-[425px]:pt-1.5 text-right pr-3 text-line-number select-none text-xs max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] sm:text-sm tracking-wide">
+    <div className="w-10 max-[770px]:w-9 pt-1 pb-1 max-[425px]:pt-1.5 text-center pr-3 max-[430px]:pr-1.5 text-line-number select-none text-xs max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] sm:text-sm tracking-wide">
       {Array.from({ length: lineCount }, (_, index) => (
         <div
           key={index + 1}
