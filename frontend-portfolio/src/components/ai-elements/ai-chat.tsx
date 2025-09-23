@@ -30,7 +30,7 @@ const AiChat = () => {
 
   const { messages, sendMessage, status } = useChat({
     transport: new DefaultChatTransport({
-      api: 'http://localhost:3000/api/ai/chat',
+      api: 'https://lucdub-code-portfolio-dev.fly.dev/api/ai/chat',
     }),
   });
 
