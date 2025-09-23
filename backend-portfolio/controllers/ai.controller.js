@@ -2,7 +2,13 @@ const { embed } = require('ai');
 const { mistral } = require('@ai-sdk/mistral');
 const crypto = require('crypto');
 const AiKnowledge = require('../models/ai-knowledge.model');
-const knowledgeData = require('../ai_knowledge/ai_knowledge');
+
+let knowledgeData;
+try {
+  knowledgeData = require('../ai_knowledge/ai_knowledge');
+} catch (error) {
+  knowledgeData = null;
+}
 
 // Controller de peuplement de la base de données avec des embeddings recalculés
 
@@ -13,6 +19,13 @@ const calculateContentHash = (content) => {
 const rebuildEmbeddings = async (req, res) => {
 
   try {
+    if (!knowledgeData) {
+      return res.status(503).json({
+        error: 'Service non disponible',
+        message: 'Reconstruction des embeddings disponible uniquement en environnement local'
+      });
+    }
+
     let processedCount = 0;
 
     for (const data of knowledgeData) {
