@@ -25,7 +25,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   };
 
   return (
-    <div className="border-b border-border-ide w-full bg-bg-terminal text-text-default flex items-center h-12">
+    <div className="border-b border-border-ide w-full bg-bg-terminal text-text-default flex items-center h-12 max-[425px]:h-10">
       <div
         className={`w-50 min-w-50 max-w-50 overflow-hidden ${
           !isMobile ? "border-r border-border-ide" : ""

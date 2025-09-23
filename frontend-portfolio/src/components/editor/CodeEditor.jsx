@@ -139,58 +139,49 @@ export default function CodeEditor() {
         <span className="text-text-default">;</span>
       </div>
       {/* Ligne 16 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center"></div>
-      {/* Ligne 17 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-17">
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-16">
         <span className="text-blue-html">function </span>
         <span className="text-gold-function">discoverMyWorld</span>
         <span className="text-syntax-punctuation">{"() {"}</span>
       </div>
-      {/* Ligne 18 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-18">
+      {/* Ligne 17 */}
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-17">
         <span className="text-pink-keyword">return </span>
         <span className="text-blue-html">new </span>
         <span className="text-green-class">AI_Assistant</span>
         <span className="text-pink-keyword">{"("}</span>
         <span className="text-blue-html">{"{"}</span>
       </div>
-      {/* Ligne 19 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-19">
+      {/* Ligne 18 */}
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-18">
         <span className="text-blue-attr">name: </span>
         <span className="text-orange-string">
           "Vigeo 🤖"
         </span>
         <span className="text-text-default">,</span>
       </div>
-      {/* Ligne 20 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-20">
+      {/* Ligne 19 */}
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-19">
         <span className="text-blue-attr">mission: </span>
         <span className="text-orange-string">
           "Répondre à vos questions sur 
         </span>
       </div>
-      {/* Ligne 21 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-21">
+      {/* Ligne 20 */}
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-20">
         <span className="text-orange-string">
           mon parcours, mes passions et mes projets."
         </span>
         <span className="text-text-default">,</span>
       </div>
-      {/* Ligne 22 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-22">
-        <span className="text-blue-attr">status: </span>
-        <span className="text-orange-string">
-          "🟢 En ligne et prêt à vous aider !"
-        </span>
-      </div>
-      {/* Ligne 23 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-23">
+      {/* Ligne 21 */}
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-21">
         <span className="text-blue-html">{"}"}</span>
         <span className="text-pink-keyword">{")"}</span>
         <span className="text-text-default">;</span>
       </div>
-      {/* Ligne 24 */}
-      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-24">
+      {/* Ligne 22 */}
+      <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-22">
         <span className="text-syntax-punctuation">{"}"}</span>
       </div>
     </div>

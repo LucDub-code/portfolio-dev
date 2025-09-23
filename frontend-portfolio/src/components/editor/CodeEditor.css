@@ -112,48 +112,43 @@
   width: 100%;
 }
 
-.typing-line-17::before {
+.typing-line-16::before {
   animation: typewriter-mask 0.15s steps(35) 1.7s forwards;
   width: 100%;
 }
 
-.typing-line-18::before {
+.typing-line-17::before {
   animation: typewriter-mask 0.15s steps(30) 1.85s forwards;
   width: 100%;
 }
 
-.typing-line-19::before {
+.typing-line-18::before {
   animation: typewriter-mask 0.15s steps(38) 2s forwards;
   width: 100%;
 }
 
-.typing-line-20::before {
+.typing-line-19::before {
   animation: typewriter-mask 0.2s steps(38) 2.15s forwards;
   width: 100%;
 }
 
-.typing-line-21::before {
+.typing-line-20::before {
   animation: typewriter-mask 0.2s steps(15) 2.3s forwards;
   width: 100%; 
 }
 
-.typing-line-22::before {
+.typing-line-21::before {
   animation: typewriter-mask 0.2s steps(15) 2.45s forwards;
   width: 100%;
 }
 
-.typing-line-23::before {
+.typing-line-22::before {
   animation: typewriter-mask 0.1s steps(5) 2.6s forwards;
   width: 100%;
 }
 
-.typing-line-24::before {
-  animation: typewriter-mask 0.1s steps(3) 2.75s forwards;
-  width: 100%;
-}
-
 /* Animation du curseur pour la dernière ligne après la fin de l'animation */
-.typing-line-24::after {
+.typing-line-22::after {
   visibility: visible; 
   opacity: 0; 
   animation: blink 1s 3s infinite; 
@@ -161,6 +156,6 @@
 }
 
 /* Ajoute un espace supplémentaire après le dernier caractère */
-.typing-line-24 {
+.typing-line-22 {
   padding-right: 5px;
 }
