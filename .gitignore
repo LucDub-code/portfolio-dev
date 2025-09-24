@@ -14,7 +14,7 @@ npm-debug.log*
 
 # IDE and editor files
 .vscode/
-.idea/
+.claude/
 .DS_Store
 
 # Deployment
