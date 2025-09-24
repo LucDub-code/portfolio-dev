@@ -24,10 +24,18 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
     return null;
   }
 
+  const hideOnRoutes = ['/login', '/admin'];
+  if (hideOnRoutes.some(route => location.pathname.startsWith(route))) {
+    return null;
+  }
+
   const statusMessages = {
     "/": "// Posez votre question à Vigeo 🤖",
     "/about": "// Utilisez les onglets pour naviguer",
-    "/projects": "// Découvrez mes projets et filtrez par technologie",
+    "/about/bio": "// Utilisez les onglets pour naviguer",
+    "/about/interets": "// Utilisez les onglets pour naviguer",
+    "/about/education": "// Utilisez les onglets pour naviguer",
+    "/projects": "// Découvrez mes projets, filtrez",
     "/contact": "// Utilisez ce formulaire pour me contacter",
   };
 
