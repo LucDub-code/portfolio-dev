@@ -24,6 +24,7 @@
     "clsx": "^2.1.1",
     "lottie-react": "^2.4.1",
     "lucide-react": "^0.544.0",
+    "motion": "^12.23.22",
     "nanoid": "^5.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

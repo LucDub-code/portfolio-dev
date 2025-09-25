@@ -30,7 +30,7 @@ export default function EducationContent({ isActive = false }) {
                              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">Stack technique maîtrisée</h2>'
             )
             .typeString(
-                             `<h3 class="inline text-blue-html mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">- Frontend </h3><p class="inline mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">: HTML, CSS, JavaScript, React, Tailwind CSS</p><br />`
+                             `<h3 class="inline text-blue-html mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">- Frontend </h3><p class="inline mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">: HTML, CSS, JavaScript, React, Sass, Tailwind CSS</p><br />`
             )
             .typeString(
                              `<h3 class="inline text-blue-html mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">- Backend </h3><p class="inline mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">: Node.js, Express, MongoDB</p><br />`
