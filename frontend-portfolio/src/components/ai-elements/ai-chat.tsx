@@ -51,7 +51,7 @@ const AiChat = () => {
             <ConversationEmptyState
               icon={<MessageSquare className="size-12" />}
               title="Démarrez une conversation"
-              description="Posez votre question"
+              description="Posez votre question à Vigeo 🤖"
             />
           ) : (
             messages.map((message) => (

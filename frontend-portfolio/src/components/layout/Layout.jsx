@@ -1,7 +1,7 @@
 import Header from "./Header";
 import Footer from "./Footer";
 import SideMenu from "./SideMenu";
-import StatusBar from "../statusBar/StatusBar";
+import StatusBar from "./StatusBar";
 import FileHeader from "../editor/FileHeader";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
             !(location.pathname === "/admin" && authLoading) && <FileHeader />}
 
           <div className="flex-1 overflow-auto">{children}</div>
-
+          
           <StatusBar isMobileMenuOpen={isMobileMenuOpen} />
         </div>
       </div>

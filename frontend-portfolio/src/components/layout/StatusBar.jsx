@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { TextLoop } from "../ui/text-loop";
 
 export default function StatusBar({ isMobileMenuOpen = false }) {
   const location = useLocation();
@@ -29,16 +30,6 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
     return null;
   }
 
-  const statusMessages = {
-    "/": "// Posez votre question à Vigeo 🤖",
-    "/about": "// Utilisez les onglets pour naviguer",
-    "/about/bio": "// Utilisez les onglets pour naviguer",
-    "/about/interets": "// Utilisez les onglets pour naviguer",
-    "/about/education": "// Utilisez les onglets pour naviguer",
-    "/projects": "// Découvrez mes projets, filtrez",
-    "/contact": "// Utilisez ce formulaire pour me contacter",
-  };
-
   const getTextClass = () => {
     if (isTinyScreen) return "text-[0.55rem]";
     if (isVerySmall) return "text-[0.625rem]";
@@ -57,9 +48,14 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
 
   return (
     <div
-      className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center ${getTextClass()} ${getPositionClass()}`}
+      className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center overflow-hidden ${getTextClass()} ${getPositionClass()}`}
     >
-      {statusMessages[location.pathname] || statusMessages["/"]}
+      <TextLoop interval={4}>
+        <span>💼 Missions freelance et postes développeur web</span>
+        <span>📍 Basé Sète (50km) • Télétravail et remote acceptés</span>
+        <span>🌍 Ouvert à la mobilité géographique</span>
+        <span>💰 Prétentions alignées marché junior</span>
+      </TextLoop>
     </div>
   );
 }
