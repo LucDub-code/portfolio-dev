@@ -10,37 +10,25 @@ export default function InteretsContent({ isActive = false }) {
         onInit={(typewriter) => {
           typewriter
             .typeString(
-              '<h1 class="text-blue-html text-xl max-[770px]:text-lg max-[425px]:text-base font-semibold mb-4">Les passions d\'un développeur junior</h1>'
+              "<h1 class=\"text-blue-html text-xl max-[770px]:text-lg max-[425px]:text-base font-semibold mb-4\">Centres d'intérêt</h1>"
             )
             .typeString(
-              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">Le code comme nouvelle partition</h2>'
+              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">Développement web et veille technologique</h2>'
             )
             .typeString(
-              "<p class=\"mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm\">Après des années à composer des morceaux sur ma guitare, j'ai troqué les cordes pour les lignes de code. Étrangement, je retrouve dans le développement web la même satisfaction qu'en musique : créer quelque chose à partir de rien, structurer, harmoniser, et parfois même improviser.</p>"
+              '<p class="mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Curieux de nature, j’aime consacrer du temps à ma veille technologique et à explorer les innovations dans les domaines du développement web et de l’intelligence artificielle. Lire des articles techniques, la documentation, regarder des tutoriels.</p>'
             )
             .typeString(
-              '<p class="mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Le HTML et le CSS sont mes nouveaux instruments de base, JavaScript mon amplificateur, et React et Tailwind mes pédales d\'effets préférées.</p>'
+              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">Intelligence artificielle appliquée</h2>'
             )
             .typeString(
-              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">Veille technologique : ma nouvelle playlist</h2>'
+              "<p class=\"mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm\">L'IA est mon terrain de jeu technologique. J'expérimente avec les LLM, les modèles de génération d'images en local. J'utilise des agents de code et crée des workflows d'automatisation. Je suis convaincu que l’évolution du web passera par l’intégration de ces innovations. L’assistant IA intégré à ce portfolio illustre parfaitement mon désir de maîtriser ces technologies afin de les intégrer à mes projets.</p>"
             )
             .typeString(
-              '<p class="mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Autrefois, je passais des heures à découvrir de nouveaux groupes et albums. Aujourd\'hui, je fais défiler les articles techniques et tutoriels avec la même avidité.</p>'
+              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">Musique et créativité</h2>'
             )
             .typeString(
-              '<p class="mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Ma liste de lecture ne contient plus des titres d\'albums mais des noms de frameworks, mes artistes préférés sont devenus des développeurs partageant leur expertise. Même passion, nouveau médium.</p>'
-            )
-            .typeString(
-              '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-3">L\'exploration au-delà du code</h2>'
-            )
-            .typeString(
-              "<p class=\"mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm\">Quand je ne suis pas en train de coder, je plonge dans l'univers fascinant de l'intelligence artificielle. Expérimenter avec des LLM en local ou générer des images est devenu mon terrain de jeu technologique - comme un laboratoire personnel où je tente de comprendre les outils qui redéfinissent notre monde.</p>"
-            )
-            .typeString(
-              "<p class=\"mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm\">Cette curiosité s'étend à la littérature, qui me permet de façonner ma pensée, tout comme les langages de programmation structurent ma logique. Entre deux lignes de code, je m'échappe dans des pages qui ont traversé le temps, ou dans des podcasts qui nourrissent la réflexion.</p>"
-            )
-            .typeString(
-              '<p class="mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Côté sport, malgré un passé assez actif, force est de constater que ma souris et mon clavier ont pris le pas sur mes haltères ces derniers temps. Mais si je revenais à la salle avec la même intensité que j\'ai mise à apprendre React, je serais probablement qualifié pour les JO 2028. En attendant, mon seul exercice consiste à sprinter entre le bureau et la cafetière.</p>'
+              '<p class="mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Je suis guitariste et j\'aime produire de la musique sur mon temps libre. Mon passé de technicien son m\'a donné certaines aptitudes dans ce domaine. Ma pratique musicale développe ma créativité et m’aide à stimuler mon imagination dans tout ce que j’entreprends.</p>'
             )
             .start();
         }}
