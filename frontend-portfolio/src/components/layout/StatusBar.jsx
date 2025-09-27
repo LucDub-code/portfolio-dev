@@ -50,7 +50,7 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
     <div
       className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center overflow-hidden ${getTextClass()} ${getPositionClass()}`}
     >
-      <TextLoop interval={4}>
+      <TextLoop interval={3}>
         <span>💼 Missions freelance et postes développeur web</span>
         <span>📍 Basé Sète (50km) • Télétravail et remote acceptés</span>
         <span>🌍 Ouvert à la mobilité géographique</span>
