@@ -60,7 +60,7 @@ export default function EducationContent({ isActive = false }) {
                              `<span class="inline text-blue-html mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">- </span><p class="inline mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">DUT Carrières Sociales</p><br />`
             )
             .typeString(
-                             `<span class="inline text-blue-html mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">- </span><p class="inline mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">DUT Carrières Sociales</p><br />`
+                             `<span class="inline text-blue-html mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">- </span><p class="inline mb-4 min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Baccalauréat littéraire</p><br />`
             )
             .start();
         }}

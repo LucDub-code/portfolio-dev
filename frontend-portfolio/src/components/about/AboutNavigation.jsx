@@ -27,10 +27,10 @@ export default function AboutNavigation({ isSideMenu = false }) {
         { name: "education", path: "/about/education" }
       ].map((tab) => (
         <NavLink key={tab.name} to={tab.path} className={itemClass}>
-          <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
+          <img src={navIcon} alt="Chevron" className="w-4 h-4 mr-1" />
           <div className="relative">
             <div className="flex items-center">
-              <img src={mdIcon} alt="Markdown" className="mr-1 w-4 h-4" />
+              <img src={mdIcon} alt="Markdown" className="w-4 h-4 mr-1" />
               <span
                 className={`${
                   location.pathname.startsWith(tab.path) ? "text-text-selected" : "text-text-default"
