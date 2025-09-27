@@ -4,7 +4,7 @@ import desktopIcon from "../../assets/icons/platforms/desktop.svg";
 
 export default function PlatformBadge({ platform }) {
   return (
-    <div className="bg-text-default border border-border-ide rounded-lg p-1 w-7 h-7 flex items-center justify-center">
+    <div className="flex items-center justify-center p-1 border rounded-lg bg-text-default border-border-ide w-7 h-7">
       {platform === "desktop" && <img src={desktopIcon} alt="Desktop" />}
       {platform === "mobile" && <img src={mobileIcon} alt="Mobile" />}
     </div>

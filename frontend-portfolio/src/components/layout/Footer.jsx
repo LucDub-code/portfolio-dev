@@ -38,7 +38,9 @@ export default function Footer() {
       </div>
       <div className="flex">
         <a
-          href="#"
+          href="https://x.com/LucDub_code"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-center w-16 max-[425px]:w-14 max-[380px]:w-12 max-[320px]:w-10 border-l border-border-ide"
         >
           <img
