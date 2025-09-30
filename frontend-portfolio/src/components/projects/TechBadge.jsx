@@ -10,7 +10,7 @@ import nodeIcon from "../../assets/icons/technos/node.svg";
 
 export default function TechBadge({ tech }) {
   return (
-    <div className="bg-bg-ui border-border-ide rounded-lg p-1 w-7 h-7 flex items-center justify-center">
+    <div className="flex items-center justify-center p-1 rounded-lg bg-bg-ui border-border-ide w-7 h-7">
       {tech === "HTML" && <img src={htmlIcon} alt="HTML" />}
       {tech === "CSS" && <img src={cssIcon} alt="CSS" />}
       {tech === "JavaScript" && <img src={jsIcon} alt="JavaScript" />}

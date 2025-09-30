@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 
 export default function Loader() {
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="flex items-center justify-center w-full h-full">
       <Lottie animationData={loader} loop={true} autoplay={true} />
     </div>
   )

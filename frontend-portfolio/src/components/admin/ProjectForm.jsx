@@ -103,9 +103,9 @@ export default function ProjectForm() {
   const [fileStatus, setFileStatus] = useState(null);
 
   const urlOptimizer = (url) =>
-          url
-            .replace('/upload/', '/upload/f_webp,q_80,c_fill,g_auto/')
-            .replace(/\.[a-z0-9]+$/i, '');
+    url
+      .replace('/upload/', '/upload/f_webp,q_80,c_fill,g_auto/')
+      .replace(/\.[a-z0-9]+$/i, '');
 
   const { getRootProps, getInputProps, isDragActive, isDragReject } = useDropzone({
     accept: { 'image/*': ['.jpeg', '.jpg', '.png', '.gif', '.webp'] },
@@ -165,8 +165,8 @@ export default function ProjectForm() {
   return (
 
     // Formulaire de création/modification des projets
-    <div className="flex flex-1 justify-center items-start p-4">
-      <form className="p-6 w-full max-w-lg" onSubmit={handleSubmit(submitForm)}>
+    <div className="flex items-start justify-center flex-1 p-4">
+      <form className="w-full max-w-lg p-6" onSubmit={handleSubmit(submitForm)}>
 
         {/* Titre du projet */}
         <div className="mb-4">
@@ -282,7 +282,7 @@ export default function ProjectForm() {
                     }
                   }}
                 />
-                <div className="flex gap-2 items-center pl-6">
+                <div className="flex items-center gap-2 pl-6">
                   <img src={platform.icon} alt={platform.name} className="w-6 h-6" />
                   <span className="text-text-default">{platform.name}</span>
                 </div>
@@ -313,7 +313,7 @@ export default function ProjectForm() {
                     }
                   }}
                 />
-                <div className="flex gap-2 items-center pl-6">
+                <div className="flex items-center gap-2 pl-6">
                   <img src={technology.icon} alt={technology.name} className="w-6 h-6" />
                   <span className="text-text-default">{technology.name}</span>
                 </div>
@@ -366,7 +366,7 @@ export default function ProjectForm() {
               }`}
           >
             <input {...getInputProps({ id: 'project-image' })} />
-            <div className="text-center flex items-center justify-center h-full">
+            <div className="flex items-center justify-center h-full text-center">
               {fileStatus === 'uploading' ? (
                 <p className="text-blue-accent">Upload en cours...</p>
               ) : fileStatus === 'success' ? (
@@ -379,7 +379,7 @@ export default function ProjectForm() {
                 <p className="text-blue-accent">Déposez l'image ici...</p>
               ) : (
                 <div>
-                  <p className="text-text-default mb-2">
+                  <p className="mb-2 text-text-default">
                     Glisser-déposer l'image <br /> ou cliquer pour sélectionner
                   </p>
                   <p className="text-sm text-gray-inactive">
@@ -421,7 +421,7 @@ export default function ProjectForm() {
         <div className="flex justify-center pt-8">
           <button
             type="submit"
-            className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide disabled:opacity-50"
+            className="px-8 py-2 text-white transition-colors border rounded shadow-md cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide disabled:opacity-50"
             disabled={isSubmitting}
           >
             {isSubmitting

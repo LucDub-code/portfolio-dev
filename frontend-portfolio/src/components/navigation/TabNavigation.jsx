@@ -28,7 +28,7 @@ export default function TabNavigation() {
   const rightTab = "contact";
 
   return (
-    <div className="flex-1 flex justify-between overflow-x-auto">
+    <div className="flex justify-between flex-1 overflow-x-auto">
       {/* Onglets alignés à gauche */}
       <div className="flex">
         {leftTabs.map((tabId) => {
@@ -40,10 +40,9 @@ export default function TabNavigation() {
               to={route}
               end={tabId !== "a-propos"}
               className={({ isActive }) =>
-                `flex items-center px-4 h-12 cursor-pointer border-r border-border-ide ${
-                  isActive
-                    ? "bg-bg-terminal border-b-[3px] border-b-blue-accent"
-                    : "hover:bg-slate-800 border-b border-border-ide"
+                `flex items-center px-4 h-12 cursor-pointer border-r border-border-ide ${isActive
+                  ? "bg-bg-terminal border-b-[3px] border-b-blue-accent"
+                  : "hover:bg-slate-800 border-b border-border-ide"
                 }`
               }
             >
@@ -79,12 +78,10 @@ export default function TabNavigation() {
               to={route}
               end
               className={({ isActive }) =>
-                `flex items-center px-4 h-12 cursor-pointer ${
-                  windowWidth > 1060 ? "border-l border-border-ide" : ""
-                } ${
-                  isActive
-                    ? "bg-bg-terminal border-b-[3px] border-b-blue-accent"
-                    : "hover:bg-slate-800 border-b border-border-ide"
+                `flex items-center px-4 h-12 cursor-pointer ${windowWidth > 1060 ? "border-l border-border-ide" : ""
+                } ${isActive
+                  ? "bg-bg-terminal border-b-[3px] border-b-blue-accent"
+                  : "hover:bg-slate-800 border-b border-border-ide"
                 }`
               }
             >

@@ -31,7 +31,7 @@ export type PromptInputProps = Omit<
 };
 
 export const PromptInput = ({
-  className="mt-4 max-[425px]:mt-2 w-full max-w-2xl mx-auto relative min-h-18 max-[425px]:min-h-auto",
+  className = "mt-4 max-[425px]:mt-2 w-full max-w-2xl mx-auto relative min-h-18 max-[425px]:min-h-auto",
   onSubmit,
   ...props
 }: PromptInputProps) => {
@@ -81,7 +81,7 @@ export const PromptInputTextarea = ({
   return (
     <Textarea
       name="message"
-      onChange={(e) => {onChange?.(e);}}
+      onChange={(e) => { onChange?.(e); }}
       onKeyDown={handleKeyDown}
       placeholder={placeholder}
       {...props}
@@ -94,7 +94,7 @@ export type PromptInputSubmitProps = ComponentProps<typeof Button> & {
 };
 
 export const PromptInputSubmit = ({
-  className="absolute bottom-1 max-[425px]:bottom-0 max-[425px]:top-1/2 max-[425px]:-translate-y-1/2 right-1",
+  className = "absolute bottom-1 max-[425px]:bottom-0 max-[425px]:top-1/2 max-[425px]:-translate-y-1/2 right-1",
   status,
   children,
   ...props

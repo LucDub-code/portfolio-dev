@@ -8,7 +8,7 @@ import reactIcon from "../../assets/icons/technos/react.svg";
 import nodeIcon from "../../assets/icons/technos/node.svg";
 import expressIcon from "../../assets/icons/technos/express.svg";
 import mongodbIcon from "../../assets/icons/technos/mongo.svg";
-import "./CodeEditor.css"; 
+import "./CodeEditor.css";
 import { useEffect } from "react";
 
 export default function CodeEditor() {
@@ -159,7 +159,7 @@ export default function CodeEditor() {
       <div className="h-5 max-[425px]:h-3.5 max-[380px]:h-[0.9rem] max-[320px]:h-[0.8rem] flex items-center pl-4 text-sm max-[425px]:text-[0.7rem] max-[380px]:text-[0.625rem] max-[320px]:text-[0.5rem] tracking-wide typing-line typing-line-18">
         <span className="text-blue-attr">mission: </span>
         <span className="text-orange-string">
-          "Répondre à vos questions sur 
+          "Répondre à vos questions sur
         </span>
       </div>
       {/* Ligne 19 */}

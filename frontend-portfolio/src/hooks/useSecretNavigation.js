@@ -17,7 +17,7 @@ export const useSecretNavigation = () => {
       }
 
     };
-    
+
     document.addEventListener('keydown', handleSecretNavigation);
     return () => document.removeEventListener('keydown', handleSecretNavigation);
   }, []);

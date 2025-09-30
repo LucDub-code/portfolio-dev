@@ -6,19 +6,19 @@ export default function NotFoundPage() {
     <div className="flex flex-col h-full">
       {/* En-tête mobile */}
       <div className="hidden max-[1060px]:flex items-center px-3 py-2 bg-bg-terminal border-b border-border-ide">
-        <img src={chevronDown} alt="Chevron" className="mr-2 w-4 h-4" />
-        <img src={banIcon} alt="Dossier" className="mr-2 w-5 h-5" />
+        <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
+        <img src={banIcon} alt="Dossier" className="w-5 h-5 mr-2" />
         <span className="text-base text-text-default">_not-found.html</span>
       </div>
 
       {/* Contenu 404 */}
-      <div className="flex flex-1 justify-center items-center">
+      <div className="flex items-center justify-center flex-1">
         <div className="text-center transform -translate-y-1/16">
-          <h1 className="text-8xl font-bold text-text-default pb-4">404</h1>
-          <p className="text-xl text-text-default pb-12">Page introuvable</p>
-          <a 
-            href="/" 
-            className="px-6 py-3 bg-blue-accent text-text-selected rounded hover:bg-focus-hover transition-colors"
+          <h1 className="pb-4 font-bold text-8xl text-text-default">404</h1>
+          <p className="pb-12 text-xl text-text-default">Page introuvable</p>
+          <a
+            href="/"
+            className="px-6 py-3 transition-colors rounded bg-blue-accent text-text-selected hover:bg-focus-hover"
           >
             Retour à l'accueil
           </a>

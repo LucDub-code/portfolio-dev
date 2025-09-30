@@ -37,20 +37,19 @@ export default function AdminNavigation({ isSideMenu = false }) {
           to={tab.path}
           className={itemClass}
         >
-          <img src={navIcon} alt="Chevron" className="mr-1 w-4 h-4" />
+          <img src={navIcon} alt="Chevron" className="w-4 h-4 mr-1" />
           <div className="relative">
             <div className="flex items-center">
               <img
                 src={tab.icon}
                 alt={tab.name}
-                className="mr-1 w-4 h-4"
+                className="w-4 h-4 mr-1"
               />
               <span
-                className={`${
-                  location.pathname.startsWith(tab.path)
+                className={`${location.pathname.startsWith(tab.path)
                     ? "text-text-selected"
                     : "text-text-default"
-                } text-sm`}
+                  } text-sm`}
               >
                 {tab.name}
               </span>
@@ -62,7 +61,7 @@ export default function AdminNavigation({ isSideMenu = false }) {
 
       {/* Bouton Connexion */}
       <div className={buttonContainerClass}>
-        <button type="button" className="flex items-center px-2 py-1 cursor-pointer bg-red-500 hover:bg-red-600 rounded text-text-selected text-sm" onClick={() => {
+        <button type="button" className="flex items-center px-2 py-1 text-sm bg-red-500 rounded cursor-pointer hover:bg-red-600 text-text-selected" onClick={() => {
           logout();
         }}>
           Déconnexion
