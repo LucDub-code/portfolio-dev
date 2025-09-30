@@ -50,7 +50,7 @@ export default function TabNavigation() {
                 <>
                   <img
                     src={page.icon}
-                    alt={page.title}
+                    alt={`Icône ${page.title}`}
                     className="w-4 h-4 mr-2"
                   />
                   <span

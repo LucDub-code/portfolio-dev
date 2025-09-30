@@ -48,7 +48,7 @@ export default function StatusBar({ isMobileMenuOpen = false }) {
 
   return (
     <div
-      className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-default px-4 flex items-center justify-center overflow-hidden ${getTextClass()} ${getPositionClass()}`}
+      className={`${getHeightClass()} bg-statusBar-background border-t border-border-ide text-text-selected px-4 flex items-center justify-center overflow-hidden ${getTextClass()} ${getPositionClass()}`}
     >
       <TextLoop interval={3}>
         <span>💼 Missions freelance et postes développeur web</span>
