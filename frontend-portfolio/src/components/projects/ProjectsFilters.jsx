@@ -15,7 +15,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
   return (
     <div className={containerClass}>
       {/* Filtre Desktop & Mobile */}
-      <div className="flex gap-2 items-center pb-2 border-b border-border-ide">
+      <div className="flex items-center gap-2 pb-2 border-b border-border-ide">
         <img src={chevronRight} alt="Chevron" className="w-4 h-4" />
         <h3 className="font-semibold text-text-default">Plateformes</h3>
       </div>
@@ -35,7 +35,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
               }
             }}
           />
-          <div className="flex gap-2 items-center pl-6">
+          <div className="flex items-center gap-2 pl-6">
             <img src={platform.icon} alt={platform.name} className="w-6 h-6" />
             <span>{platform.name}</span>
           </div>
@@ -43,7 +43,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
       ))}
 
       {/* Filtre Technologies */}
-      <div className="flex gap-2 items-center pb-2 mt-6 border-b border-border-ide">
+      <div className="flex items-center gap-2 pb-2 mt-6 border-b border-border-ide">
         <img src={chevronRight} alt="Chevron" className="w-4 h-4" />
         <h3 className="font-semibold text-text-default">Technologies</h3>
       </div>
@@ -63,7 +63,7 @@ export default function ProjectFilters({ isSideMenu = false }) {
               }
             }}
           />
-          <div className="flex gap-2 items-center pl-6">
+          <div className="flex items-center gap-2 pl-6">
             <img
               src={technology.icon}
               alt={technology.name}

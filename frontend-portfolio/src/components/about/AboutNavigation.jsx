@@ -32,9 +32,8 @@ export default function AboutNavigation({ isSideMenu = false }) {
             <div className="flex items-center">
               <img src={mdIcon} alt="Markdown" className="w-4 h-4 mr-1" />
               <span
-                className={`${
-                  location.pathname.startsWith(tab.path) ? "text-text-selected" : "text-text-default"
-                } text-sm`}
+                className={`${location.pathname.startsWith(tab.path) ? "text-text-selected" : "text-text-default"
+                  } text-sm`}
               >
                 {tab.name}.md
               </span>

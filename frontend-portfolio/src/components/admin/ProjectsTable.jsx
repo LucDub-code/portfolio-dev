@@ -45,7 +45,7 @@ export default function ProjectsTable() {
     <div className="flex flex-col items-center pt-16 pb-8">
 
       {/* Table des projets */}
-      <div className="border border-border-ide rounded-lg overflow-hidden">
+      <div className="overflow-hidden border rounded-lg border-border-ide">
         <table className="bg-bg-terminal text-text-default max-[425px]:text-xs">
           <tbody>
             {projects.map((project) => (
@@ -69,12 +69,12 @@ export default function ProjectsTable() {
 
       {/* Modal de confirmation de suppression avec overlay */}
       {showDeleteModal && (
-        <div className="fixed inset-0 bg-black/50 z-50">
-          <div className="bg-bg-terminal border border-border-ide p-6 rounded relative top-50 left-130 max-w-xs text-center">
+        <div className="fixed inset-0 z-50 bg-black/50">
+          <div className="relative max-w-xs p-6 text-center border rounded bg-bg-terminal border-border-ide top-50 left-130">
             <p className="text-text-default">Êtes-vous sûr de vouloir supprimer ce projet ?</p>
             <div className="flex justify-center mt-4">
-              <button className="bg-red-500 hover:brightness-125 text-white px-4 py-2 rounded mr-2 cursor-pointer" onClick={() => deleteProject(projectToDelete)}>Supprimer</button>
-              <button className="bg-text-default hover:brightness-125 text-black px-4 py-2 rounded cursor-pointer" onClick={() => setShowDeleteModal(false)}>Annuler</button>
+              <button className="px-4 py-2 mr-2 text-white bg-red-500 rounded cursor-pointer hover:brightness-125" onClick={() => deleteProject(projectToDelete)}>Supprimer</button>
+              <button className="px-4 py-2 text-black rounded cursor-pointer bg-text-default hover:brightness-125" onClick={() => setShowDeleteModal(false)}>Annuler</button>
             </div>
           </div>
         </div>

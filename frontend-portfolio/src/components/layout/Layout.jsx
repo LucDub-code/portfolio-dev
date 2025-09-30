@@ -30,7 +30,7 @@ export default function Layout({ children }) {
   }, []);
 
   return (
-    <div className="h-screen w-full bg-bg-ui flex flex-col overflow-hidden">
+    <div className="flex flex-col w-full h-screen overflow-hidden bg-bg-ui">
       <Header
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
@@ -44,7 +44,7 @@ export default function Layout({ children }) {
             !(location.pathname === "/admin" && authLoading) && <FileHeader />}
 
           <div className="flex-1 overflow-auto">{children}</div>
-          
+
           <StatusBar isMobileMenuOpen={isMobileMenuOpen} />
         </div>
       </div>

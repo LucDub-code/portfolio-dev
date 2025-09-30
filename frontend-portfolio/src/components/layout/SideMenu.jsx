@@ -9,9 +9,9 @@ export default function SideMenu() {
   const location = useLocation();
 
   const { isAuthenticated, authLoading } = useAuth();
-  
+
   return (
-    <div className="w-50 min-w-50 max-w-50 overflow-hidden border-r border-border-ide bg-bg-terminal text-text-default px-4">
+    <div className="px-4 overflow-hidden border-r w-50 min-w-50 max-w-50 border-border-ide bg-bg-terminal text-text-default">
       {/* Navigation par onglets pour About - uniquement visible quand on est sur /about */}
       {location.pathname.startsWith('/about') && (
         <AboutNavigation isSideMenu={true} />

@@ -27,14 +27,12 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   return (
     <div className="border-b border-border-ide w-full bg-bg-terminal text-text-default flex items-center h-12 max-[425px]:h-10">
       <div
-        className={`w-50 min-w-50 max-w-50 overflow-hidden ${
-          !isMobile ? "border-r border-border-ide" : ""
-        } h-full flex items-center px-4`}
+        className={`w-50 min-w-50 max-w-50 overflow-hidden ${!isMobile ? "border-r border-border-ide" : ""
+          } h-full flex items-center px-4`}
       >
         <p
-          className={`font-medium truncate ${
-            isMobile ? "text-base" : "text-lg"
-          }`}
+          className={`font-medium truncate ${isMobile ? "text-base" : "text-lg"
+            }`}
         >
           lucas-dubeau
         </p>
@@ -44,7 +42,7 @@ export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }) {
 
       {isMobile && (
         <button
-          className="ml-auto mr-4 w-8 h-8 flex items-center justify-center focus:outline-none text-text-default"
+          className="flex items-center justify-center w-8 h-8 ml-auto mr-4 focus:outline-none text-text-default"
           onClick={toggleMobileMenu}
         >
           <img

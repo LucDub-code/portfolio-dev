@@ -14,14 +14,14 @@ export default function ProjectCard({ project }) {
           className="object-cover w-full h-full"
         />
         {/* Badges plateformes - haut gauche */}
-        <div className="absolute top-2 left-2 flex gap-1">
+        <div className="absolute flex gap-1 top-2 left-2">
           {project.platforms.map((platform) => (
             <PlatformBadge key={platform} platform={platform} />
           ))}
         </div>
 
         {/* Badges technologies - haut droite */}
-        <div className="absolute top-2 right-2 flex gap-1">
+        <div className="absolute flex gap-1 top-2 right-2">
           {project.mainTechnologies.map((tech) => (
             <TechBadge key={tech} tech={tech} />
           ))}

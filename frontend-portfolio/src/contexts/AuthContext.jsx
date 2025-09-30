@@ -14,28 +14,28 @@ export function AuthProvider({ children }) {
   // Fonction de connexion
   const login = (email, password) => {
     setLoginError(null);
-    
+
     fetch(API_ENDPOINTS.AUTH_LOGIN, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     })
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error('Identifiants incorrects');
-      }
-    })
-    .then(result => {
-      localStorage.setItem('token', result.token);
-      setIsAuthenticated(true);
-      setLoginError(null);
-      navigate('/admin/projets');
-    })
-    .catch(error => {
-      setLoginError(error.message || 'Erreur de connexion');
-    });
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error('Identifiants incorrects');
+        }
+      })
+      .then(result => {
+        localStorage.setItem('token', result.token);
+        setIsAuthenticated(true);
+        setLoginError(null);
+        navigate('/admin/projets');
+      })
+      .catch(error => {
+        setLoginError(error.message || 'Erreur de connexion');
+      });
   };
 
   // Fonction de déconnexion
@@ -48,7 +48,7 @@ export function AuthProvider({ children }) {
   // Fonction pour vérifier l'authentification
   const checkAuth = () => {
     const token = localStorage.getItem('token');
-    
+
     if (!token) {
       setIsAuthenticated(false);
       setAuthLoading(false);
@@ -60,19 +60,19 @@ export function AuthProvider({ children }) {
         'Authorization': `Bearer ${token}`
       }
     })
-    .then(response => {
-      if (response.ok) {
-        setIsAuthenticated(true);
-      } else {
+      .then(response => {
+        if (response.ok) {
+          setIsAuthenticated(true);
+        } else {
+          logout();
+        }
+      })
+      .catch(() => {
         logout();
-      }
-    })
-    .catch(() => {
-      logout();
-    })
-    .finally(() => {
-      setAuthLoading(false);
-    });
+      })
+      .finally(() => {
+        setAuthLoading(false);
+      });
   };
 
   useEffect(() => {
@@ -80,10 +80,10 @@ export function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ 
-      isAuthenticated, 
-      authLoading, 
-      login, 
+    <AuthContext.Provider value={{
+      isAuthenticated,
+      authLoading,
+      login,
       logout,
       loginError
     }}>

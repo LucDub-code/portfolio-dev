@@ -43,20 +43,20 @@ export default function LoginPage() {
     <div className="flex flex-col h-full">
       {/* En-tête mobile */}
       <div className="hidden max-[1060px]:flex items-center px-3 py-2 h10 bg-bg-terminal border-b border-border-ide">
-        <img src={chevronDown} alt="Chevron" className="mr-2 w-4 h-4" />
-        <img src={loginIcon} alt="Dossier" className="mr-2 w-5 h-5" />
+        <img src={chevronDown} alt="Chevron" className="w-4 h-4 mr-2" />
+        <img src={loginIcon} alt="Dossier" className="w-5 h-5 mr-2" />
         <span className="text-base text-text-default">_login.html</span>
       </div>
 
       {/* Formulaire de connexion */}
-      <div className="flex flex-1 justify-center items-start pt-8">
-        <form className="p-6 w-full max-w-md" onSubmit={handleSubmit(onSubmit)}>
-          
+      <div className="flex items-start justify-center flex-1 pt-8">
+        <form className="w-full max-w-md p-6" onSubmit={handleSubmit(onSubmit)}>
+
           <div className="mb-4 min-h-14">
             {/* Message d'erreur général */}
             <div>
               {loginError && (
-                <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
+                <div className="p-3 border rounded bg-error-foreground/10 border-error-foreground text-error-foreground">
                   {loginError}
                 </div>
               )}
@@ -64,7 +64,7 @@ export default function LoginPage() {
             {/* Message d'erreur authentification */}
             <div>
               {authError && (
-                <div className="p-3 bg-error-foreground/10 border border-error-foreground rounded text-error-foreground">
+                <div className="p-3 border rounded bg-error-foreground/10 border-error-foreground text-error-foreground">
                   {authError}
                 </div>
               )}
@@ -79,13 +79,12 @@ export default function LoginPage() {
             <input
               type="email"
               id="email"
-              className={`w-full border bg-bg-terminal ${
-                errors.email
-                  ? 'border-error-foreground' 
+              className={`w-full border bg-bg-terminal ${errors.email
+                  ? 'border-error-foreground'
                   : touchedFields.email && !errors.email && watch('email')?.trim() !== ""
-                  ? 'border-success-foreground' 
-                  : 'border-border-ide'         
-              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+                    ? 'border-success-foreground'
+                    : 'border-border-ide'
+                } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Email admin */"
               {...register("email")}
             />
@@ -104,13 +103,12 @@ export default function LoginPage() {
             <input
               type="password"
               id="password"
-              className={`w-full border bg-bg-terminal ${
-                errors.password 
-                  ? 'border-error-foreground' 
+              className={`w-full border bg-bg-terminal ${errors.password
+                  ? 'border-error-foreground'
                   : touchedFields.password && !errors.password && watch('password')?.trim() !== ""
-                  ? 'border-success-foreground'
-                  : 'border-border-ide'         
-              } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
+                    ? 'border-success-foreground'
+                    : 'border-border-ide'
+                } p-2 rounded text-text-default focus:outline-none focus:border-blue-accent placeholder:text-gray-inactive`}
               placeholder="/* Mot de passe admin */"
               {...register("password")}
             />
@@ -125,7 +123,7 @@ export default function LoginPage() {
           <div className="flex justify-center pt-8">
             <button
               type="submit"
-              className="px-8 py-2 text-white rounded border shadow-md transition-colors cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide disabled:opacity-50"
+              className="px-8 py-2 text-white transition-colors border rounded shadow-md cursor-pointer bg-blue-accent hover:bg-focus-hover border-border-ide disabled:opacity-50"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Connexion en cours..." : "Se connecter"}
