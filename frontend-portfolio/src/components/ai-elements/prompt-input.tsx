@@ -113,6 +113,7 @@ export const PromptInputSubmit = ({
     <Button
       className={cn("gap-1.5 rounded-lg", className)}
       type="submit"
+      aria-label="Envoyer le message"
       {...props}
     >
       {children ?? Icon}

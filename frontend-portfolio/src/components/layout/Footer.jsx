@@ -32,7 +32,7 @@ export default function Footer() {
       className={`flex relative z-40 justify-between w-full border-t border-border-ide bg-bg-terminal text-text-default ${getFooterHeight()}`}
     >
       <div className="flex items-center px-4 max-[425px]:px-3 max-[320px]:px-2">
-        <p className="text-gray-inactive text-sm max-[425px]:text-xs max-[320px]:text-[10px]">
+        <p className="text-text-default text-sm max-[425px]:text-xs max-[320px]:text-[10px]">
           retrouvez moi sur {"=>"}
         </p>
       </div>
