@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /login
 
 Sitemap: https://lucasdubeau.dev/sitemap.xml
+
