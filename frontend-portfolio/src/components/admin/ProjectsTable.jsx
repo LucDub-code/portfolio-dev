@@ -69,8 +69,8 @@ export default function ProjectsTable() {
 
       {/* Modal de confirmation de suppression avec overlay */}
       {showDeleteModal && (
-        <div className="fixed inset-0 z-50 bg-black/50">
-          <div className="relative max-w-xs p-6 text-center border rounded bg-bg-terminal border-border-ide top-50 left-130">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+          <div className="max-w-xs p-6 text-center border rounded ml-50 bg-bg-terminal border-border-ide">
             <p className="text-text-default">Êtes-vous sûr de vouloir supprimer ce projet ?</p>
             <div className="flex justify-center mt-4">
               <button className="px-4 py-2 mr-2 text-white bg-red-500 rounded cursor-pointer hover:brightness-125" onClick={() => deleteProject(projectToDelete)}>Supprimer</button>
