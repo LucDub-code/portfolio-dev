@@ -16,7 +16,7 @@ export default function EducationContent({ isActive = false }) {
               '<h2 class="text-blue-html text-lg max-[770px]:text-base max-[425px]:text-sm font-semibold mt-6 mb-4">Formation développement web</h2>'
             )
             .typeString(
-              `<h3 class="inline text-blue-html min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Parcours diplômant OpenClassrooms </h3><p class="inline min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">(en cours) - Développeur Web niveau 5 (Bac+2 RNCP). Formation par projets professionnalisants couvrant le développement full-stack avec mentorat.</p><br />`
+              `<h3 class="inline text-blue-html min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm">Parcours diplômant OpenClassrooms </h3><p class="inline min-[425px]:max-[770px]:text-[15px] max-[425px]:text-sm"> : Développeur Web niveau 5 (Bac+2 RNCP). Formation par projets professionnalisants couvrant le développement full-stack avec mentorat.</p><br />`
             )
             .typeString(`<div class="h-4"></div>`)
             .typeString(
