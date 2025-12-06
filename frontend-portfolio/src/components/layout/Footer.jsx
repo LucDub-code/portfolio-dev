@@ -52,14 +52,16 @@ export default function Footer() {
           />
         </a>
         <a
-          href="#"
+          href="https://www.linkedin.com/in/lucasdubeau/"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center justify-center w-16 max-[425px]:w-14 max-[380px]:w-12 max-[320px]:w-10 border-l border-border-ide"
         >
           <img
             src={linkedinIcon}
             alt="Icône du réseau Linkedin"
-            width="20"
-            height="20"
+            width="24"
+            height="24"
             className="max-[425px]:w-[18px] max-[425px]:h-[18px] max-[380px]:w-[16px] max-[380px]:h-[16px] max-[320px]:w-[14px] max-[320px]:h-[14px]"
           />
         </a>
