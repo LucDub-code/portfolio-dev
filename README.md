@@ -10,7 +10,7 @@
 
 ## Présentation
 
-Portfolio de développeur web présentant mes projets et compétences à travers une interface interactive inspirée d'un environnement de développement (IDE).
+Portfolio MERN de développeur web full-stack présentant mes projets et compétences à travers une interface interactive inspirée d’un environnement de développement (IDE).
 
 ## Architecture
 
