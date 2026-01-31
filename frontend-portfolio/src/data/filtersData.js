@@ -9,6 +9,9 @@ import sassIcon from "../assets/icons/technos/sass.svg";
 import expressIcon from "../assets/icons/technos/express.svg";
 import mongodbIcon from "../assets/icons/technos/mongo.svg";
 import nodeIcon from "../assets/icons/technos/node.svg";
+import postgresqlIcon from "../assets/icons/technos/postgresql.svg";
+import typescriptIcon from "../assets/icons/technos/typescript.svg";
+import nextjsIcon from "../assets/icons/technos/nextjs.svg";
 
 export const filtersData = {
   platforms: [
@@ -30,6 +33,46 @@ export const filtersData = {
       name: "React",
     },
     {
+      id: "Next.js",
+      icon: nextjsIcon,
+      name: "Next.js",
+    },
+    {
+      id: "TypeScript",
+      icon: typescriptIcon,
+      name: "TypeScript",
+    },
+    {
+      id: "JavaScript",
+      icon: jsIcon,
+      name: "JavaScript",
+    },
+    {
+      id: "Node.js",
+      icon: nodeIcon,
+      name: "Node.js",
+    },
+    {
+      id: "Express",
+      icon: expressIcon,
+      name: "Express",
+    },
+    {
+      id: "PostgreSQL",
+      icon: postgresqlIcon,
+      name: "PostgreSQL",
+    },
+    {
+      id: "MongoDB",
+      icon: mongodbIcon,
+      name: "MongoDB",
+    },
+    {
+      id: "Tailwind",
+      icon: tailwindIcon,
+      name: "Tailwind",
+    },
+    {
       id: "HTML",
       icon: htmlIcon,
       name: "HTML",
@@ -40,34 +83,9 @@ export const filtersData = {
       name: "CSS",
     },
     {
-      id: "JavaScript",
-      icon: jsIcon,
-      name: "JavaScript",
-    },
-    {
-      id: "Tailwind",
-      icon: tailwindIcon,
-      name: "Tailwind",
-    },
-    {
       id: "Sass",
       icon: sassIcon,
       name: "Sass",
-    },
-    {
-      id: "Express",
-      icon: expressIcon,
-      name: "Express",
-    },
-    {
-      id: "MongoDB",
-      icon: mongodbIcon,
-      name: "MongoDB",
-    },
-    {
-      id: "Node.js",
-      icon: nodeIcon,
-      name: "Node.js",
     },
   ],
 };
