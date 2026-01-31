@@ -7,9 +7,9 @@ import sassIcon from "../../assets/icons/technos/sass.svg";
 import expressIcon from "../../assets/icons/technos/express.svg";
 import mongodbIcon from "../../assets/icons/technos/mongo.svg";
 import nodeIcon from "../../assets/icons/technos/node.svg";
-import postgresqlIcon from "../assets/icons/technos/postgresql.svg";
-import typescriptIcon from "../assets/icons/technos/typescript.svg";
-import nextjsIcon from "../assets/icons/technos/nextjs.svg";
+import postgresqlIcon from "../../assets/icons/technos/postgresql.svg";
+import typescriptIcon from "../../assets/icons/technos/typescript.svg";
+import nextjsIcon from "../../assets/icons/technos/nextjs.svg";
 
 export default function TechBadge({ tech }) {
   return (
