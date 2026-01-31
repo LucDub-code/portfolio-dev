@@ -7,6 +7,9 @@ import sassIcon from "../../assets/icons/technos/sass.svg";
 import expressIcon from "../../assets/icons/technos/express.svg";
 import mongodbIcon from "../../assets/icons/technos/mongo.svg";
 import nodeIcon from "../../assets/icons/technos/node.svg";
+import postgresqlIcon from "../assets/icons/technos/postgresql.svg";
+import typescriptIcon from "../assets/icons/technos/typescript.svg";
+import nextjsIcon from "../assets/icons/technos/nextjs.svg";
 
 export default function TechBadge({ tech }) {
   return (
@@ -20,6 +23,9 @@ export default function TechBadge({ tech }) {
       {tech === "Express" && <img src={expressIcon} alt="Express" />}
       {tech === "MongoDB" && <img src={mongodbIcon} alt="MongoDB" />}
       {tech === "Node.js" && <img src={nodeIcon} alt="Node.js" />}
+      {tech === "PostgreSQL" && <img src={postgresqlIcon} alt="PostgreSQL" />}
+      {tech === "TypeScript" && <img src={typescriptIcon} alt="TypeScript" />}
+      {tech === "Next.js" && <img src={nextjsIcon} alt="Next.js" />}
     </div>
   );
 }
