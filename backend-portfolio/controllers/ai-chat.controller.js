@@ -42,7 +42,7 @@ const chat = async (req, res) => {
     }
 
     const { embedding: prompt_embedding } = await embed({
-      model: mistral.textEmbedding('mistral-embed'),
+      model: mistral.embedding('mistral-embed'),
       value: normalizedPrompt
     });
 

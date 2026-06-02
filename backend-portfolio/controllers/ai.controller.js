@@ -37,7 +37,7 @@ const rebuildEmbeddings = async (req, res) => {
 
       const fullText = `${data.content} ${data.questions.join(' ')} ${data.keywords.join(' ')}`;
       const { embedding } = await embed({
-        model: mistral.textEmbedding('mistral-embed'),
+        model: mistral.embedding('mistral-embed'),
         value: fullText
       });
 
