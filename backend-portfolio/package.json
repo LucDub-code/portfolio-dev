@@ -16,8 +16,8 @@
   "author": "LucDub-code",
   "license": "ISC",
   "dependencies": {
-    "@ai-sdk/mistral": "^3.0.37",
-    "ai": "^6.0.194",
+    "@ai-sdk/mistral": "^3.0.63",
+    "ai": "^6.0.278",
     "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
